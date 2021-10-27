@@ -1,11 +1,16 @@
-﻿using WelcomeDev.Provider.Di;
+﻿using Auth.Di;
+using Statistic.Di.Tag;
 
 namespace Statistic.Di
 {
-    public interface IStatisticData : IGuid
+    public interface IStatisticData : IStatisticEssentialsData
     {
-        public string Title { get; }
+        IUserIdentity User { get; }
 
-        public double Value { get; }
+        ITag Tag { get; set; }
+
+        string Title { set; }
+
+        DateTime Date { get; }
     }
 }
