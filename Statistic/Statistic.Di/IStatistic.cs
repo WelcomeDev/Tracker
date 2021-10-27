@@ -4,13 +4,11 @@ using WelcomeDev.Provider.Di;
 
 namespace Statistic.Di
 {
-    public interface IStatistic : IGuid
+    public interface IStatistic : IGuid, IEquatable<IStatistic>, IStatisticData
     {
         public ITag Tag { get; set; }
 
-        public string Title { get; set; }
-
-        public double Value { get; }
+        public string Title { set; }
 
         public DateTime Date { get; }
     }
