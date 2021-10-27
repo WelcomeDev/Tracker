@@ -14,6 +14,6 @@ namespace Statistic.Di.Summary
 
         public DateTime DateTo { get; }
 
-        public Dictionary<ITag, IStatisticData> Values { get; }
+        public Dictionary<ITag, IStatisticEssentialsData> Values { get; }
     }
 }
