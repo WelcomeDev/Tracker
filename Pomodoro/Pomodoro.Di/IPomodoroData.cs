@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Auth.Di;
 
 namespace Pomodoro.Di
 {
     public interface IPomodoroData
     {
+        IUserIdentity User { get; }
+
         bool IsRunning { get; }
 
         string Title { get; set; }
