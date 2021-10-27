@@ -1,10 +1,8 @@
 ﻿using Statistic.Di.Tag;
 
-using WelcomeDev.Provider.Di;
-
 namespace Statistic.Di
 {
-    public interface IStatistic : IGuid, IEquatable<IStatistic>, IStatisticData
+    public interface IStatistic :IEquatable<IStatistic>, IStatisticData
     {
         public ITag Tag { get; set; }
 

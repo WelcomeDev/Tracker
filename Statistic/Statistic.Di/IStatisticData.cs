@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WelcomeDev.Provider.Di;
 
 namespace Statistic.Di
 {
-    public interface IStatisticData
+    public interface IStatisticData : IGuid
     {
         public string Title { get; }
 
