@@ -6,6 +6,6 @@ namespace Auth.Di
     {
         string Name { get; }
 
-        Guid Id { get; set; }
+        Guid Id { get; }
     }
 }
