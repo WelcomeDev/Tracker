@@ -12,7 +12,9 @@ namespace Pomodoro.Di
 
         void Cancel();
 
-        void Stop();
+        void Pause();
+
+        void Resume();
 
         void Start();
     }

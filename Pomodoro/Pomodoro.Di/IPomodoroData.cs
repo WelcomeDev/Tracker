@@ -10,8 +10,8 @@ namespace Pomodoro.Di
 
         string Title { get; set; }
 
-        TimeSpan Duration { get; set; }
+        TimeSpan RestDuration { get; set;  }
 
-        DateTime StartDate { get; }
+        TimeSpan WorkDuration { get; set; }
     }
 }
