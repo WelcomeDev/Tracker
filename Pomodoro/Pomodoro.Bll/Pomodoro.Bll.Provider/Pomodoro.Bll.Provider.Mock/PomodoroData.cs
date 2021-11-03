@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Auth.Di;
+﻿using Auth.Di;
 
 using Pomodoro.Di;
 
@@ -12,14 +6,23 @@ namespace Pomodoro.Bll.Provider.Mock
 {
     internal class PomodoroData : IPomodoroData
     {
-        public IUserIdentity User => throw new NotImplementedException();
+        public IUserIdentity User { get; set; }
 
-        public string Title { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Title { get; set; }
+        public TimeSpan RestDuration { get; set; }
+        public TimeSpan WorkDuration { get; set; }
+        public Guid Id { get; set; }
 
-        public IDuration Rest => throw new NotImplementedException();
+        public PomodoroData()
+        { }
 
-        public IDuration Work => throw new NotImplementedException();
-
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public PomodoroData(IPomodoroEssentials data, IUserIdentity user)
+        {
+            Id = Guid.NewGuid();
+            User = user;
+            Title = data.Title;
+            RestDuration = data.RestDuration;
+            WorkDuration = data.WorkDuration;
+        }
     }
 }
