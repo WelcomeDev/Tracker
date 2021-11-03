@@ -2,11 +2,11 @@
 
 namespace WelcomeDev.Utils
 {
-    public class PascalCaseNamingPilicy : JsonNamingPolicy
+    public class PascalCaseNamingPolicy : JsonNamingPolicy
     {
-        public static JsonNamingPolicy Policy { get; } = new PascalCaseNamingPilicy();
+        public static JsonNamingPolicy Policy { get; } = new PascalCaseNamingPolicy();
 
-        private PascalCaseNamingPilicy()
+        private PascalCaseNamingPolicy()
         {
         }
 
