@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IUserIdentity>(provider => new CurrentUser());
+builder.Services.AddSingleton<IUserIdentity, CurrentUser>();
 builder.Services.AddSingleton<IPomodoroProvider, PomodoroMockProvider>();
 
 

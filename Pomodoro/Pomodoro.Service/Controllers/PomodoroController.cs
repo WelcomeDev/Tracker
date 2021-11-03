@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pomodoro.Di;
 using Pomodoro.Di.Provider;
+using Pomodoro.Service.Controllers.Dto;
 
 namespace Pomodoro.Service.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PomodoroController : ControllerBase
     {
         private readonly IPomodoroProvider _provider;
@@ -15,36 +16,34 @@ namespace Pomodoro.Service.Controllers
             _provider = provider;
         }
 
-        [HttpGet(Name = "GetAllPomodoros")]
+        [HttpGet(Name = "GetAll")]
         public IEnumerable<IPomodoroData> GetAll()
         {
-            return _provider.GetAll().Result;
+            return _provider.GetAll();
         }
 
-        [HttpGet(Name = "GetPomodoroByID")]
-        public IPomodoroData GetByID(Guid guid)
-        {
-            return _provider.GetById(guid);
-        }
+        //[HttpGet(Name = "GetPomodoro")]
+        //public IPomodoroData GetByID(Guid guid)
+        //{
+        //    return _provider.GetById(guid);
+        //}
 
-        [HttpPost(Name = "DeletePomodoro")]
-        public void Delete(Guid guid)
-        {
-            _provider.Delete(guid);
-        }
+        //[HttpPost(Name = "PostPomodoroDelete")]
+        //public void Delete(Guid guid)
+        //{
+        //    _provider.Delete(guid);
+        //}
 
-        [HttpPost(Name = "CreatePomodoro")]
-        public IPomodoroData Create(IPomodoroData pomodoroData)
-        {
-            _provider.Create(pomodoroData);
-            return _provider.GetById(pomodoroData.Id);
-        }
+        //[HttpPost(Name = "PostPomodoroCreate")]
+        //public IPomodoroData Create(PomodoroCreationDto pomodoroData)
+        //{
+        //    return _provider.Create(pomodoroData);
+        //}
 
-        [HttpPost(Name = "UpdatePomodoro")]
-        public IPomodoroData Update(IPomodoroData pomodoroData)
-        {
-            _provider.Update(pomodoroData);
-            return _provider.GetById(pomodoroData.Id);
-        }
+        //[HttpPost(Name = "PostPomodoroUpdate")]
+        //public IPomodoroData Update(IPomodoroData pomodoroData)
+        //{
+        //    return _provider.Update(pomodoroData);
+        //}
     }
 }
