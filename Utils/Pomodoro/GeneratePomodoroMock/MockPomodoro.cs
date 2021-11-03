@@ -17,10 +17,8 @@ namespace GeneratePomodoroMock
 
         public string Title { get; set; }
 
-        public TimeSpan Duration { get; set; }
-
-        public DateTime StartDate { get; set; }
-
         public Guid Id { get; set; }
+        public TimeSpan RestDuration { get; set; }
+        public TimeSpan WorkDuration { get; set; }
     }
 }

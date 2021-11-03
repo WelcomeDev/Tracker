@@ -4,8 +4,6 @@ using GeneratePomodoroMock;
 
 using MockUser;
 
-using WelcomeDev.Utils;
-
 Console.WriteLine("Enter amount:");
 int amount = int.Parse(Console.ReadLine());
 
@@ -22,15 +20,10 @@ for (int i = 0; i < amount; i++)
     {
         User = users.ElementAt(i % users.Count()),
         Title = "Pomodoro" + (i + 1).ToString(),
-        StartDate = new DateTime(2021,
-                                 rnd.Next(1, 13),
-                                 rnd.Next(1, 27),
-                                 rnd.Next(0, 24),
-                                 rnd.Next(0, 60),
-                                 0),
-        Duration = new TimeSpan(hoursPresetOptions[rnd.Next(0, hoursPresetOptions.Length)],
+        WorkDuration = new TimeSpan(hoursPresetOptions[rnd.Next(0, hoursPresetOptions.Length)],
                                 minutesPresetOptions[rnd.Next(0, minutesPresetOptions.Length)],
                                 0),
+        RestDuration = new TimeSpan(0, 15, 0),
         Id = Guid.NewGuid(),
     };
 
@@ -42,5 +35,4 @@ string jsonData = JsonSerializer.Serialize<IEnumerable<MockPomodoro>>(mockData,
                                                                       {
                                                                           PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                                                                       });
-StreamWriter sw = new StreamWriter("pomodoro_data.json");
-sw.Write(jsonData);
+File.WriteAllText("pomodoro_data.json", jsonData);
