@@ -4,14 +4,8 @@ using WelcomeDev.Provider.Di;
 
 namespace Pomodoro.Di
 {
-    public interface IPomodoroData : IGuid
+    public interface IPomodoroData : IGuid, IPomodoroEssentials
     {
         IUserIdentity User { get; }
-
-        string Title { get; set; }
-
-        TimeSpan RestDuration { get; set;  }
-
-        TimeSpan WorkDuration { get; set; }
     }
 }
