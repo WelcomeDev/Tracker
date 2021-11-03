@@ -1,12 +1,12 @@
 ﻿using Auth.Di;
 
+using WelcomeDev.Provider.Di;
+
 namespace Pomodoro.Di
 {
-    public interface IPomodoroData
+    public interface IPomodoroData : IGuid
     {
         IUserIdentity User { get; }
-
-        bool IsRunning { get; }
 
         string Title { get; set; }
 

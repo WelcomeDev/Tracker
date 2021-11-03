@@ -8,6 +8,8 @@ namespace Pomodoro.Di
 {
     public interface IPomodoroActions
     {
+        bool IsRunning { get; }
+
         void Cancel();
 
         void Stop();
