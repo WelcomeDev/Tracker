@@ -6,6 +6,8 @@ using Pomodoro.Bll.Provider.Mock.Properties;
 using Pomodoro.Di;
 using Pomodoro.Di.Provider;
 
+using WelcomeDev.Utils;
+
 namespace Pomodoro.Bll.Provider.Mock
 {
     public class PomodoroMockProvider : IPomodoroProvider
@@ -15,7 +17,15 @@ namespace Pomodoro.Bll.Provider.Mock
 
         public PomodoroMockProvider(IUserIdentity user)
         {
-            _data = JsonSerializer.Deserialize<List<PomodoroData>>(Resources.pomodoros);
+            _data = JsonSerializer.Deserialize<List<PomodoroData>>(Resources.pomodoros,
+                                                                   new JsonSerializerOptions
+                                                                   {
+                                                                       PropertyNamingPolicy = PascalCaseNamingPolicy.CamelCase,
+                                                                       Converters =
+                                                                       {
+                                                                           new TypeMappingConverter<IUserIdentity, UserIdentity>()
+                                                                       }
+                                                                   });
             _user = user;
         }
 
