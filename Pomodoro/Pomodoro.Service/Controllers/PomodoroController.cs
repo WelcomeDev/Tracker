@@ -18,7 +18,7 @@ namespace Pomodoro.Service.Controllers
         [HttpGet(Name = "GetAllPomodoros")]
         public IEnumerable<IPomodoroData> GetAll()
         {
-            return _provider.GetAll().Result;
+            return _provider.GetAll();
         }
 
         [HttpGet(Name = "GetPomodoroByID")]
