@@ -4,12 +4,12 @@
     {
         IPomodoroData GetById(Guid id);
 
-        Task Create(IPomodoroData data);
+        IPomodoroData Create(IPomodoroEssentials data);
 
-        Task Delete(Guid id);
+        void Delete(Guid id);
 
-        Task<IEnumerable<IPomodoroData>> GetAll();
+        IEnumerable<IPomodoroData> GetAll();
 
-        Task Update(IPomodoroData data);
+        IPomodoroData Update(IPomodoroData data);
     }
 }
