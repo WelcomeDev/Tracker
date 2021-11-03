@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Service", "Statis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Bll", "Statistic\Statistic.Bll\Statistic.Bll\Statistic.Bll.csproj", "{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{6B84E54D-C535-45F5-A014-58B1837F221D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGenerationUtils", "DataGenerationUtils", "{6B84E54D-C535-45F5-A014-58B1837F221D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pomodoro", "Pomodoro", "{0B703E40-5D7D-48B3-ADC5-A849C1B358F7}"
 EndProject
