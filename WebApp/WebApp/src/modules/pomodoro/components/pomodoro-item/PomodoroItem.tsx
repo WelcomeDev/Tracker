@@ -43,20 +43,18 @@ export function Pomodoro() {
                         />
                 }
                 {
-                    isOnPlay &&
-                    <Stop
-                        title='Reset'
-                        onClick={onReset}
-                        className='side-button'
-                    />
-                }
-                {
-                    !isActive &&
-                    <Options
-                        title='Options'
-                        onClick={onSettings}
-                        className='side-button'
-                    />
+                    !isActive ?
+                        <Options
+                            title='Options'
+                            onClick={onSettings}
+                            className='side-button'
+                        />
+                        :
+                        <Stop
+                            title='Reset'
+                            onClick={onReset}
+                            className='side-button'
+                        />
                 }
 
             </FlexContainer>

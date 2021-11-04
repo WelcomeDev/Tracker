@@ -1,0 +1,25 @@
+@import '/src/assets/colors.scss';
+@import '/src/assets/alignment.scss';
+
+.wrapper{
+  @include flex-center-align;
+
+    &__outer-circle{
+        width: 220px;
+        height: 220px;
+        border-radius: 110px;
+        background: $foreground-accent-color;
+
+        &__inner-cicle{
+            @include flex-center-align;
+            background: $background-secondary-color;
+            position: relative;
+            left: 10px;
+            top: 10px;
+            z-index: 10;
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+        }
+    }
+}
