@@ -8,7 +8,7 @@ using Pomodoro.Di;
 
 namespace Pomodoro.Bll
 {
-    internal class PomodoroMapper : IPomodoroMapper
+    public class PomodoroMapper : IPomodoroMapper
     {
         public IPomodoro ToPomodoro(IPomodoroData data)
         {

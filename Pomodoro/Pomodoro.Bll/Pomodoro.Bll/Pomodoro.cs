@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,16 +14,16 @@ namespace Pomodoro.Bll
 {
     public class Pomodoro : IPomodoro
     {
-        public IUserIdentity User => throw new NotImplementedException();
+        public IUserIdentity User { get; }
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Title { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set; }
+        public string Title { get; set; }
 
-        public bool IsRunning => throw new NotImplementedException();
+        public bool IsRunning { get; }
 
-        public IDuration RestDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IDuration RestDuration { get; set; }
 
-        public IDuration WorkDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IDuration WorkDuration { get; set; }
 
         public Pomodoro()
         {
@@ -31,10 +32,18 @@ namespace Pomodoro.Bll
 
         public Pomodoro(IPomodoroData data)
         {
+            User = data.User;
+            Id = data.Id;
+            Title = data.Title;
+            RestDuration = data.RestDuration;
+            WorkDuration = data.WorkDuration;
+        }
+
+        public void Cancel()
+        {
 
         }
 
-        public void Cancel() => throw new NotImplementedException();
         public bool Equals(IPomodoro? other)
         {
             if (other is null)
@@ -43,8 +52,20 @@ namespace Pomodoro.Bll
             other.Title = Title;
             throw new NotImplementedException();
         }
-        public void Pause() => throw new NotImplementedException();
-        public void Resume() => throw new NotImplementedException();
-        public void Start() => throw new NotImplementedException();
+
+        public void Pause()
+        {
+
+        }
+
+        public void Resume()
+        {
+
+        }
+
+        public void Start()
+        {
+            Debug.WriteLine($"{Id} started");
+        }
     }
 }

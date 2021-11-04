@@ -32,9 +32,9 @@ namespace Pomodoro.Bll.Provider.Mock
             _user = user;
         }
 
-        public IPomodoroData GetById(Guid id)
+        public IPomodoroData? GetById(Guid id)
         {
-            return _data.Single(x => x.Id == id);
+            return _data.SingleOrDefault(x => x.Id == id);
         }
 
         public IPomodoroData Create(IPomodoroEssentials data)
@@ -57,7 +57,7 @@ namespace Pomodoro.Bll.Provider.Mock
 
         public IPomodoroData Update(IPomodoroData data)
         {
-            var objToBeEdited = _data.Single(x => x.Id == data.User.Id);
+            var objToBeEdited = _data.SingleOrDefault(x => x.Id == data.User.Id);
             objToBeEdited.Title = data.Title;
             objToBeEdited.WorkDuration = data.WorkDuration;
             objToBeEdited.RestDuration = data.RestDuration;

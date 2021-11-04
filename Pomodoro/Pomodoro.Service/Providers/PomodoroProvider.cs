@@ -21,7 +21,11 @@ namespace Pomodoro.Service.Providers
             if (cache is not null)
                 return cache;
 
-            return _mapper.ToPomodoro(_provider.GetById(id));
+            var pomodoroData = _provider.GetById(id);
+            if (pomodoroData is null)
+                return null;
+
+            return _mapper.ToPomodoro(pomodoroData);
         }
     }
 }

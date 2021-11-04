@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Pomodoro.Di;
 using Pomodoro.Di.Provider;
+using Pomodoro.Service.Providers;
 
 namespace Pomodoro.Service.Controllers
 {
@@ -10,20 +11,19 @@ namespace Pomodoro.Service.Controllers
     [Route("api/pomodoro")]
     public class PomodoroController : ControllerBase
     {
-        private readonly IPomodoroProvider _provider;
-        private readonly IPomodoroMapper _mapper;
+        private readonly PomodoroProvider _provider;
 
-        public PomodoroController(IPomodoroProvider provider, IPomodoroMapper mapper)
+        public PomodoroController(PomodoroProvider provider)
         {
             _provider = provider;
-            _mapper = mapper;
         }
 
         [HttpPost]
         [Route("{id:guid}/start")]
         public void Start([FromRoute] Guid id)
         {
-
+            //dcfc30f2-6049-4b73-b466-53899bffd593
+            _provider.Get(id).Start();
         }
 
         [HttpPost]

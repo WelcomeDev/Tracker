@@ -14,7 +14,12 @@
     <ProjectReference Include="..\..\Auth\Auth.Di\Auth.Di.csproj" />
     <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj" />
     <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.Mock\Pomodoro.Bll.Provider.Mock.csproj" />
+    <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll\Pomodoro.Bll.csproj" />
     <ProjectReference Include="..\Pomodoro.Di\Pomodoro.Di.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Actions\" />
   </ItemGroup>
 
 </Project>
