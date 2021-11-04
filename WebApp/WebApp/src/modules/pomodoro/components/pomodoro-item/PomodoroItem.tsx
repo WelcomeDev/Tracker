@@ -1,14 +1,17 @@
 import { FlexContainer } from '../../../../components/alignment/FlexConteiner';
-import { OptionItem } from './option-item/OptionItem';
 import './pomodoro-item.scss';
 import { Timer } from './timer/Timer';
 import { usePomodoro } from './usePomodoroItem';
+import { ReactComponent as Options } from './assets/options.svg';
+import { ReactComponent as Pause } from './assets/pause.svg';
+import { ReactComponent as Play } from './assets/play.svg';
+import { ReactComponent as Stop } from './assets/stop.svg';
 
 export function Pomodoro() {
 
     const {
-        onSettings, onReset,
-        isOnPlay
+        onSettings, onReset, onToggle,
+        isOnPlay, isActive
     } = usePomodoro();
 
     return (
@@ -27,22 +30,33 @@ export function Pomodoro() {
                 justifyContent='space-around'
             >
                 {
-                    isOnPlay &&
-                    <OptionItem
-                        title='Options'
-                        onClick={onSettings}
-                        iconPath='mdi:cog' />
+                    isOnPlay ?
+                        <Pause
+                            title='Pause'
+                            onClick={onToggle}
+                            className='accent-button'
+                        />
+                        :
+                        <Play title='Start'
+                            onClick={onToggle}
+                            className='accent-button'
+                        />
                 }
-                <OptionItem
-                    title='Options'
-                    onClick={onSettings}
-                    iconPath={`mdi:${isOnPlay ? 'pause-circle-outline' : 'play-circle-outline'}`} />
                 {
-                    !isOnPlay &&
-                    <OptionItem
+                    isOnPlay &&
+                    <Stop
                         title='Reset'
                         onClick={onReset}
-                        iconPath='mdi:refresh' />
+                        className='side-button'
+                    />
+                }
+                {
+                    !isActive &&
+                    <Options
+                        title='Options'
+                        onClick={onSettings}
+                        className='side-button'
+                    />
                 }
 
             </FlexContainer>

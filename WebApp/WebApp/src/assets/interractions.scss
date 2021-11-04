@@ -7,7 +7,19 @@
         background: highlight($color, 2);
     }
 
+    // &:active{
+    //     background: highlight($color, 4);
+    // }
+}
+
+@mixin interractive_color($color) {
+    color: $color;
+    
+    &:hover{
+        color: highlight($color, 2);
+    }
+
     &:active{
-        background: highlight($color, 4);
+        color: highlight($color, 4);
     }
 }

@@ -2,8 +2,50 @@
 @import '/src/assets/interractions';
 @import '/src/assets/fonts';
 
+.side-button,
+.accent-button{
+    height: 100%;
+    width: 100%;
+}
+
+.accent-button{
+    path{
+        fill: $foreground-accent-color;
+    }
+
+    &:hover{
+        path{
+            fill: highlight($foreground-accent-color, 4);
+        }
+    }
+
+    &:active{
+        path{
+            fill: highlight($foreground-accent-color, 8);
+        }
+    }
+}
+
+.side-button{
+    path{
+        fill: $foreground-secondary-color;
+    }
+    &:hover{
+        path{
+            fill: highlight($foreground-secondary-color, 4);
+        }
+    }
+
+    &:active{
+        path{
+            fill: highlight($foreground-secondary-color, 8);
+        }
+    }
+}
+
 .pomodoro {
     @include interractive_background($background-secondary-color);
+    background: $background-secondary-color;
     @include title;
 
     display: grid;
@@ -25,6 +67,6 @@
     }
 
     &__actions{
-        justify-self: center;
+
     }
 }
