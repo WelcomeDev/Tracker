@@ -1,0 +1,13 @@
+$background-primary-color: #1F1F1F;
+$background-secondary-color: #2B2B2B;
+
+
+$foreground-accent-color: #8764B8;
+$foreground-primary-color: #FFFFFF;
+$foreground-secondary-color:#CCCCCC;
+
+$step: 5;
+
+@function highlight($color, $level) {
+    @return adjust-color($color, $red: -$step*$level, $green: -$step*$level, $blue: -$step*$level);
+}
