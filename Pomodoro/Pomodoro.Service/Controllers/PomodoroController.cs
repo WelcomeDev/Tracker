@@ -1,49 +1,50 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
 using Pomodoro.Di;
 using Pomodoro.Di.Provider;
-using Pomodoro.Service.Controllers.Dto;
 
 namespace Pomodoro.Service.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/pomodoro")]
     public class PomodoroController : ControllerBase
     {
         private readonly IPomodoroProvider _provider;
+        private readonly IPomodoroMapper _mapper;
 
-        public PomodoroController(IPomodoroProvider provider)
+        public PomodoroController(IPomodoroProvider provider, IPomodoroMapper mapper)
         {
             _provider = provider;
+            _mapper = mapper;
         }
 
-        [HttpGet(Name = "GetAll")]
-        public IEnumerable<IPomodoroData> GetAll()
+        [HttpPost]
+        [Route("{id:guid}/start")]
+        public void Start([FromRoute] Guid id)
         {
-            return _provider.GetAll();
+
         }
 
-        //[HttpGet(Name = "GetPomodoro")]
-        //public IPomodoroData GetByID(Guid guid)
-        //{
-        //    return _provider.GetById(guid);
-        //}
+        [HttpPost]
+        [Route("{id:guid}/cancel")]
+        public void Cancel([FromRoute] Guid id)
+        {
 
-        //[HttpPost(Name = "PostPomodoroDelete")]
-        //public void Delete(Guid guid)
-        //{
-        //    _provider.Delete(guid);
-        //}
+        }
 
-        //[HttpPost(Name = "PostPomodoroCreate")]
-        //public IPomodoroData Create(PomodoroCreationDto pomodoroData)
-        //{
-        //    return _provider.Create(pomodoroData);
-        //}
+        [HttpPost]
+        [Route("{id:guid}/pause")]
+        public void Pause([FromRoute] Guid id)
+        {
 
-        //[HttpPost(Name = "PostPomodoroUpdate")]
-        //public IPomodoroData Update(IPomodoroData pomodoroData)
-        //{
-        //    return _provider.Update(pomodoroData);
-        //}
+        }
+
+        [HttpPost]
+        [Route("{id:guid}/resume")]
+        public void Resume([FromRoute] Guid id)
+        {
+
+        }
     }
 }
