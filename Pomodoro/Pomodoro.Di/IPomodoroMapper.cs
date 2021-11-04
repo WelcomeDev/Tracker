@@ -1,4 +1,4 @@
-﻿namespace Pomodoro.Di.Provider
+﻿namespace Pomodoro.Di
 {
     public interface IPomodoroMapper
     {
