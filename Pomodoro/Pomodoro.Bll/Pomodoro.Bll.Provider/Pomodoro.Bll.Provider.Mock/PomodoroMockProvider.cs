@@ -55,9 +55,9 @@ namespace Pomodoro.Bll.Provider.Mock
             return _data.Where(x => x.User.Id == _user.Id);
         }
 
-        public IPomodoroData Update(IPomodoroData data)
+        public IPomodoroData Update(Guid id, IPomodoroEssentials data)
         {
-            var objToBeEdited = _data.SingleOrDefault(x => x.Id == data.User.Id);
+            var objToBeEdited = _data.SingleOrDefault(x => x.Id == id);
             objToBeEdited.Title = data.Title;
             objToBeEdited.WorkDuration = data.WorkDuration;
             objToBeEdited.RestDuration = data.RestDuration;

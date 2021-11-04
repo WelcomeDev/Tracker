@@ -19,11 +19,13 @@ namespace Pomodoro.Bll
         public Guid Id { get; set; }
         public string Title { get; set; }
 
-        public bool IsRunning { get; }
+        public bool IsRunning { get; private set; }
 
         public IDuration RestDuration { get; set; }
 
         public IDuration WorkDuration { get; set; }
+
+        private DateTime? _start;
 
         public Pomodoro()
         {
@@ -37,11 +39,14 @@ namespace Pomodoro.Bll
             Title = data.Title;
             RestDuration = data.RestDuration;
             WorkDuration = data.WorkDuration;
+            _start = null;
         }
 
         public void Cancel()
         {
-
+            _start = null;
+            IsRunning = false;
+            Debug.WriteLine($"{Title} canceled");
         }
 
         public bool Equals(IPomodoro? other)
@@ -49,23 +54,26 @@ namespace Pomodoro.Bll
             if (other is null)
                 return false;
 
-            other.Title = Title;
-            throw new NotImplementedException();
+            return other.Title == Title;
         }
 
         public void Pause()
         {
-
+            IsRunning = false;
+            Debug.WriteLine($"{Title} paused");
         }
 
         public void Resume()
         {
-
+            IsRunning = true;
+            Debug.WriteLine($"{Title} resumed");
         }
 
         public void Start()
         {
-            Debug.WriteLine($"{Id} started");
+            _start = DateTime.UtcNow;
+            IsRunning = true;
+            Debug.WriteLine($"{Title} started");
         }
     }
 }
