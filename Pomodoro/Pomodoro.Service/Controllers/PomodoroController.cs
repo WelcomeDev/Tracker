@@ -30,21 +30,21 @@ namespace Pomodoro.Service.Controllers
         [Route("{id:guid}/cancel")]
         public void Cancel([FromRoute] Guid id)
         {
-
+            _provider.Get(id).Cancel();
         }
 
         [HttpPost]
         [Route("{id:guid}/pause")]
         public void Pause([FromRoute] Guid id)
         {
-
+            _provider.Get(id).Pause();
         }
 
         [HttpPost]
         [Route("{id:guid}/resume")]
         public void Resume([FromRoute] Guid id)
         {
-
+            _provider.Get(id).Resume();
         }
     }
 }
