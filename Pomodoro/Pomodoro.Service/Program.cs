@@ -3,10 +3,13 @@ using Auth.Di;
 using Pomodoro.Bll;
 using Pomodoro.Bll.Provider.Mock;
 using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
-
+using Pomodoro.Service.Controllers.Dto;
 using Pomodoro.Service.MockUser;
 using Pomodoro.Service.Providers;
+using System.Text.Json;
+using WelcomeDev.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,11 @@ static void RegisterSerivces(WebApplicationBuilder builder)
     builder.Services.AddSingleton<IPomodoroProvider, PomodoroMockProvider>();
     builder.Services.AddSingleton<IPomodoroMapper, PomodoroMapper>();
     builder.Services.AddSingleton<PomodoroProvider>();
+    builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.Converters.Add(new TypeMappingConverter<IDuration, DurationDto>());
+    });
 }
 
 RegisterSerivces(builder);
