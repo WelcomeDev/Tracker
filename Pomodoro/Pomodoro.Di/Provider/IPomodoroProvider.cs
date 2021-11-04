@@ -10,6 +10,6 @@
 
         IEnumerable<IPomodoroData> GetAll();
 
-        IPomodoroData Update(IPomodoroData data);
+        IPomodoroData Update(Guid id, IPomodoroEssentials data);
     }
 }
