@@ -2,7 +2,7 @@
 
 namespace Pomodoro.Bll.Provider.Mock.Additional
 {
-    internal class Duration : IDuration
+    public class Duration : IDuration
     {
         public int Minutes { get; set; }
 
