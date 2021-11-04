@@ -68,18 +68,20 @@ namespace Pomodoro.Bll.Provider.Mock.Properties {
         ///            &quot;id&quot;: &quot;b41a9f1b-9c27-4985-9ba8-55d32614591d&quot;
         ///        },
         ///        &quot;title&quot;: &quot;Pomodoro1&quot;,
-        ///        &quot;id&quot;: &quot;26b349d1-56d1-4678-8933-90fbd86c2667&quot;,
-        ///        &quot;restDuration&quot;: &quot;00:15:00&quot;,
-        ///        &quot;workDuration&quot;: &quot;01:15:00&quot;
+        ///        &quot;id&quot;: &quot;dcfc30f2-6049-4b73-b466-53899bffd593&quot;,
+        ///        &quot;restDuration&quot;: {
+        ///            &quot;minutes&quot;: 15,
+        ///            &quot;hours&quot;: 0
+        ///        },
+        ///        &quot;workDuration&quot;: {
+        ///            &quot;minutes&quot;: 0,
+        ///            &quot;hours&quot;: 0
+        ///        }
         ///    },
         ///    {
         ///        &quot;user&quot;: {
         ///            &quot;name&quot;: &quot;user1&quot;,
-        ///            &quot;id&quot;: &quot;5c8ecd57-7c0e-4f42-a936-85385bf6796f&quot;
-        ///        },
-        ///        &quot;title&quot;: &quot;Pomodoro2&quot;,
-        ///        &quot;id&quot;: &quot;3100550e-a80d-405a-a19e-1a98cf2f4062&quot;,
-        ///     [rest of string was truncated]&quot;;.
+        ///            &quot;id&quot;: &quot;5c8ecd57-7c0e-4f42-a936-85385bf679 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pomodoros {
             get {

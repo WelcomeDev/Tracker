@@ -2,8 +2,10 @@
 
 using Auth.Di;
 
+using Pomodoro.Bll.Provider.Mock.Additional;
 using Pomodoro.Bll.Provider.Mock.Properties;
 using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
 
 using WelcomeDev.Utils;
@@ -23,7 +25,8 @@ namespace Pomodoro.Bll.Provider.Mock
                                                                        PropertyNamingPolicy = PascalCaseNamingPolicy.CamelCase,
                                                                        Converters =
                                                                        {
-                                                                           new TypeMappingConverter<IUserIdentity, UserIdentity>()
+                                                                           new TypeMappingConverter<IUserIdentity, UserIdentity>(),
+                                                                           new TypeMappingConverter<IDuration, Duration>()
                                                                        }
                                                                    });
             _user = user;

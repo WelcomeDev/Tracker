@@ -1,11 +1,13 @@
-﻿namespace Pomodoro.Di
+﻿using Pomodoro.Di.Duration;
+
+namespace Pomodoro.Di
 {
     public interface IPomodoroEssentials
     {
         string Title { get; set; }
 
-        TimeSpan RestDuration { get; set; }
+        IDuration RestDuration { get; set; }
 
-        TimeSpan WorkDuration { get; set; }
+        IDuration WorkDuration { get; set; }
     }
 }

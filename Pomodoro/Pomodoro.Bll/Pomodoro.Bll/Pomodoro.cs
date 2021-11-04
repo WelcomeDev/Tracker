@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Auth.Di;
 
 using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 
 namespace Pomodoro.Bll
 {
@@ -16,10 +17,12 @@ namespace Pomodoro.Bll
 
         public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Title { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public TimeSpan RestDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public TimeSpan WorkDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public bool IsRunning => throw new NotImplementedException();
+
+        public IDuration RestDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public IDuration WorkDuration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Pomodoro()
         {

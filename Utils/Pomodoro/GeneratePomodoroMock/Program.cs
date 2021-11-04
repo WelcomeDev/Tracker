@@ -20,10 +20,16 @@ for (int i = 0; i < amount; i++)
     {
         User = users.ElementAt(i % users.Count()),
         Title = "Pomodoro" + (i + 1).ToString(),
-        WorkDuration = new TimeSpan(hoursPresetOptions[rnd.Next(0, hoursPresetOptions.Length)],
-                                minutesPresetOptions[rnd.Next(0, minutesPresetOptions.Length)],
-                                0),
-        RestDuration = new TimeSpan(0, 15, 0),
+        WorkDuration = new Duration
+        {
+            Hours = hoursPresetOptions[rnd.Next(0, hoursPresetOptions.Length)],
+            Minutes = minutesPresetOptions[rnd.Next(0, minutesPresetOptions.Length)],
+        },
+        RestDuration = new Duration
+        {
+            Hours = 0,
+            Minutes = 15,
+        },
         Id = Guid.NewGuid(),
     };
 
@@ -35,4 +41,5 @@ string jsonData = JsonSerializer.Serialize<IEnumerable<MockPomodoro>>(mockData,
                                                                       {
                                                                           PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                                                                       });
+Console.WriteLine($"Generated:\n {jsonData}");
 File.WriteAllText("pomodoro_data.json", jsonData);

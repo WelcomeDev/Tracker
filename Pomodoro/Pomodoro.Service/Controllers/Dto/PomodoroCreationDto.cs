@@ -1,11 +1,12 @@
 ﻿using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 
 namespace Pomodoro.Service.Controllers.Dto
 {
     public class PomodoroCreationDto : IPomodoroEssentials
     {
         public string Title { get; set; }
-        public TimeSpan RestDuration { get; set; }
-        public TimeSpan WorkDuration { get; set; }
+        public IDuration RestDuration { get; set; }
+        public IDuration WorkDuration { get; set; }
     }
 }

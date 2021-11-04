@@ -1,6 +1,7 @@
 ﻿using Auth.Di;
 
 using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 
 namespace Pomodoro.Bll.Provider.Mock
 {
@@ -9,9 +10,12 @@ namespace Pomodoro.Bll.Provider.Mock
         public IUserIdentity User { get; set; }
 
         public string Title { get; set; }
-        public TimeSpan RestDuration { get; set; }
-        public TimeSpan WorkDuration { get; set; }
+
         public Guid Id { get; set; }
+
+        public IDuration RestDuration { get; set; }
+
+        public IDuration WorkDuration { get; set; }
 
         public PomodoroData()
         { }

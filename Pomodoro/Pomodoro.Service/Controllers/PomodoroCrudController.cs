@@ -44,6 +44,7 @@ namespace Pomodoro.Service.Controllers
         [ProducesResponseType(Status201Created)]
         public IPomodoroData Create(PomodoroCreationDto pomodoroData)
         {
+            //TODO: validation actions before
             return _provider.Create(pomodoroData);
         }
 
@@ -51,6 +52,7 @@ namespace Pomodoro.Service.Controllers
         [Route("{id:guid}/update")]
         public IPomodoroData Update(IPomodoroData pomodoroData)
         {
+            //TODO: validation actions before
             return _provider.Update(pomodoroData);
         }
     }

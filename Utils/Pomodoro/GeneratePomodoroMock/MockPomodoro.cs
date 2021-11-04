@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Auth.Di;
 
 using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 
 namespace GeneratePomodoroMock
 {
@@ -18,7 +19,9 @@ namespace GeneratePomodoroMock
         public string Title { get; set; }
 
         public Guid Id { get; set; }
-        public TimeSpan RestDuration { get; set; }
-        public TimeSpan WorkDuration { get; set; }
+
+        public IDuration RestDuration { get; set; }
+
+        public IDuration WorkDuration { get; set; }
     }
 }
