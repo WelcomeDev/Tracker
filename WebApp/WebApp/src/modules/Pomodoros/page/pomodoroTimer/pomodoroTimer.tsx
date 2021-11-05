@@ -6,9 +6,10 @@ import { ReactComponent as Options } from './assets/options.svg';
 import { ReactComponent as Pause } from './assets/pause.svg';
 import { ReactComponent as Play } from './assets/play.svg';
 import { ReactComponent as Stop } from './assets/stop.svg';
-import { PomodoroDto } from "../../model/pomodoro";
+import { PomodoroEssentialsDto } from "../../model/pomodoroEssentials";
 
-export interface PomodoroTimerProps extends PomodoroDto {
+export interface PomodoroTimerProps extends PomodoroEssentialsDto {
+    id: string;
 }
 
 export function PomodoroTimer(props: PomodoroTimerProps) {
@@ -17,7 +18,7 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
         onSettings, onReset, onToggle,
         isOnPlay, isActive,
         duration, percent,
-    } = usePomodoroTimer({ pomodoro: props as PomodoroDto });
+    } = usePomodoroTimer({ duration: props.workDuration });
 
     return (
         <section className="pomodoro">

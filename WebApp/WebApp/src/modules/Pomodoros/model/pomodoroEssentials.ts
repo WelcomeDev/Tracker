@@ -6,3 +6,7 @@ export const PomodoroEssentialsType = t.interface({
     restDuration: DurationType,
     workDuration: DurationType,
 });
+
+export interface PomodoroEssentialsDto extends t.TypeOf<typeof PomodoroEssentialsType>{
+
+}
