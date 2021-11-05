@@ -1,6 +1,6 @@
-import { FlexContainer } from 'components/alignment/FlexConteiner';
-import './pomodoro-item.scss';
-import { Timer } from './timer/Timer';
+import { FlexContainer } from 'components/alignment/flexConteiner';
+import './pomodoroItem.scss';
+import { Timer } from './timer/timer';
 import { usePomodoro } from './usePomodoroItem';
 import { ReactComponent as Options } from './assets/options.svg';
 import { ReactComponent as Pause } from './assets/pause.svg';

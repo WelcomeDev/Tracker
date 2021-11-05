@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import { ClassName } from "components/interfaces/ClassName";
+import { ClassName } from "components/interfaces/className";
 import './timer.scss';
 import moment from 'moment'
-import { formatTime } from "lib/format-moment";
+import { formatTime } from "lib/formatMoment";
 
 export interface TimerProps extends ClassName {
     hours: number;

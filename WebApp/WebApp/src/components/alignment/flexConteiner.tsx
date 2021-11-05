@@ -1,6 +1,6 @@
 import { type } from "os";
 import { ReactNode } from "react";
-import { ClassName } from "../interfaces/ClassName";
+import { ClassName } from "../interfaces/className";
 
 type FlexDirection = "row" | "column";
 type JustifyContent = "flex-start" | "fles-end" | "space-between" | "space-around";
