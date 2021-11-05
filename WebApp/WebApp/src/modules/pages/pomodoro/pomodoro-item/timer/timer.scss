@@ -1,5 +1,5 @@
-@import '../../../../assets/colors';
-@import '../../../../assets/alignment';
+@import '../../../../../styles/colors';
+@import '../../../../../styles/alignment';
 
 .wrapper{
   @include flex-center-align;
@@ -10,7 +10,7 @@
         border-radius: 110px;
         background: $foreground-accent-color;
 
-        &__inner-cicle{
+        &__inner-circle{
             @include flex-center-align;
             background: $background-secondary-color;
             position: relative;

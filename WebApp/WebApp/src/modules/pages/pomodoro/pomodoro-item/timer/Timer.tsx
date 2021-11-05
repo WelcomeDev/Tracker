@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { ClassName } from "components/interfaces/ClassName";
 import './timer.scss';
 import moment from 'moment'
+import { formatTime } from "lib/format-moment";
 
 export interface TimerProps extends ClassName {
     hours: number;
@@ -18,8 +19,8 @@ export function Timer(props: TimerProps) {
     return (
         <div className={classNames('wrapper', props.className)}>
             <div className="wrapper__outer-circle">
-                <div className="wrapper__outer-circle__inner-cicle">
-                    {time.format("hh:mm:ss")}
+                <div className="wrapper__outer-circle__inner-circle">
+                    {formatTime(time)}
                 </div>
             </div>
         </div>
