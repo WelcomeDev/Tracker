@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ClassName } from "../../../../../components/interfaces/ClassName";
+import { ClassName } from "components/interfaces/ClassName";
 import './timer.scss';
 import moment from 'moment'
 

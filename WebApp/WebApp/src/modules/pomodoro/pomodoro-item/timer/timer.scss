@@ -1,5 +1,5 @@
-@import '/src/assets/colors.scss';
-@import '/src/assets/alignment.scss';
+@import '../../../../assets/colors';
+@import '../../../../assets/alignment';
 
 .wrapper{
   @include flex-center-align;
@@ -20,6 +20,9 @@
             width: 200px;
             height: 200px;
             border-radius: 100px;
+
+            font-size: 36px;
+            line-height: 42px;
         }
     }
 }
