@@ -1,13 +1,18 @@
 import { FlexContainer } from 'components/alignment/flexConteiner';
 import './pomodoroItem.scss';
 import { Timer } from './timer/timer';
-import { usePomodoro } from './usePomodoroItem';
+import { usePomodoro } from '../../hooks/usePomodoroItem';
 import { ReactComponent as Options } from './assets/options.svg';
 import { ReactComponent as Pause } from './assets/pause.svg';
 import { ReactComponent as Play } from './assets/play.svg';
 import { ReactComponent as Stop } from './assets/stop.svg';
 
-export function Pomodoro() {
+export interface PomodoroTimerProps {
+    title: string;
+
+}
+
+export function PomodoroTimer(props: PomodoroTimerProps) {
 
     const {
         onSettings, onReset, onToggle,
@@ -17,7 +22,7 @@ export function Pomodoro() {
     return (
         <section className="pomodoro">
             <p className="pomodoro__title">
-                Just some title
+                {props.title}
             </p>
             <Timer
                 className="pomodoro__timer"

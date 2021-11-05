@@ -1,4 +1,4 @@
-export function MyPomodoros() {
+export function Pomodoro() {
     return (
         <div>
 
