@@ -1,15 +1,14 @@
 import { FlexContainer } from 'components/alignment/flexConteiner';
 import './pomodoroItem.scss';
 import { Timer } from './timer/timer';
-import { usePomodoro } from '../../hooks/usePomodoroItem';
+import { usePomodoroTimer } from '../../hooks/usePomodoroTimer';
 import { ReactComponent as Options } from './assets/options.svg';
 import { ReactComponent as Pause } from './assets/pause.svg';
 import { ReactComponent as Play } from './assets/play.svg';
 import { ReactComponent as Stop } from './assets/stop.svg';
+import { PomodoroDto } from "../../model/pomodoro";
 
-export interface PomodoroTimerProps {
-    title: string;
-
+export interface PomodoroTimerProps extends PomodoroDto {
 }
 
 export function PomodoroTimer(props: PomodoroTimerProps) {
@@ -17,7 +16,8 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
     const {
         onSettings, onReset, onToggle,
         isOnPlay, isActive,
-    } = usePomodoro();
+        duration, percent,
+    } = usePomodoroTimer({ pomodoro: props as PomodoroDto });
 
     return (
         <section className="pomodoro">
@@ -26,10 +26,8 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
             </p>
             <Timer
                 className="pomodoro__timer"
-                minutes={30}
-                hours={1}
-                seconds={0}
-                percent={100}/>
+                {...duration}
+                percent={percent}/>
             <FlexContainer
                 className="pomodoro__actions"
                 justifyContent="space-around"
