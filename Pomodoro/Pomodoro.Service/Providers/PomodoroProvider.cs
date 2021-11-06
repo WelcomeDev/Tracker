@@ -25,7 +25,9 @@ namespace Pomodoro.Service.Providers
             if (pomodoroData is null)
                 return null;
 
-            return _mapper.ToPomodoro(pomodoroData);
+            var pomodoro = _mapper.ToPomodoro(pomodoroData);
+            _pomodors.Add(pomodoro);
+            return pomodoro;
         }
     }
 }

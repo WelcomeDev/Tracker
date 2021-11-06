@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using Pomodoro.Di;
+using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
 using Pomodoro.Service.Providers;
 
@@ -16,6 +17,13 @@ namespace Pomodoro.Service.Controllers
         public PomodoroController(PomodoroProvider provider)
         {
             _provider = provider;
+        }
+
+        [HttpGet]
+        [Route("{id:guid}/status")]
+        public IDuration Status([FromRoute] Guid id)
+        {
+            return _provider.Get(id).Status();
         }
 
         [HttpPost]

@@ -75,5 +75,18 @@ namespace Pomodoro.Bll
             IsRunning = true;
             Debug.WriteLine($"{Title} started");
         }
+
+        public IDuration Status()
+        {
+            if (!IsRunning)
+                return null;
+
+            var diff = (DateTime.UtcNow - _start).Value;
+            return new Duration
+            {
+                Hours = diff.Hours,
+                Minutes = diff.Minutes
+            };
+        }
     }
 }

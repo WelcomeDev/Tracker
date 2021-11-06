@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Pomodoro.Di.Duration;
+
 namespace Pomodoro.Di
 {
     public interface IPomodoroActions
@@ -17,5 +19,7 @@ namespace Pomodoro.Di
         void Resume();
 
         void Start();
+
+        IDuration Status();
     }
 }
