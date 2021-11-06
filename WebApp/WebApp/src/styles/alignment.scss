@@ -3,3 +3,7 @@
     justify-content: center;
     align-items: center;
 }
+
+@mixin center-horiz-margin{
+  margin: 0 auto;
+}

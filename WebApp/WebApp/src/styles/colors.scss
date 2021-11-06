@@ -8,5 +8,5 @@ $foreground-secondary-color:#CCCCCC;
 $step: 5;
 
 @function highlight($color, $level) {
-    @return adjust-color($color, $red: -$step*$level, $green: -$step*$level, $blue: -$step*$level);
+    @return adjust-color($color, $red: $step*$level, $green: $step*$level, $blue: $step*$level);
 }
