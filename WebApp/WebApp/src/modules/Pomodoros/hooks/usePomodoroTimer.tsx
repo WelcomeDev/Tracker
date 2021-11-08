@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { toSeconds } from "../../../lib/time";
 import { DurationDto } from "../model/duration";
+import { cancellablePromise } from "../../../lib/cancellablePromise";
+import { Action } from "../../../components/interfaces/action";
 
 export interface UsePomodoroTimerProps {
     duration: DurationDto;
@@ -15,6 +17,7 @@ export function usePomodoroTimer(props: UsePomodoroTimerProps) {
     const [ minutes, setMinutes ] = useState(props.duration.minutes);
     const [ seconds, setSeconds ] = useState(0);
     const [ percent, setPercent ] = useState(100);
+    const [ refreshSeconds, setRefreshSeconds ] = useState<{ promise: Promise<unknown>, cancel: Action }>();
 
     function decreaseMinutes() {
         if (hours + minutes === 0)
@@ -37,9 +40,15 @@ export function usePomodoroTimer(props: UsePomodoroTimerProps) {
 
         //секунда не нулевая
         if (seconds !== 0) {
-            setTimeout(() => {
-                setSeconds(seconds - 1);
-            }, 1000);
+            const onRefreshSeconds = cancellablePromise<number>(new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve(seconds - 1);
+                }, 1000),
+            ))
+            onRefreshSeconds.promise.then((seconds) => {
+                setSeconds(seconds);
+            });
+            setRefreshSeconds(onRefreshSeconds)
             return;
         }
 
@@ -47,6 +56,13 @@ export function usePomodoroTimer(props: UsePomodoroTimerProps) {
     }, [ seconds, isOnPlay ])
 
     useEffect(() => {
+        if (!isActive) {
+            setSeconds(0);
+            setMinutes(props.duration.minutes);
+            setHours(props.duration.hours);
+            setPercent(100);
+        }
+
         const { minutes: totalM, hours: totalH } = props.duration;
         console.log(`${hours}:${minutes}:${seconds}`);
         setPercent(toSeconds(seconds, minutes, hours) / toSeconds(0, totalM, totalH))
@@ -63,6 +79,11 @@ export function usePomodoroTimer(props: UsePomodoroTimerProps) {
     function onToggle() {
         if (!isActive)
             setIsActive(true)
+
+        if (isOnPlay) {
+            refreshSeconds?.cancel();
+            console.log('refresh seconds cancelled')
+        }
 
         setOnPlay(!isOnPlay);
     }
