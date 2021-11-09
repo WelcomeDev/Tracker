@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pomodoro.Bll.Provider.MySql.Entity
 {
-    internal class User
+    public class User
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
