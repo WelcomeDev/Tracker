@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Pomodoro.Di\Pomodoro.Di.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Actions\" />
-  </ItemGroup>
-
 </Project>

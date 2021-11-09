@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 using Auth.Di;
 
 using Pomodoro.Bll;
@@ -8,7 +10,7 @@ using Pomodoro.Di.Provider;
 using Pomodoro.Service.Controllers.Dto;
 using Pomodoro.Service.MockUser;
 using Pomodoro.Service.Providers;
-using System.Text.Json;
+
 using WelcomeDev.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
