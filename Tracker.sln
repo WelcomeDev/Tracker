@@ -63,11 +63,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pomodoro", "Pomodoro", "{0B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistic", "Statistic", "{10E5356D-2DDC-48A3-AB97-F20E61F2A459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratePomodoroMock", "Utils\Pomodoro\GeneratePomodoroMock\GeneratePomodoroMock.csproj", "{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneratePomodoroMock", "Utils\Pomodoro\GeneratePomodoroMock\GeneratePomodoroMock.csproj", "{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{4D0322AC-9665-4454-A1A6-7835714E9234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockUser", "Utils\User\MockUser\MockUser.csproj", "{5D36BA24-67DC-4FBF-89DC-006234912C7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockUser", "Utils\User\MockUser\MockUser.csproj", "{5D36BA24-67DC-4FBF-89DC-006234912C7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PomodoroTest", "PomodoroTest\PomodoroTest.csproj", "{D51A61BE-59E4-4F69-AE13-937B3960AB51}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9578C508-F5D4-403A-9FD6-02BB07A466E9} = {9578C508-F5D4-403A-9FD6-02BB07A466E9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +158,10 @@ Global
 		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,6 +193,7 @@ Global
 		{4D7E4B4A-EB51-424F-A86E-123C90F79EB1} = {0B703E40-5D7D-48B3-ADC5-A849C1B358F7}
 		{4D0322AC-9665-4454-A1A6-7835714E9234} = {6B84E54D-C535-45F5-A014-58B1837F221D}
 		{5D36BA24-67DC-4FBF-89DC-006234912C7C} = {4D0322AC-9665-4454-A1A6-7835714E9234}
+		{D51A61BE-59E4-4F69-AE13-937B3960AB51} = {AD0C4E05-A407-44AE-BE45-CA63DC995E60}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A38EC9C9-5321-40D3-A715-EC79E67BA8F6}
