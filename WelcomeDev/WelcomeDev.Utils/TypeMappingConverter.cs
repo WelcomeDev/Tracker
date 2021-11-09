@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-using WelcomeDev.Utils.Array;
+using WelcomeDev.Utils.Enumerable;
 
 namespace WelcomeDev.Utils
 {

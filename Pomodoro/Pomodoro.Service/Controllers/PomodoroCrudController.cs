@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 using Pomodoro.Di;
 using Pomodoro.Di.Provider;
+using Pomodoro.Service.Controllers.Actions;
 using Pomodoro.Service.Controllers.Dto;
+
+using WelcomeDev.Utils.Enumerable;
 
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -14,10 +17,12 @@ namespace Pomodoro.Service.Controllers
     public class PomodoroCrudController : ControllerBase
     {
         private readonly IPomodoroProvider _provider;
+        private readonly IEnumerable<IPomodoroValidation> _validations;
 
-        public PomodoroCrudController(IPomodoroProvider provider)
+        public PomodoroCrudController(IPomodoroProvider provider, IEnumerable<IPomodoroValidation> validations)
         {
             _provider = provider;
+            _validations = validations;
         }
 
         [HttpGet]
@@ -46,7 +51,7 @@ namespace Pomodoro.Service.Controllers
 
         public IPomodoroData Create([FromBody] PomodoroCreationDto pomodoroData)
         {
-            //TODO: validation actions before
+            _validations.ForEach(x => x.Validate(pomodoroData));
             return _provider.Create(pomodoroData);
         }
 
@@ -54,7 +59,7 @@ namespace Pomodoro.Service.Controllers
         [Route("{id:guid}/update")]
         public IPomodoroData Update([FromRoute] Guid id, [FromBody] PomodoroCreationDto pomodoroData)
         {
-            //TODO: validation actions before
+            _validations.ForEach(x => x.Validate(pomodoroData));
             return _provider.Update(id, pomodoroData);
         }
     }

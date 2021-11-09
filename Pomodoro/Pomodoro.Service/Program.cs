@@ -7,6 +7,7 @@ using Pomodoro.Bll.Provider.Mock;
 using Pomodoro.Di;
 using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
+using Pomodoro.Service.Controllers.Actions;
 using Pomodoro.Service.Controllers.Dto;
 using Pomodoro.Service.MockUser;
 using Pomodoro.Service.Providers;
@@ -14,6 +15,13 @@ using Pomodoro.Service.Providers;
 using WelcomeDev.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
+
+static void RegisterValidationServices(WebApplicationBuilder builder)
+{
+    builder.Services.AddSingleton<IPomodoroValidation, TitleValidation>();
+    builder.Services.AddSingleton<IPomodoroValidation, RestDurationValidation>();
+    builder.Services.AddSingleton<IPomodoroValidation, WorkDurationValidation>();
+}
 
 static void RegisterSerivces(WebApplicationBuilder builder)
 {
@@ -30,6 +38,8 @@ static void RegisterSerivces(WebApplicationBuilder builder)
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
         options.JsonSerializerOptions.Converters.Add(new TypeMappingConverter<IDuration, DurationDto>());
     });
+
+    RegisterValidationServices(builder);
 }
 
 RegisterSerivces(builder);
