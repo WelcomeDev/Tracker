@@ -13,29 +13,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{A67E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{05622FDD-0139-4EE8-A888-47321B1806E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Di", "Auth\Auth.Di\Auth.Di.csproj", "{3D556E4F-D069-46B4-BE63-93BB1E06B30F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Di", "Auth\Auth.Di\Auth.Di.csproj", "{3D556E4F-D069-46B4-BE63-93BB1E06B30F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Test", "Auth\Auth.Test\Auth.Test.csproj", "{30D99E07-DF73-4CDD-9E47-9608E9507246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Test", "Auth\Auth.Test\Auth.Test.csproj", "{30D99E07-DF73-4CDD-9E47-9608E9507246}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Service", "Auth\Auth.Service\Auth.Service.csproj", "{8B3BD2CB-E491-4743-81F4-4297219C956E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Bll", "Auth\Auth.Bll\Auth.Bll.csproj", "{8D86DE7D-337C-4AEA-8F12-0D6F593911B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Service", "Pomodoro\Pomodoro.Service\Pomodoro.Service.csproj", "{F96BCDD6-FFCC-4744-9CD7-60D65A3E170F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomodoro.Service", "Pomodoro\Pomodoro.Service\Pomodoro.Service.csproj", "{F96BCDD6-FFCC-4744-9CD7-60D65A3E170F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pomodoro.Bll", "Pomodoro.Bll", "{B591C17A-15AC-44F1-A747-E922031A67A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Bll", "Pomodoro\Pomodoro.Bll\Pomodoro.Bll\Pomodoro.Bll.csproj", "{B4BF92DE-8D00-4779-8D6A-6A4EBECD5C74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomodoro.Bll", "Pomodoro\Pomodoro.Bll\Pomodoro.Bll\Pomodoro.Bll.csproj", "{B4BF92DE-8D00-4779-8D6A-6A4EBECD5C74}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pomodoro.Bll.Provider", "Pomodoro.Bll.Provider", "{AD0C4E05-A407-44AE-BE45-CA63DC995E60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Bll.Provider.MySql", "Pomodoro\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.MySql\Pomodoro.Bll.Provider.MySql.csproj", "{9578C508-F5D4-403A-9FD6-02BB07A466E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomodoro.Bll.Provider.MySql", "Pomodoro\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.MySql\Pomodoro.Bll.Provider.MySql.csproj", "{9578C508-F5D4-403A-9FD6-02BB07A466E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Bll.Provider.Mock", "Pomodoro\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.Mock\Pomodoro.Bll.Provider.Mock.csproj", "{6948D138-4D89-49E7-9FBF-AF96A4CE5A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomodoro.Bll.Provider.Mock", "Pomodoro\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.Mock\Pomodoro.Bll.Provider.Mock.csproj", "{6948D138-4D89-49E7-9FBF-AF96A4CE5A26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Di", "Pomodoro\Pomodoro.Di\Pomodoro.Di.csproj", "{C043A626-84C7-4936-B162-CD995B31026E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomodoro.Di", "Pomodoro\Pomodoro.Di\Pomodoro.Di.csproj", "{C043A626-84C7-4936-B162-CD995B31026E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomodoro.Test", "Pomodoro\Pomodoro.Test\Pomodoro.Test.csproj", "{6DE85A13-0272-4D02-B0C4-A7241B366AD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pomodoro.Test", "Pomodoro\Pomodoro.Test\Pomodoro.Test.csproj", "{6DE85A13-0272-4D02-B0C4-A7241B366AD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth.Bll", "Auth.Bll", "{4DB6FED8-3107-49A9-B43E-17A2F2DF6638}"
 EndProject
@@ -43,19 +43,31 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WepApp", "WebApp\WebApp\Wep
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WelcomeDev", "WelcomeDev", "{EACCCBC6-B2E0-4132-AB3E-13AB2F5E082C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WelcomeDev.Provider.Di", "WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj", "{DF3D47D1-1EF8-47B9-A1C6-2EF17F89271A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomeDev.Provider.Di", "WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj", "{DF3D47D1-1EF8-47B9-A1C6-2EF17F89271A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WelcomeDev.Utils", "WelcomeDev\WelcomeDev.Utils\WelcomeDev.Utils.csproj", "{638C60F3-D2B5-4BC8-81A6-A97B2DD3F4AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomeDev.Utils", "WelcomeDev\WelcomeDev.Utils\WelcomeDev.Utils.csproj", "{638C60F3-D2B5-4BC8-81A6-A97B2DD3F4AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statistic.Di", "Statistic\Statistic.Di\Statistic.Di.csproj", "{D31F2803-C7E4-43B8-A0D0-C8AF1C9C8DFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Di", "Statistic\Statistic.Di\Statistic.Di.csproj", "{D31F2803-C7E4-43B8-A0D0-C8AF1C9C8DFF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistic.Bll", "Statistic.Bll", "{2C4AAF94-2B42-49B3-A818-979E53D8731C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statistic.Test", "Statistic\Statistic.Test\Statistic.Test.csproj", "{E3F6485F-4AA1-4D22-B868-7AA7759785A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Test", "Statistic\Statistic.Test\Statistic.Test.csproj", "{E3F6485F-4AA1-4D22-B868-7AA7759785A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statistic.Service", "Statistic\Statistic.Service\Statistic.Service.csproj", "{36EF1058-F148-40F8-BE5C-F5DA0CBD5B32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Service", "Statistic\Statistic.Service\Statistic.Service.csproj", "{36EF1058-F148-40F8-BE5C-F5DA0CBD5B32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statistic.Bll", "Statistic\Statistic.Bll\Statistic.Bll\Statistic.Bll.csproj", "{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Bll", "Statistic\Statistic.Bll\Statistic.Bll\Statistic.Bll.csproj", "{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGenerationUtils", "DataGenerationUtils", "{6B84E54D-C535-45F5-A014-58B1837F221D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pomodoro", "Pomodoro", "{0B703E40-5D7D-48B3-ADC5-A849C1B358F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistic", "Statistic", "{10E5356D-2DDC-48A3-AB97-F20E61F2A459}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratePomodoroMock", "Utils\Pomodoro\GeneratePomodoroMock\GeneratePomodoroMock.csproj", "{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{4D0322AC-9665-4454-A1A6-7835714E9234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockUser", "Utils\User\MockUser\MockUser.csproj", "{5D36BA24-67DC-4FBF-89DC-006234912C7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +145,14 @@ Global
 		{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D7E4B4A-EB51-424F-A86E-123C90F79EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D36BA24-67DC-4FBF-89DC-006234912C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +179,11 @@ Global
 		{E3F6485F-4AA1-4D22-B868-7AA7759785A2} = {097DB00B-091E-46DE-AD5D-B6B7165B07C3}
 		{36EF1058-F148-40F8-BE5C-F5DA0CBD5B32} = {097DB00B-091E-46DE-AD5D-B6B7165B07C3}
 		{0AC16736-9E17-4904-BEAC-4CEC7CDE495D} = {2C4AAF94-2B42-49B3-A818-979E53D8731C}
+		{0B703E40-5D7D-48B3-ADC5-A849C1B358F7} = {6B84E54D-C535-45F5-A014-58B1837F221D}
+		{10E5356D-2DDC-48A3-AB97-F20E61F2A459} = {6B84E54D-C535-45F5-A014-58B1837F221D}
+		{4D7E4B4A-EB51-424F-A86E-123C90F79EB1} = {0B703E40-5D7D-48B3-ADC5-A849C1B358F7}
+		{4D0322AC-9665-4454-A1A6-7835714E9234} = {6B84E54D-C535-45F5-A014-58B1837F221D}
+		{5D36BA24-67DC-4FBF-89DC-006234912C7C} = {4D0322AC-9665-4454-A1A6-7835714E9234}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A38EC9C9-5321-40D3-A715-EC79E67BA8F6}
