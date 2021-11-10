@@ -35,6 +35,7 @@ namespace Pomodoro.Service.Controllers
         [Route("{id:guid}")]
         public IPomodoroData GetByID([FromRoute] Guid id)
         {
+            //todo: validation here?
             return _provider.GetById(id);
         }
 
@@ -42,6 +43,7 @@ namespace Pomodoro.Service.Controllers
         [Route("{id:guid}/delete")]
         public void Delete([FromRoute] Guid id)
         {
+            //todo: validation here?
             _provider.Delete(id);
         }
 

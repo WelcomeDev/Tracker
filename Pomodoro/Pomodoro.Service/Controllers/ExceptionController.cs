@@ -25,6 +25,7 @@ namespace Pomodoro.Service.Controllers
         private HttpStatusCode GetStatusCode(Exception exception) =>
             exception switch
             {
+                PomodoroNotFoundException => HttpStatusCode.BadRequest,
                 PomodoroValidationException => HttpStatusCode.BadRequest,
                 _ => HttpStatusCode.InternalServerError,
             };

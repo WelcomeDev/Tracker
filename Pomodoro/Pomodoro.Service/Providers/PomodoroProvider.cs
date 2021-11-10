@@ -1,5 +1,6 @@
 ﻿using Pomodoro.Di;
 using Pomodoro.Di.Provider;
+using Pomodoro.Service.Controllers.Exceptions;
 
 namespace Pomodoro.Service.Providers
 {
@@ -15,7 +16,7 @@ namespace Pomodoro.Service.Providers
             _mapper = mapper;
         }
 
-        public IPomodoro? Get(Guid id)
+        public IPomodoro Get(Guid id)
         {
             var cache = _pomodors.SingleOrDefault(p => p.Id == id);
             if (cache is not null)
@@ -23,7 +24,7 @@ namespace Pomodoro.Service.Providers
 
             var pomodoroData = _provider.GetById(id);
             if (pomodoroData is null)
-                return null;
+                throw new PomodoroNotFoundException();
 
             var pomodoro = _mapper.ToPomodoro(pomodoroData);
             _pomodors.Add(pomodoro);
