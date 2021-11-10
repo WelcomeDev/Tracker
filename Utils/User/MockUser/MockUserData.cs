@@ -1,6 +1,4 @@
-﻿using Auth.Di;
-
-namespace MockUser
+﻿namespace MockUser
 {
     internal class MockUserData
     {

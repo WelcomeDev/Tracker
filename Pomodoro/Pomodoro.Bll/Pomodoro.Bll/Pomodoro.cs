@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 using Auth.Di;
 
@@ -74,6 +69,19 @@ namespace Pomodoro.Bll
             _start = DateTime.UtcNow;
             IsRunning = true;
             Debug.WriteLine($"{Title} started");
+        }
+
+        public IDuration Status()
+        {
+            if (!IsRunning)
+                return null;
+
+            var diff = (DateTime.UtcNow - _start).Value;
+            return new Duration
+            {
+                Hours = diff.Hours,
+                Minutes = diff.Minutes
+            };
         }
     }
 }

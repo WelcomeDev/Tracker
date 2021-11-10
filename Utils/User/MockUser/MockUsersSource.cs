@@ -4,8 +4,6 @@ using Auth.Di;
 
 using MockUser.Properties;
 
-using WelcomeDev.Utils;
-
 namespace MockUser
 {
     public static class MockUsersSource
