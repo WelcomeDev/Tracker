@@ -14,17 +14,34 @@ export const PomodoroType = t.intersection([
 export interface PomodoroDto extends t.TypeOf<typeof PomodoroType> {
 }
 
-export class Pomodoro {
-    private id: string;
-    private title: string;
-    private restDuration: DurationDto;
-    private workDuration: DurationDto;
+export class Pomodoro{
+    private readonly _id: string;
+    private readonly _title: string;
+    private readonly _restDuration: DurationDto;
+    private readonly _workDuration: DurationDto;
 
     constructor(pomodoro: PomodoroDto) {
-        this.id = pomodoro.id;
-        this.title = pomodoro.title;
-        this.restDuration = pomodoro.restDuration;
-        this.workDuration = pomodoro.workDuration;
+        this._id = pomodoro.id;
+        this._title = pomodoro.title;
+        this._restDuration = pomodoro.restDuration;
+        this._workDuration = pomodoro.workDuration;
     }
+
+    get id(): string {
+        return this._id;
+    }
+
+    get title(): string {
+        return this._title;
+    }
+
+    get restDuration(): DurationDto {
+        return this._restDuration;
+    }
+
+    get workDuration(): DurationDto {
+        return this._workDuration;
+    }
+
 }
 

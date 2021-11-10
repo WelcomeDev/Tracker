@@ -1,106 +1,62 @@
-import { useEffect, useState } from "react"
-import { toSeconds } from "../../../lib/time";
-import { DurationDto } from "../model/duration";
-import { cancellablePromise } from "../../../lib/cancellablePromise";
-import { Action } from "../../../components/interfaces/action";
+import { useState } from "react"
+import { Pomodoro } from "../model/pomodoro";
+import { useDuration } from "./useDuration";
 
-export interface UsePomodoroTimerProps {
-    duration: DurationDto;
+export enum TimerMode {
+    Work = 'Work',
+    Rest = 'Rest'
 }
 
-export function usePomodoroTimer(props: UsePomodoroTimerProps) {
+const { Work, Rest } = TimerMode;
 
-    const [ isOnPlay, setOnPlay ] = useState<boolean>(false)
-    const [ isActive, setIsActive ] = useState<boolean>(false)
+export function usePomodoroTimer(props: Pomodoro) {
 
-    const [ hours, setHours ] = useState(props.duration.hours);
-    const [ minutes, setMinutes ] = useState(props.duration.minutes);
-    const [ seconds, setSeconds ] = useState(0);
-    const [ percent, setPercent ] = useState(100);
-    const [ refreshSeconds, setRefreshSeconds ] = useState<{ promise: Promise<unknown>, cancel: Action }>();
+    const workTimer = useDuration({ duration: props.workDuration, onFinishedCallback });
 
-    function decreaseMinutes() {
-        if (hours + minutes === 0)
-            return;
+    const restTimer = useDuration({ duration: props.restDuration, onFinishedCallback });
 
-        setSeconds(59);
+    const [ mode, setMode ] = useState(Work);
 
-        if (minutes === 0) {
-            setHours(hours - 1);
-            setMinutes(59);
-            return;
+    function onFinishedCallback() {
+        if (mode === Work) {
+            setMode(Rest);
+            restTimer.toggle();
+            workTimer.reset();
+            console.log(`Work is over`);
+        } else {
+            setMode(Work);
+            restTimer.reset();
+            console.log(`Rest is over`);
         }
-
-        setMinutes(minutes - 1);
     }
-
-    useEffect(() => {
-        if (!isOnPlay)
-            return;
-
-        //секунда не нулевая
-        if (seconds !== 0) {
-            const onRefreshSeconds = cancellablePromise<number>(new Promise((resolve) =>
-                setTimeout(() => {
-                    resolve(seconds - 1);
-                }, 1000),
-            ))
-            onRefreshSeconds.promise.then((seconds) => {
-                setSeconds(seconds);
-            });
-            setRefreshSeconds(onRefreshSeconds)
-            return;
-        }
-
-        decreaseMinutes();
-    }, [ seconds, isOnPlay ])
-
-    useEffect(() => {
-        if (!isActive) {
-            setSeconds(0);
-            setMinutes(props.duration.minutes);
-            setHours(props.duration.hours);
-            setPercent(100);
-        }
-
-        const { minutes: totalM, hours: totalH } = props.duration;
-        console.log(`${hours}:${minutes}:${seconds}`);
-        setPercent(toSeconds(seconds, minutes, hours) / toSeconds(0, totalM, totalH))
-    }, [ seconds, minutes, hours ])
-
-    // useEffect(() => {
-    //     //todo: sync
-    // }, [ minutes ])
 
     function onSettings() {
 
     }
 
-    function onToggle() {
-        if (!isActive)
-            setIsActive(true)
-
-        if (isOnPlay) {
-            refreshSeconds?.cancel();
-            console.log('refresh seconds cancelled')
+    function onReset() {
+        if(mode === Work){
+            workTimer.reset();
         }
-
-        setOnPlay(!isOnPlay);
+        else{
+            restTimer.reset();
+        }
     }
 
-    function onReset() {
-        setIsActive(false);
-        setOnPlay(false);
-
-        //todo: fix onReset onPlay
-        setHours(props.duration.hours);
-        setMinutes(props.duration.minutes);
-        setSeconds(0);
+    function onToggle() {
+        if(mode === Work){
+            workTimer.toggle();
+        }
+        else{
+            restTimer.toggle();
+        }
     }
 
     return {
         onReset, onToggle, onSettings,
-        isOnPlay, isActive,
-        duration: { hours, minutes, seconds }, percent,
+        isOnPlay: workTimer.isOnPlay || restTimer.isOnPlay,
+        isActive: workTimer.isActive || restTimer.isActive,
+        duration: mode === Work ? workTimer.duration : restTimer.duration,
+        mode: mode,
     }
 }

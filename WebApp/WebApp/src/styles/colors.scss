@@ -10,3 +10,7 @@ $step: 5;
 @function highlight($color, $level) {
     @return adjust-color($color, $red: $step*$level, $green: $step*$level, $blue: $step*$level);
 }
+
+@function downlight($color, $level){
+  @return adjust-color($color, $red: -$step*$level, $green: -$step*$level, $blue: -$step*$level);
+}
