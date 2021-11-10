@@ -57,6 +57,8 @@ else
 
 }
 
+app.UseExceptionHandler("/error");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

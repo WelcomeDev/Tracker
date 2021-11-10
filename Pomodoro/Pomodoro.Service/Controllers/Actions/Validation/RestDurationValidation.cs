@@ -19,7 +19,7 @@ namespace Pomodoro.Service.Controllers.Actions
             int minMinute = int.Parse(_configuration["Validation:Duration:MinMinute"]);
             int maxMinute = 59;
 
-            var duration = dto.WorkDuration;
+            var duration = dto.RestDuration;
             if (duration.Hours > maxHour || duration.Hours < minHour)
                 throw new PomodoroValidationException($"Invalid rest duration. Hours must be between {minHour} and {maxHour}");
 
