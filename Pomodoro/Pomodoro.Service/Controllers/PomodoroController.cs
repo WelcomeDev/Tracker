@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-using Pomodoro.Di;
 using Pomodoro.Di.Duration;
-using Pomodoro.Di.Provider;
 using Pomodoro.Service.Providers;
 
 namespace Pomodoro.Service.Controllers

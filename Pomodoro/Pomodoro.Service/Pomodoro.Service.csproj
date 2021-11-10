@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -16,10 +16,6 @@
     <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.Mock\Pomodoro.Bll.Provider.Mock.csproj" />
     <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll\Pomodoro.Bll.csproj" />
     <ProjectReference Include="..\Pomodoro.Di\Pomodoro.Di.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\Actions\" />
   </ItemGroup>
 
 </Project>
