@@ -1,3 +1,3 @@
 export const globalConfig = {
-    baseURL: 'http:localhost:3000/api',
+    baseURL: 'https://localhost:7013/api',
 }

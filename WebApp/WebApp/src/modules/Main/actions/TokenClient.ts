@@ -7,9 +7,9 @@ client.interceptors.request.use(config => {
     //todo: complete auth actions
 });
 
-client.interceptors.response.use(
-    response => Promise.resolve(response),
-    error => onTryRefresh(error));
+// client.interceptors.response.use(
+//     response => Promise.resolve(response),
+//     error => onTryRefresh(error));
 
 function onTryRefresh(error: any): Promise<any> {
     if (!error.response)
