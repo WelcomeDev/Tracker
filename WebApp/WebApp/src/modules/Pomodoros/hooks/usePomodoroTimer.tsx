@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Pomodoro } from "../model/pomodoro";
 import { useDuration } from "./useDuration";
+import { Action } from "../../../components/interfaces/actionTyped";
 
 export enum TimerMode {
     Work = 'Work',
@@ -9,13 +10,19 @@ export enum TimerMode {
 
 const { Work, Rest } = TimerMode;
 
-export function usePomodoroTimer(props: Pomodoro) {
+export interface UsePomodoroTimerProps {
+    pomodoro: Pomodoro;
+    onConfigure: Action<Pomodoro>;
+}
 
-    const workTimer = useDuration({ duration: props.workDuration, onFinishedCallback });
+export function usePomodoroTimer({ pomodoro, onConfigure }: UsePomodoroTimerProps) {
 
-    const restTimer = useDuration({ duration: props.restDuration, onFinishedCallback });
+    const workTimer = useDuration({ duration: pomodoro.workDuration, onFinishedCallback });
+
+    const restTimer = useDuration({ duration: pomodoro.restDuration, onFinishedCallback });
 
     const [ mode, setMode ] = useState(Work);
+    const [ isOnSettings, setOnSettings ] = useState<boolean>(false)
 
     function onFinishedCallback() {
         if (mode === Work) {
@@ -31,23 +38,22 @@ export function usePomodoroTimer(props: Pomodoro) {
     }
 
     function onSettings() {
-
+        onConfigure(pomodoro);
+        setOnSettings(true);
     }
 
     function onReset() {
-        if(mode === Work){
+        if (mode === Work) {
             workTimer.reset();
-        }
-        else{
+        } else {
             restTimer.reset();
         }
     }
 
     function onToggle() {
-        if(mode === Work){
+        if (mode === Work) {
             workTimer.toggle();
-        }
-        else{
+        } else {
             restTimer.toggle();
         }
     }
@@ -58,5 +64,6 @@ export function usePomodoroTimer(props: Pomodoro) {
         isActive: workTimer.isActive || restTimer.isActive,
         duration: mode === Work ? workTimer.duration : restTimer.duration,
         mode: mode,
+        isOnSettings,setOnSettings
     }
 }

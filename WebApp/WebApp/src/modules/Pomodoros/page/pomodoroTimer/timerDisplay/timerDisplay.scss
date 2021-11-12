@@ -1,0 +1,55 @@
+.side-button,
+.accent-button {
+  height: 100%;
+  width: 100%;
+}
+
+.accent-button {
+  path {
+    fill: $foreground-accent-color;
+  }
+
+  &:hover {
+    path {
+      fill: highlight($foreground-accent-color, 4);
+    }
+  }
+
+  &:active {
+    path {
+      fill: highlight($foreground-accent-color, 8);
+    }
+  }
+}
+
+.side-button {
+  path {
+    fill: $foreground-secondary-color;
+  }
+
+  &:hover {
+    path {
+      fill: highlight($foreground-secondary-color, 4);
+    }
+  }
+
+  &:active {
+    path {
+      fill: highlight($foreground-secondary-color, 8);
+    }
+  }
+}
+
+.pomodoro {
+  &__title {
+    user-select: none;
+  }
+
+  &__timer {
+    user-select: none;
+  }
+
+  &__actions {
+
+  }
+}

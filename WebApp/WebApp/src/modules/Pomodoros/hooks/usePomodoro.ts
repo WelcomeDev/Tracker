@@ -14,6 +14,7 @@ export function usePomodoro() {
 
     useEffect(() => {
         setPomodoros(mockData.map(x => new Pomodoro(x)));
+        getAll();
     }, [])
 
     return {

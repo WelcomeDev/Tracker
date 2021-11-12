@@ -1,72 +1,126 @@
 @import '../../../../styles/colors';
 @import '../../../../styles/interractions';
+@import '../../../../styles/alignment';
 @import '../../../../styles/fonts';
 
 .side-button,
-.accent-button{
-    height: 100%;
-    width: 100%;
+.accent-button {
+  height: 100%;
+  width: 100%;
 }
 
-.accent-button{
-    path{
-        fill: $foreground-accent-color;
-    }
+.accent-button {
+  path {
+    fill: $foreground-accent-color;
+  }
 
-    &:hover{
-        path{
-            fill: highlight($foreground-accent-color, 4);
-        }
+  &:hover {
+    path {
+      fill: highlight($foreground-accent-color, 4);
     }
+  }
 
-    &:active{
-        path{
-            fill: highlight($foreground-accent-color, 8);
-        }
+  &:active {
+    path {
+      fill: highlight($foreground-accent-color, 8);
     }
+  }
 }
 
-.side-button{
-    path{
-        fill: $foreground-secondary-color;
-    }
-    &:hover{
-        path{
-            fill: highlight($foreground-secondary-color, 4);
-        }
-    }
+.side-button {
+  path {
+    fill: $foreground-secondary-color;
+  }
 
-    &:active{
-        path{
-            fill: highlight($foreground-secondary-color, 8);
-        }
+  &:hover {
+    path {
+      fill: highlight($foreground-secondary-color, 4);
     }
+  }
+
+  &:active {
+    path {
+      fill: highlight($foreground-secondary-color, 8);
+    }
+  }
 }
+
+$pomodoro-width: 300px;
+$pomodoro-height: 350px;
 
 .pomodoro {
-    @include interractive_background($background-secondary-color);
-    background: $background-secondary-color;
-    @include title;
+  @include interractive_background($background-secondary-color);
+  background: $background-secondary-color;
+  @include title;
 
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-template-rows: 30px 1fr 64px;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 30px 1fr 64px;
 
-    width: 300px;
-    height: 350px;
-    resize: none;
+  width: $pomodoro-width;
+  height: $pomodoro-height;
+  resize: none;
 
-    padding: 7px 15px;
+  padding: 7px 15px;
 
-    &__title{
-        user-select: none;
+  &__title {
+    user-select: none;
+  }
+
+  &__timer {
+    user-select: none;
+  }
+
+  &__actions {
+
+  }
+}
+
+.settings {
+  //@include flex-center-align;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  position: fixed;
+  //opacity: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.4);
+  transform: scale(1);
+  //transition-delay: 2s;
+  //transition: 1s all;
+
+  &.on-display {
+    @include flex-center-align;
+    user-select: all;
+    z-index: 100;
+    //opacity: 1;
+    transform: scale(1);
+  }
+
+  &__content {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    width: 2*$pomodoro-width;
+    height: 2*$pomodoro-height;
+
+    transform: scale(0.5);
+
+    &.on-display {
+      opacity: 1;
+      //transform: scale(1);
+      transition: 1s all;
+      transform: scale(1) translate(50%);
+      //transition: move_and_shrink 1s;
     }
+  }
+}
 
-    &__timer{
-        user-select: none;
-    }
-
-    &__actions{
-
-    }
+@keyframes move_and_shrink {
+  0%{
+    transform: scale(0.5);
+  }
+  100%{
+    transform: scale(1) translate(50%);
+  }
 }
