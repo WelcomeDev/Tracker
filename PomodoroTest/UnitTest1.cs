@@ -16,7 +16,7 @@ namespace PomodoroTest
                 Id = new System.Guid(),
                 Name = "tester"
             });
-
+            context.SaveChanges();
             var userCount = context.Users.Count();
             Assert.AreEqual(userCount, 1);
         }
