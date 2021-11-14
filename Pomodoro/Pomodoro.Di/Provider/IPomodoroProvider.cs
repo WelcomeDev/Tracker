@@ -1,6 +1,8 @@
-﻿namespace Pomodoro.Di.Provider
+﻿using WelcomeDev.Provider.Di.Pageable;
+
+namespace Pomodoro.Di.Provider
 {
-    public interface IPomodoroProvider
+    public interface IPomodoroProvider : IPageableProvider<IPomodoroData>
     {
         IPomodoroData GetById(Guid id);
 
