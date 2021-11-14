@@ -7,7 +7,7 @@ namespace Pomodoro.Service.Controllers.Dto
 {
     public class PomodoroDto : IPomodoroData
     {
-        public IUserIdentity User { get; }
+        public IUserIdentity User { get; set; }
 
         public Guid Id { get; set; }
 
