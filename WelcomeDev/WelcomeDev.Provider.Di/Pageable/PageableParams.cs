@@ -4,11 +4,15 @@
     {
         public const int DefaultPageSize = 10;
 
+        public const int DefaultPageNumber = 1;
+
+        public const SortDirection DefaultSortDirection = SortDirection.ASC;
+
         public int PageSize { get; set; } = DefaultPageSize;
 
-        public int PageNumber { get; set; }
+        public int PageNumber { get; set; } = DefaultPageNumber;
 
-        public SortDirection SortDirection { get; set; }
+        public SortDirection SortDirection { get; set; } = DefaultSortDirection;
 
         public PageableParams()
         { }

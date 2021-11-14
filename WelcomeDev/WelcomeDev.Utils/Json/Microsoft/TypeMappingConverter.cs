@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 using WelcomeDev.Utils.Enumerable;
 
-namespace WelcomeDev.Utils
+namespace WelcomeDev.Utils.Json.Microsoft
 {
     public class TypeMappingConverter<TType, TImplementation> : JsonConverter<TType>
         where TImplementation : class, TType, new()

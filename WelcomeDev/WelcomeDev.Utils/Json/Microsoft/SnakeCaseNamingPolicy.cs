@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 
-namespace WelcomeDev.Utils
+namespace WelcomeDev.Utils.Json.Microsoft
 {
     public class SnakeCaseNamingPolicy : JsonNamingPolicy
     {
@@ -16,7 +16,6 @@ namespace WelcomeDev.Utils
         {
             StringBuilder result = new StringBuilder(2 * name.Length);
             foreach (var ch in name)
-            {
                 if (char.IsLower(ch))
                 {
                     result.Append(Separator);
@@ -24,7 +23,6 @@ namespace WelcomeDev.Utils
                 }
                 else
                     result.Append(ch);
-            }
 
             return result.ToString();
         }
