@@ -10,6 +10,7 @@ using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
 using Pomodoro.Service.Controllers.Actions;
 using Pomodoro.Service.Controllers.Dto;
+using Pomodoro.Service.Middleware;
 using Pomodoro.Service.MockUser;
 using Pomodoro.Service.Providers;
 
@@ -49,6 +50,13 @@ static void RegisterSerivces(WebApplicationBuilder builder)
 
 RegisterSerivces(builder);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -62,6 +70,14 @@ else
 
 }
 
+
+
+//app.UseOptionsRequest();
+////app.UseCors(options =>
+////{
+////    options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+////});
+app.UseCors();
 app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
