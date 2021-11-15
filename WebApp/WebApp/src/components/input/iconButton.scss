@@ -1,0 +1,12 @@
+@import "src/styles/colors";
+
+.icon-button{
+  &__icon {
+    width: 100%;
+    height: 100%;
+    path{
+      fill: $foreground-secondary-color;
+    }
+  }
+}
+
