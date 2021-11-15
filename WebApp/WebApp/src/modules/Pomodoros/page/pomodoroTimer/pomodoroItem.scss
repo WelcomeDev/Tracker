@@ -7,9 +7,9 @@ $pomodoro-width: 300px;
 $pomodoro-height: 350px;
 
 .pomodoro {
-  @include interractive_background($background-secondary-color);
-  background: $background-secondary-color;
+  @include background_hover($background-secondary-color);
   @include title;
+  border-radius: 10px;
 
   display: grid;
   grid-auto-columns: 1fr;
@@ -43,9 +43,9 @@ $pomodoro-height: 350px;
   }
 
   &__content {
-    padding: 20px;
-    border-radius: 20px;
-    background-color: white;
+    padding: 25px;
+    border-radius: 40px;
+    background-color: $background-primary-color;
     width: 2*$pomodoro-width;
     height: 2*$pomodoro-height;
     position: absolute;

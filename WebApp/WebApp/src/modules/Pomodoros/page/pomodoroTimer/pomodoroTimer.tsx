@@ -4,8 +4,9 @@ import { Pomodoro } from "../../model/pomodoro";
 import { Action } from "../../../../components/interfaces/actionTyped";
 import classNames from "classnames";
 import { CSSProperties, useEffect, useRef, useState } from "react";
-import { TimerDisplay } from "./timerDisplay/TimerDisplay";
+import { TimerDisplay } from "./timerDisplay/timerDisplay";
 import { Modal } from "../../../../components/modal/modal";
+import { SettingsDisplay } from "./settingsDisplay/settingsDisplay";
 
 export interface PomodoroTimerProps {
     pomodoro: Pomodoro;
@@ -53,9 +54,7 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
                     menuClassName={classNames('settings', isOnSettings ? 'on-display' : '')}
                     contentClassName={classNames('settings__content', isOnSettings ? 'on-display' : '')}
                     contentStyle={!isOnSettings ? { ...positionStyle } : {}}>
-                    <div style={{ background: "red", width: "150px", height: "150px" }}>
-
-                    </div>
+                    <SettingsDisplay/>
                 </Modal>
 
             }

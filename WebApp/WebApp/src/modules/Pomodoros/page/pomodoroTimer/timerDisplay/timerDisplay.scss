@@ -1,47 +1,12 @@
 @import 'src/styles/colors';
 @import 'src/styles/alignment';
 @import 'src/styles/interractions';
+@import 'src/styles/components/inputs/buttons';
 
-.side-button,
-.accent-button {
-  height: 100%;
-  width: 100%;
-}
-
-.accent-button {
-  path {
-    fill: $foreground-accent-color;
-  }
-
-  &:hover {
-    path {
-      fill: highlight($foreground-accent-color, 4);
-    }
-  }
-
-  &:active {
-    path {
-      fill: highlight($foreground-accent-color, 8);
-    }
-  }
-}
-
-.side-button {
-  path {
-    fill: $foreground-secondary-color;
-  }
-
-  &:hover {
-    path {
-      fill: highlight($foreground-secondary-color, 4);
-    }
-  }
-
-  &:active {
-    path {
-      fill: highlight($foreground-secondary-color, 8);
-    }
-  }
+@mixin control-button-base($color){
+  @include button-base($color);
+  max-width: 48px;
+  max-height: 48px;
 }
 
 .pomodoro {
@@ -54,6 +19,12 @@
   }
 
   &__actions {
+    .accent-button {
+      @include control-button-base($accent-color);
+    }
 
+    .side-button {
+      @include control-button-base($passive-color);
+    }
   }
 }
