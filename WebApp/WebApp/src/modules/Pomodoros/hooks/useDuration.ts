@@ -9,8 +9,11 @@ export interface UseDurationProps {
     onFinishedCallback?: Action;
 }
 
-export interface DurationService {
-
+export interface DurationDisplayData {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    percent: number;
 }
 
 export function useDuration({ duration, onFinishedCallback }: UseDurationProps) {

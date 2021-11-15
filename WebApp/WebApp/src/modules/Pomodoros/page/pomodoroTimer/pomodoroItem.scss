@@ -3,48 +3,6 @@
 @import '../../../../styles/alignment';
 @import '../../../../styles/fonts';
 
-.side-button,
-.accent-button {
-  height: 100%;
-  width: 100%;
-}
-
-.accent-button {
-  path {
-    fill: $foreground-accent-color;
-  }
-
-  &:hover {
-    path {
-      fill: highlight($foreground-accent-color, 4);
-    }
-  }
-
-  &:active {
-    path {
-      fill: highlight($foreground-accent-color, 8);
-    }
-  }
-}
-
-.side-button {
-  path {
-    fill: $foreground-secondary-color;
-  }
-
-  &:hover {
-    path {
-      fill: highlight($foreground-secondary-color, 4);
-    }
-  }
-
-  &:active {
-    path {
-      fill: highlight($foreground-secondary-color, 8);
-    }
-  }
-}
-
 $pomodoro-width: 300px;
 $pomodoro-height: 350px;
 
@@ -62,18 +20,6 @@ $pomodoro-height: 350px;
   resize: none;
 
   padding: 7px 15px;
-
-  &__title {
-    user-select: none;
-  }
-
-  &__timer {
-    user-select: none;
-  }
-
-  &__actions {
-
-  }
 }
 
 .settings {
@@ -90,11 +36,10 @@ $pomodoro-height: 350px;
   //transition: 1s all;
 
   &.on-display {
-    @include flex-center-align;
-    user-select: all;
+    //@include flex-center-align;
     z-index: 100;
     //opacity: 1;
-    transform: scale(1);
+    //transform: scale(1);
   }
 
   &__content {
@@ -103,24 +48,20 @@ $pomodoro-height: 350px;
     background-color: white;
     width: 2*$pomodoro-width;
     height: 2*$pomodoro-height;
-
+    position: absolute;
+    transition: all 1s ease-in-out;
     transform: scale(0.5);
 
     &.on-display {
-      opacity: 1;
-      //transform: scale(1);
-      transition: 1s all;
-      transform: scale(1) translate(50%);
-      //transition: move_and_shrink 1s;
+      top: calc(50% - 350px);
+      left: calc(50% - 300px);
+
+      transform: scale(1);
+      transition: top, left, transform;
+      transition-duration: 0.5s;
+      transition-delay: 0s, 0s, 0.5s;
+      transition-timing-function: ease-in-out;
     }
   }
 }
 
-@keyframes move_and_shrink {
-  0%{
-    transform: scale(0.5);
-  }
-  100%{
-    transform: scale(1) translate(50%);
-  }
-}

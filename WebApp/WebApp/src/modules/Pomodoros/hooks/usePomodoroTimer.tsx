@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Pomodoro } from "../model/pomodoro";
-import { useDuration } from "./useDuration";
-import { Action } from "../../../components/interfaces/actionTyped";
+import { DurationDisplayData, useDuration } from "./useDuration";
+import { Action as ActionT } from "../../../components/interfaces/actionTyped";
+import { Action } from "../../../components/interfaces/action";
 
 export enum TimerMode {
     Work = 'Work',
@@ -10,9 +11,21 @@ export enum TimerMode {
 
 const { Work, Rest } = TimerMode;
 
+export interface UsePomodoroTimerService {
+    onReset: Action;
+    onToggle: Action;
+    onSettings: Action;
+    isOnPlay: boolean;
+    isActive: boolean;
+    duration: DurationDisplayData;
+    mode: TimerMode;
+    isOnSettings: boolean;
+    setOnSettings: ActionT<boolean>;
+}
+
 export interface UsePomodoroTimerProps {
     pomodoro: Pomodoro;
-    onConfigure: Action<Pomodoro>;
+    onConfigure: ActionT<Pomodoro>;
 }
 
 export function usePomodoroTimer({ pomodoro, onConfigure }: UsePomodoroTimerProps) {
@@ -64,6 +77,6 @@ export function usePomodoroTimer({ pomodoro, onConfigure }: UsePomodoroTimerProp
         isActive: workTimer.isActive || restTimer.isActive,
         duration: mode === Work ? workTimer.duration : restTimer.duration,
         mode: mode,
-        isOnSettings,setOnSettings
+        isOnSettings, setOnSettings,
     }
 }

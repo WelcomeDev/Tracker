@@ -1,15 +1,11 @@
-import { FlexContainer } from 'components/alignment/flexConteiner';
 import './pomodoroItem.scss';
-import { Timer } from './timer/timer';
 import { usePomodoroTimer } from '../../hooks/usePomodoroTimer';
-import { ReactComponent as Options } from './assets/options.svg';
-import { ReactComponent as Pause } from './assets/pause.svg';
-import { ReactComponent as Play } from './assets/play.svg';
-import { ReactComponent as Stop } from './assets/stop.svg';
 import { Pomodoro } from "../../model/pomodoro";
 import { Action } from "../../../../components/interfaces/actionTyped";
 import classNames from "classnames";
 import { CSSProperties, useEffect, useRef, useState } from "react";
+import { TimerDisplay } from "./timerDisplay/TimerDisplay";
+import { Modal } from "../../../../components/modal/modal";
 
 export interface PomodoroTimerProps {
     pomodoro: Pomodoro;
@@ -18,30 +14,26 @@ export interface PomodoroTimerProps {
 
 export function PomodoroTimer(props: PomodoroTimerProps) {
 
-    const { title } = props.pomodoro;
+    const pomodoroTimer = usePomodoroTimer({ ...props });
 
     const {
-        onSettings, onReset, onToggle,
-        isOnPlay, isActive,
-        duration,
-        mode,
         isOnSettings, setOnSettings,
-    } = usePomodoroTimer({ ...props });
+    } = pomodoroTimer;
 
     const pomodoroRef = useRef<HTMLElement>(null);
 
-    const [ positionStyle, setPositionStyle ] = useState<CSSProperties>()
-
-    useEffect(()=>{
-        console.log(`Is on settings ${isOnSettings}`)
-    },[isOnSettings])
+    const [ positionStyle, setPositionStyle ] = useState<CSSProperties>();
 
     useEffect(() => {
+        const centerX = pomodoroRef.current?.offsetLeft as number;
+        const centerY = pomodoroRef.current?.offsetTop as number;
+
+        const left = centerX - 150;
+        const top = centerY - 175;
+
         setPositionStyle({
-            //@ts-ignore
-            left: pomodoroRef.current?.offsetLeft - 150,
-            //@ts-ignore
-            top: pomodoroRef.current?.offsetTop - 175,
+            transition: `transition: all 0.5s ease-in-out`,
+            left, top,
         });
     }, [ pomodoroRef ])
 
@@ -51,60 +43,21 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
                      ref={pomodoroRef}>
                 {
                     !isOnSettings &&
-                    <>
-                        <p className="pomodoro__title">
-                            <span>{title}</span>
-                            <span style={{ opacity: 0.6 }}> {mode}</span>
-                        </p>
-                        <Timer
-                            className="pomodoro__timer"
-                            {...duration}/>
-                        <FlexContainer
-                            className="pomodoro__actions"
-                            justifyContent="space-around"
-                        >
-                            {
-                                isOnPlay ?
-                                    <Pause
-                                        title="Pause"
-                                        onClick={onToggle}
-                                        className="accent-button"
-                                    />
-                                    :
-                                    <Play title="Start"
-                                          onClick={onToggle}
-                                          className="accent-button"
-                                    />
-                            }
-                            {
-                                !isActive ?
-                                    <Options
-                                        title="Options"
-                                        onClick={onSettings}
-                                        className="side-button"
-                                    />
-                                    :
-                                    <Stop
-                                        title="Reset"
-                                        onClick={onReset}
-                                        className="side-button"
-                                    />
-                            }
-
-                        </FlexContainer>
-                    </>
+                    <TimerDisplay title={props.pomodoro.title}
+                                  {...pomodoroTimer}/>
                 }
             </section>
             {
-                // isOnSettings &&
-                <section
-                    className={classNames('settings', isOnSettings ? 'on-display' : '')}
-                    onClick={() => setOnSettings(false)}>
-                    <div style={!isOnSettings ? { ...positionStyle, position: "absolute" } : {}}
-                         className={classNames('settings__content', isOnSettings ? 'on-display' : '')}>
+                <Modal
+                    onClose={() => setOnSettings(false)}
+                    menuClassName={classNames('settings', isOnSettings ? 'on-display' : '')}
+                    contentClassName={classNames('settings__content', isOnSettings ? 'on-display' : '')}
+                    contentStyle={!isOnSettings ? { ...positionStyle } : {}}>
+                    <div style={{ background: "red", width: "150px", height: "150px" }}>
 
                     </div>
-                </section>
+                </Modal>
+
             }
         </>
     )
