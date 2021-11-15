@@ -1,21 +1,28 @@
-import { Action } from "../interfaces/actionTyped";
-import './modal.scss';
-import classNames from "classnames";
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
+import { Action } from "../interfaces/action";
 
 export interface SettingsModalProps {
-    isActive: boolean;
-    setActive: Action<boolean>;
+    onClose: Action;
     children: ReactNode;
+
+    menuClassName?: string;
+    contentClassName?: string;
+    menuStyle?: CSSProperties;
+    contentStyle?: CSSProperties;
 }
 
-export function Modal({ isActive, children, setActive }: SettingsModalProps) {
+export function Modal({ children, onClose, ...optionalProps }: SettingsModalProps) {
     return (
         <div
-            className={classNames('modal', isActive ? 'active' : '')}
-            onClick={() => setActive(false)}>
-            <section className="modal__content"
-                     onClick={e => e.stopPropagation()}>
+            style={optionalProps.menuStyle}
+            className={optionalProps.menuClassName}
+            onClick={() => onClose()}
+        >
+            <section
+                onClick={e => e.stopPropagation()}
+                className={optionalProps.contentClassName}
+                style={optionalProps.contentStyle}
+            >
                 {children}
             </section>
         </div>
