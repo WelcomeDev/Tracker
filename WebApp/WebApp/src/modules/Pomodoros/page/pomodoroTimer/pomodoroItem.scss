@@ -30,16 +30,15 @@ $animation-durations: 0.5s;
   top: 0;
   position: fixed;
   z-index: -1;
+  opacity: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  transform: scale(1);
-  //transition-delay: 2s;
-  //transition: 1s all;
+  transition:
+          z-index $animation-durations $animation-durations,
+          opacity $animation-durations $animation-durations;
 
   &.on-display {
-    //@include flex-center-align;
     z-index: 100;
-    //opacity: 1;
-    //transform: scale(1);
+    opacity: 1;
   }
 
   &__content {
@@ -51,11 +50,11 @@ $animation-durations: 0.5s;
     position: absolute;
 
     transform: scale(0.5);
-    //top: 0px;
-    //left: 0px;
-    transition: left 0.5s, top 0.5s, transform 0.5s 0.5s;
-    //transition-duration: 0.5s;
-    //transition-delay: 0s, 0s, 0.5s;
+    transition:
+            left $animation-durations 0.1s,
+            top $animation-durations 0.1s,
+            transform $animation-durations $animation-durations;
+
     transition-timing-function: ease-in-out;
 
     &.on-display {
@@ -63,11 +62,6 @@ $animation-durations: 0.5s;
       left: calc(50% - 300px);
 
       transform: scale(1);
-      //transition: left 0.5s 0.5s, top 0.5s 0.5s, transform 0.5s;
-      //transition: top, left, transform;
-      //transition-duration: 0.5s;
-      //transition-delay: 0s, 0s, 0.5s;
-      //transition-timing-function: ease-in-out;
     }
   }
 }

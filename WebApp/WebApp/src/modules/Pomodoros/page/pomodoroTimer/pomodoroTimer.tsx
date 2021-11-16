@@ -33,7 +33,7 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
         const top = centerY - 175;
 
         setPositionStyle({
-            left:`${left}px`,
+            left: `${left}px`,
             top: `${top}px`,
         });
     }, [ pomodoroRef ])
@@ -48,16 +48,13 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
                                   {...pomodoroTimer}/>
                 }
             </section>
-            {
-                <Modal
-                    onClose={() => setOnSettings(false)}
-                    menuClassName={classNames('settings', isOnSettings ? 'on-display' : '')}
-                    contentClassName={classNames('settings__content', isOnSettings ? 'on-display' : '')}
-                    contentStyle={!isOnSettings ? { ...positionStyle } : {}}>
-                    <SettingsDisplay/>
-                </Modal>
-
-            }
+            <Modal
+                onClose={() => setOnSettings(false)}
+                menuClassName={classNames('settings', isOnSettings ? 'on-display' : '')}
+                contentClassName={classNames('settings__content', isOnSettings ? 'on-display' : '')}
+                contentStyle={!isOnSettings ? { ...positionStyle } : {}}>
+                <SettingsDisplay/>
+            </Modal>
         </>
     )
 }
