@@ -33,8 +33,8 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
         const top = centerY - 175;
 
         setPositionStyle({
-            transition: `transition: all 0.5s ease-in-out`,
-            left, top,
+            left:`${left}px`,
+            top: `${top}px`,
         });
     }, [ pomodoroRef ])
 
