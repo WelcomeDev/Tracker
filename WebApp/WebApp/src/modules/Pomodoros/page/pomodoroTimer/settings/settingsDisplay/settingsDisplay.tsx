@@ -1,4 +1,4 @@
-import { IconButton } from "../../../../../components/input/iconButton";
+import { IconButton } from "../../../../../../components/input/iconButton";
 import './settingsDisplay.scss';
 import { TimerConfigure } from "../timerConfigure/timerConfigure";
 

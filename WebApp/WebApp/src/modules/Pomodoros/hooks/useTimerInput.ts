@@ -1,4 +1,4 @@
-import { TimerInputProps } from "../page/pomodoroTimer/timerInput/timerInput";
+import { TimerInputProps } from "../page/pomodoroTimer/settings/timerInput/timerInput";
 import { useEffect, useRef, useState } from "react";
 import { doubleDigitTime } from "../../../lib/time";
 

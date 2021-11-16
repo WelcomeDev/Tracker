@@ -1,9 +1,10 @@
-@import '../../../../../styles/colors';
-@import '../../../../../styles/alignment';
+@import '../../../../../../styles/colors';
+@import '../../../../../../styles/alignment';
 
 .wrapper {
   @include flex-center-align;
-border-radius: 10px;
+  border-radius: 10px;
+
   &__outer-circle {
     width: 220px;
     height: 220px;

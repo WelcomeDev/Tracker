@@ -1,7 +1,7 @@
-@import 'src/styles/colors';
-@import 'src/styles/alignment';
-@import 'src/styles/fonts';
-@import 'src/styles/components/inputs/buttons';
+@import '../../../../../../styles/colors';
+@import '../../../../../../styles/alignment';
+@import '../../../../../../styles/fonts';
+@import '../../../../../../styles/components/inputs/buttons';
 
 @mixin configure-button-base($color) {
   @include button-base($color);

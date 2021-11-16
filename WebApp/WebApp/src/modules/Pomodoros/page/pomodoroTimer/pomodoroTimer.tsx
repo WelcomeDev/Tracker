@@ -4,9 +4,9 @@ import { Pomodoro } from "../../model/pomodoro";
 import { Action } from "../../../../components/interfaces/actionTyped";
 import classNames from "classnames";
 import { CSSProperties, useEffect, useRef, useState } from "react";
-import { TimerDisplay } from "./timerDisplay/timerDisplay";
+import { TimerDisplay } from "./display/timerDisplay/timerDisplay";
 import { Modal } from "../../../../components/modal/modal";
-import { SettingsDisplay } from "./settingsDisplay/settingsDisplay";
+import { SettingsDisplay } from "./settings/settingsDisplay/settingsDisplay";
 
 export interface PomodoroTimerProps {
     pomodoro: Pomodoro;

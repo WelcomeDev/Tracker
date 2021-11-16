@@ -1,8 +1,8 @@
 import { Timer } from "../timer/timer";
-import { FlexContainer } from "../../../../../components/alignment/flexConteiner";
-import { TimerMode, UsePomodoroTimerService } from "../../../hooks/usePomodoroTimer";
+import { FlexContainer } from "../../../../../../components/alignment/flexConteiner";
+import { TimerMode, UsePomodoroTimerService } from "../../../../hooks/usePomodoroTimer";
 import './timerDisplay.scss';
-import { IconButton } from "../../../../../components/input/iconButton";
+import { IconButton } from "../../../../../../components/input/iconButton";
 import { Icon } from "@iconify/react";
 
 export interface TimerDisplayProps extends UsePomodoroTimerService {

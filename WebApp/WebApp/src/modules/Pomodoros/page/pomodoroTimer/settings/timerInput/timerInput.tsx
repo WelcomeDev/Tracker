@@ -1,8 +1,8 @@
-import { Arrow, ArrowDirection } from "../../../../../components/input/arrow";
+import { Arrow, ArrowDirection } from "../../../../../../components/input/arrow";
 import './timerInput.scss';
 import classNames from "classnames";
-import { Action } from "../../../../../components/interfaces/actionTyped";
-import { useTimerInput } from "../../../hooks/useTimerInput";
+import { Action } from "../../../../../../components/interfaces/actionTyped";
+import { useTimerInput } from "../../../../hooks/useTimerInput";
 
 const { TOP, BOTTOM } = ArrowDirection;
 

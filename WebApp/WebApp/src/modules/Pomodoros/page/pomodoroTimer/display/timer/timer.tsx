@@ -3,7 +3,7 @@ import { ClassName } from "components/interfaces/className";
 import './timer.scss';
 import moment from 'moment'
 import { formatTime } from "lib/time";
-import { DurationDto } from "../../../model/duration";
+import { DurationDto } from "../../../../model/duration";
 
 export interface TimerProps extends ClassName, DurationDto {
     seconds: number;
