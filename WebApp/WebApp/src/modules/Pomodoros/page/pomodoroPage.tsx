@@ -24,19 +24,17 @@ export function PomodoroPage() {
     }, [ configuringPomodoro ])
 
     return (
-        <section className={'page-content'}>
-            <section className={'page-content__content-holder'}>
-                {
-                    pomodoros ?
-                        pomodoros.map(p => (<PomodoroTimer
-                            key={p.id}
-                            pomodoro={p}
-                            onConfigure={setConfiguringPomodoro}
-                        />))
-                        :
-                        (<h2>No data</h2>)
-                }
-            </section>
+        <section className={'pomodoro-page'}>
+            {
+                pomodoros ?
+                    pomodoros.map(p => (<PomodoroTimer
+                        key={p.id}
+                        pomodoro={p}
+                        onConfigure={setConfiguringPomodoro}
+                    />))
+                    :
+                    (<h2>No data</h2>)
+            }
         </section>
     )
 }
