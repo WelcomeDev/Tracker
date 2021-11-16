@@ -37,10 +37,10 @@ export function TimerInput(props: TimerInputProps) {
                    pattern={'^[\\d]{1,2}$'}
                    ref={inputRef}
                    onBlur={(e) => {
-                       const value = e.target.value;
+                       const value = Number(e.target.value);
 
-                       if (e.target.validity.valid) {
-                           onSet(Number(value))
+                       if (value) {
+                           onSet(value)
                        }
                    }}
                    className={classNames('timer-input__time')}/>

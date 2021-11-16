@@ -33,7 +33,7 @@ export function useTimerInput(props: TimerInputProps) {
 
     function onSet(value: number) {
         const el = inputRef.current as HTMLInputElement;
-        if (value > props.maxValue) {
+        if (value > props.maxValue || value < 0) {
             el.setCustomValidity(validity);
         } else {
             setTime(value);
