@@ -14,6 +14,8 @@
 
   &__title {
     user-select: none;
+    @include flex-center-align;
+    justify-content: space-between;
   }
 
   &__timer {

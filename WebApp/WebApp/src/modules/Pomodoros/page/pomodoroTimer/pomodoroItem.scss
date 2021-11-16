@@ -22,7 +22,7 @@ $pomodoro-height: 350px;
   padding: 7px 15px;
 }
 
-$animation-durations: 0.5s;
+$animation-durations: 0.35s;
 
 .settings {
   height: 100vh;
@@ -51,8 +51,8 @@ $animation-durations: 0.5s;
 
     transform: scale(0.5);
     transition:
-            left $animation-durations 0.1s,
-            top $animation-durations 0.1s,
+            left $animation-durations 0.05s,
+            top $animation-durations 0.05s,
             transform $animation-durations $animation-durations;
 
     transition-timing-function: ease-in-out;

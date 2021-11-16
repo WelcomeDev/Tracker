@@ -5,8 +5,8 @@ import { Action as ActionT } from "../../../components/interfaces/actionTyped";
 import { Action } from "../../../components/interfaces/action";
 
 export enum TimerMode {
-    Work = 'Work',
-    Rest = 'Rest'
+    Work = 'work',
+    Rest = 'rest'
 }
 
 const { Work, Rest } = TimerMode;

@@ -1,8 +1,9 @@
 import { Timer } from "../timer/timer";
 import { FlexContainer } from "../../../../../components/alignment/flexConteiner";
-import { UsePomodoroTimerService } from "../../../hooks/usePomodoroTimer";
+import { TimerMode, UsePomodoroTimerService } from "../../../hooks/usePomodoroTimer";
 import './timerDisplay.scss';
 import { IconButton } from "../../../../../components/input/iconButton";
+import { Icon } from "@iconify/react";
 
 export interface TimerDisplayProps extends UsePomodoroTimerService {
     title: string;
@@ -19,10 +20,12 @@ export function TimerDisplay(props: TimerDisplayProps) {
 
     return (
         <>
-            <p className="pomodoro__title">
-                <span>{title}</span>
-                <span style={{ opacity: 0.6 }}> {mode}</span>
-            </p>
+            <div className="pomodoro__title">
+                <p>{title}</p>
+                <div title={`Pomodoro status: ${mode}`}>
+                    <Icon icon={mode === TimerMode.Work ? 'mdi:briefcase' : 'mdi:sleep'}/>
+                </div>
+            </div>
             <Timer
                 className="pomodoro__timer"
                 {...duration}/>
