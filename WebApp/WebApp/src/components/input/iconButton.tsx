@@ -8,6 +8,7 @@ export interface IconButtonProps {
     title?: string;
     onClick?: Action;
     className?: string;
+    disabled?: boolean;
 }
 
 export function IconButton({ src, ...other }: IconButtonProps) {
@@ -15,7 +16,8 @@ export function IconButton({ src, ...other }: IconButtonProps) {
         <button
             className={classNames('icon-button', other.className)}
             onClick={other.onClick}
-            title={other.title}>
+            title={other.title}
+            disabled={other.disabled}>
             <Icon
                 icon={src}
                 className={'icon-button__icon'}/>

@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { ClassName } from "../interfaces/className";
 
 type FlexDirection = "row" | "column";
-type JustifyContent = "flex-start" | "fles-end" | "space-between" | "space-around";
+type JustifyContent = "flex-start" | "flex-end" | "space-between" | "space-around";
 
 export interface FlexContainerProps extends ClassName {
     flexDirection?: FlexDirection;
@@ -14,11 +14,13 @@ export interface FlexContainerProps extends ClassName {
 
 export function FlexContainer(props: FlexContainerProps) {
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: props.flexDirection,
-            justifyContent: props.justifyContent,
-        }}>
+        <div
+            style={{
+                display: "flex",
+                flexDirection: props.flexDirection,
+                justifyContent: props.justifyContent,
+            }}
+            className={props.className}>
             {props.children}
         </div>
     )

@@ -20,8 +20,19 @@
   }
 }
 
-@mixin interactive_border($color, $width){
+$border-radius: 10px;
+$border-width: 3px;
+
+@mixin interactive_border($color) {
   &:hover {
-    border: $width solid $color;
+    &:enabled {
+      border: $border-width solid $color;
+      padding: 1px;
+    }
   }
+}
+
+@mixin border($color) {
+  border: $border-width solid $color;
+  border-radius: $border-radius;
 }
