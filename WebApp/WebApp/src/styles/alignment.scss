@@ -1,11 +1,11 @@
-$header-height:40px;
+$header-height: 50px;
 
 @mixin flex-center-align {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@mixin center-horiz-margin{
+@mixin center-horiz-margin {
   margin: 0 auto;
 }

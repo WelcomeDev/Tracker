@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import './headerItem.scss';
+import classNames from "classnames";
 
 export interface HeaderItemProps {
     title: string;
@@ -12,13 +13,12 @@ export function HeaderItem(props: HeaderItemProps) {
     const location = useLocation();
     const navigate = useNavigate()
     return (
-        <p className={'header-item'}
+        <p
+            className={classNames('header-item', location.pathname === curUrl && 'selected')}
             onClick={() => {
-            navigate(curUrl);
-            console.log(`On navigate ${location.pathname} to ${curUrl}`)
-        }
-        }
-           style={{ fontWeight: location.pathname === curUrl ? "bold" : "normal" }}>
+                navigate(curUrl);
+            }}
+        >
             {props.title}
         </p>
     )

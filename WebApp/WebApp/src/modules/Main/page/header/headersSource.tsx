@@ -4,11 +4,11 @@ const {pomodoro, statistic} = appRoutes
 
 export const headersSource = [
     {
-        title: "Pomodoro",
+        title: "pomodoro",
         url: pomodoro
     },
     {
-        title: "Statistics",
+        title: "statistics",
         url: statistic
     },
 ]
