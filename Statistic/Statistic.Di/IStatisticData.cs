@@ -7,9 +7,7 @@ namespace Statistic.Di
     {
         IUserIdentity User { get; }
 
-        ITag Tag { get; set; }
-
-        string Title { set; }
+        ITag Tag { get; }
 
         DateTime Date { get; }
     }

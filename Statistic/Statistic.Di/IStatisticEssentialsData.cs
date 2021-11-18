@@ -4,7 +4,7 @@ namespace Statistic.Di
 {
     public interface IStatisticEssentialsData : IGuid
     {
-        public string Title { get; }
+        public IStatisticSubject Subject { get; }
 
         public double Value { get; }
     }
