@@ -1,8 +1,8 @@
-import { DurationDto } from "../model/duration";
+import { DurationDto } from "../../model/duration";
 import { useEffect, useState } from "react";
-import { Action } from "../../../components/interfaces/action";
-import { cancellablePromise } from "../../../lib/cancellablePromise";
-import { toSeconds } from "../../../lib/time";
+import { Action } from "../../../../components/interfaces/action";
+import { cancellablePromise } from "../../../../lib/cancellablePromise";
+import { toSeconds } from "../../../../lib/time";
 
 export interface UseDurationProps {
     duration: DurationDto;

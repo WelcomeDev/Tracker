@@ -3,6 +3,7 @@ import './timerInput.scss';
 import classNames from "classnames";
 import { Action } from "../../../../../../components/interfaces/actionTyped";
 import { useTimerInput } from "../../../../hooks/useTimerInput";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 const { TOP, BOTTOM } = ArrowDirection;
 
@@ -10,6 +11,7 @@ export interface TimerInputProps {
     initialValue: number;
     setTime: Action<number>;
     maxValue: number;
+    name: string;
 }
 
 export function TimerInput(props: TimerInputProps) {
@@ -33,6 +35,7 @@ export function TimerInput(props: TimerInputProps) {
                 className={'timer-input__arrow-top'}
             />
             <input type="text"
+                   name={props.name}
                    maxLength={2}
                    pattern={'^[\\d]{1,2}$'}
                    ref={inputRef}

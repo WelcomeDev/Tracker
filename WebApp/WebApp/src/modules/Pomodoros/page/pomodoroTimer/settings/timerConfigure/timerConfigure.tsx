@@ -1,34 +1,42 @@
 import './timerConfigure.scss'
 import classNames from "classnames";
 import { TimerInput } from "../timerInput/timerInput";
-import { useState } from "react";
+import { Action } from "../../../../../../components/interfaces/actionTyped";
 
 export interface TimerConfigureProps {
     title: string;
     className?: string;
+    hoursRegister: ManagedDurationInputProps;
+    minutesRegister: ManagedDurationInputProps;
+}
+
+export interface ManagedDurationInputProps {
+    maxValue: number;
+    initialValue: number;
+    setTime: Action<number>;
 }
 
 export function TimerConfigure(props: TimerConfigureProps) {
 
-    const [ hours, setHours ] = useState(0);
-    const [ minutes, setMinutes ] = useState(0);
+    const {
+        hoursRegister, minutesRegister,
+        title,
+        className,
+    } = props;
 
     return (
-        <section className={classNames(props.className, 'timer-configure')}>
+        <section className={classNames(className, 'timer-configure')}>
             <p>
-                {props.title}
+                {title}
             </p>
             <section className={'timer-configure__input'}>
                 <TimerInput
-                    initialValue={hours}
-                    setTime={setHours}
-                    maxValue={23}/>
+                    name={`${title}_hours`}
+                    {...hoursRegister}/>
                 <p>:</p>
                 <TimerInput
-                    initialValue={minutes}
-                    setTime={setMinutes}
-                    maxValue={59}
-                />
+                    name={`${title}_minutes`}
+                    {...minutesRegister}/>
             </section>
         </section>
     )

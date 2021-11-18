@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Pomodoro } from "../model/pomodoro";
-import { DurationDisplayData, useDuration } from "./useDuration";
+import { DurationDisplayData, useDuration } from "./duration/useDuration";
 import { Action as ActionT } from "../../../components/interfaces/actionTyped";
 import { Action } from "../../../components/interfaces/action";
 
@@ -25,10 +25,9 @@ export interface UsePomodoroTimerService {
 
 export interface UsePomodoroTimerProps {
     pomodoro: Pomodoro;
-    onConfigure: ActionT<Pomodoro>;
 }
 
-export function usePomodoroTimer({ pomodoro, onConfigure }: UsePomodoroTimerProps) {
+export function usePomodoroTimer({ pomodoro }: UsePomodoroTimerProps) {
 
     const workTimer = useDuration({ duration: pomodoro.workDuration, onFinishedCallback });
 
@@ -51,7 +50,6 @@ export function usePomodoroTimer({ pomodoro, onConfigure }: UsePomodoroTimerProp
     }
 
     function onSettings() {
-        onConfigure(pomodoro);
         setOnSettings(true);
     }
 
