@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Auth.Di;
+
+using Microsoft.AspNetCore.Identity;
 
 using System;
 using System.Collections.Generic;
