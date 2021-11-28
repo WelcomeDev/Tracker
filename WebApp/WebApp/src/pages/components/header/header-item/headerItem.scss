@@ -1,9 +1,10 @@
-@import "../../../../styles/colors";
+@import "src/styles/colors";
+@import "src/styles/appearance";
 
 .header-item {
   font-size: 32px;
   padding: 7px;
-  border-radius: 10px;
+  border-radius: $border-radius;
   display: flex;
   align-items: center;
   justify-content: center;

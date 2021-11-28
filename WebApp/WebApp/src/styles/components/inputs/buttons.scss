@@ -7,4 +7,6 @@
   @include interactive_border(highlight($color, 8));
   width: 100%;
   height: 100%;
+  user-select: none;
+  font: inherit;
 }

@@ -1,0 +1,16 @@
+@import "src/styles/colors";
+@import "src/styles/appearance";
+@import "src/styles/interractions";
+
+%input-base{
+  @include border(transparent);
+  border-radius: $border-radius;
+  font: inherit;
+
+  &:invalid{
+    border-color: $danger-color;
+  }
+  &:focus{
+    border-color: $accent-color;
+  }
+}

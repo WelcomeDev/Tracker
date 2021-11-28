@@ -6,6 +6,8 @@ $passive-color: #606060;
 $danger-color: #E74C3C;
 $disabled-color: #A0A0A0;
 
+$separator-color: rgba(255, 255, 255, 0.2);
+
 $foreground-primary-color: #FFFFFF;
 $foreground-secondary-color: #ECECEC;
 
@@ -15,6 +17,6 @@ $step: 5;
   @return adjust-color($color, $red: $step*$level, $green: $step*$level, $blue: $step*$level);
 }
 
-@function downlight($color, $level) {
+@function blackout($color, $level) {
   @return adjust-color($color, $red: -$step*$level, $green: -$step*$level, $blue: -$step*$level);
 }

@@ -6,7 +6,7 @@ export function useAuth() {
     useEffect(() => {
         setTimeout(
             () => setIsLoading(false),
-            1000);
+            0);
     }, []);
 
     const isLoadingMemorized = useMemo(() => isLoading, [isLoading]);
