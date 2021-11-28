@@ -1,0 +1,52 @@
+@import "src/styles/alignment";
+@import "src/styles/colors";
+@import "src/styles/appearance";
+@import "src/styles/fonts";
+@import "src/styles/interractions";
+@import "src/styles/components/inputs/input";
+@import "src/styles/components/inputs/buttons";
+
+.auth-page-wrapper {
+  @include stretch-to-parent;
+
+  background: url("./assets/auth-page-background.svg") no-repeat 50%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .auth-form {
+    @extend %base-interactive;
+    @include title;
+    position: relative;
+
+    width: 500px;
+    height: 500px;
+    border-radius: $border-radius-modal;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 30px;
+
+    &__title {
+      @include menu-title;
+    }
+
+    &__username,
+    &__password {
+      @extend %input-base;
+
+      background: $background-primary-color;
+      padding: 10px;
+    }
+
+    &__submit {
+      @include button-base($background-primary-color);
+      height: fit-content;
+      width: 150px;
+      padding: 10px;
+    }
+  }
+}

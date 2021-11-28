@@ -43,7 +43,7 @@
     max-width: 80px;
     text-align: center;
     border: 3px solid transparent;
-    border-radius: 10px;
+    border-radius: $border-radius;
 
     &:invalid{
       border-color: $danger-color;

@@ -1,5 +1,5 @@
 import { BrowserRouter, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
-import { AuthPage } from '../../auth/AuthPage';
+import { AuthPage } from '../../auth/authPage';
 import { Header } from '../header/header';
 import classNames from 'classnames';
 import { PomodoroPage } from '../../pomodoro/pomodoroPage';

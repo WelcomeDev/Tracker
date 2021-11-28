@@ -1,4 +1,5 @@
-@import './colors.scss';
+@import './colors';
+@import './appearance';
 
 @mixin background_hover($color) {
   background: $color;
@@ -12,22 +13,20 @@
   background: $color;
 
   &:hover {
-    background: downlight($color, 4);
+    background: blackout($color, 4);
   }
 
   &:active {
-    background: downlight($color, 8);
+    background: blackout($color, 8);
   }
 }
 
-$border-radius: 10px;
 $border-width: 3px;
 
 @mixin interactive_border($color) {
   &:hover {
     &:enabled {
-      border: $border-width solid $color;
-      padding: 1px;
+      border-color: $color;
     }
   }
 }
