@@ -27,7 +27,14 @@ export function useAuthHandler() {
 
     function onSubmit() {
         handleSubmit(
-            (data) => login(data),
+            async (data) => {
+                // todo: add loading here with dots under 'Log in' button
+                login(data)
+                    .then(() => {
+                        // todo: navigate to '/'
+                    })
+                    .catch(() => setError('Invalid username or password!'));
+            },
             (errors) => displayError(errors),
         )();
     }
