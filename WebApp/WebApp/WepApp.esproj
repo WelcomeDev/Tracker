@@ -14,7 +14,7 @@
     <Folder Include="src\config\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\modules\account\" />
-    <Folder Include="src\modules\statistic\" />
+    <Folder Include="src\modules\Statistic\" />
     <Folder Include="src\styles\" />
   </ItemGroup>
   <!-- This target is copied from the ASP.NET SPA template in order to ensure node_modules are in place. -->

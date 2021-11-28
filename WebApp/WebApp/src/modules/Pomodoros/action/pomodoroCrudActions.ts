@@ -9,26 +9,13 @@ const client = getClient();
 const SERVICE_URL = `${globalConfig.baseURL}/pomodoro`
 
 export function getAll(): Promise<Pomodoro[]> {
-    console.log('on get all')
     return axios.get<Pomodoro[]>(SERVICE_URL, {
-        headers: {
-            "access-control-allow-origin": '*',
-            "access-control-allow-headers": "Origin, X-Requested-With, Content-Type, Accept",
-            "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "access-control-allow-credentials": "true",
-        },
     })
         .then(x => {
             console.log(x);
             return x.data
             // x.data.forEach(x => console.log(x));
         });
-    // client.get<any>(SERVICE_URL)
-    //       .then(x => {
-    //           console.log(x);
-    //           // x.data.forEach(x => console.log(x));
-    //       })
-    //       .catch(e => console.log(e));
 }
 
 export function get(id: string): Promise<Pomodoro> {

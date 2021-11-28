@@ -71,12 +71,6 @@ else
 }
 
 
-
-//app.UseOptionsRequest();
-////app.UseCors(options =>
-////{
-////    options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-////});
 app.UseCors();
 app.UseExceptionHandler("/error");
 
@@ -85,10 +79,4 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-//app.Use((context, next) =>
-//{
-//    //Access - Control - Allow - Origin
-//    context.Response.Headers.AccessControlAllowOrigin = "http://localhost";
-//    return next();
-//});
 app.Run();
