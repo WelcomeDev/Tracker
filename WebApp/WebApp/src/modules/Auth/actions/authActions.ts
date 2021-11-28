@@ -6,7 +6,7 @@ const AUTH_URL = `${globalConfig.baseURL}/auth`;
 
 export function login(params: AuthParams) {
     return axios
-        .post(AUTH_URL)
+        .get(AUTH_URL)
         .then(resp => {
             return resp.data;
         });

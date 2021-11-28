@@ -1,7 +1,7 @@
 import { useError } from './context/errorContext';
 import { useEffect, useState } from 'react';
 
-const SHOW_ERROR_DURATION = 3000;
+const SHOW_ERROR_DURATION = 2000;
 
 export function useErrorHandler() {
     const { error, setError } = useError();
@@ -17,9 +17,10 @@ export function useErrorHandler() {
 
     useEffect(
         () => {
-            setTimeout(() => setError(null), SHOW_ERROR_DURATION);
+            if (error)
+                setTimeout(() => setError(null), SHOW_ERROR_DURATION);
         }
-        , []);
+        , [error]);
 
     return {
         error,
