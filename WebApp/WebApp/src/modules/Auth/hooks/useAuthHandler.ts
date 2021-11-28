@@ -14,13 +14,13 @@ export function useAuthHandler() {
     });
 
     function displayError(errors: FieldErrors<AuthParams>) {
-        if (errors.password?.message) {
-            setError(errors.password.message);
+        if (errors?.login?.message) {
+            setError(errors?.login?.message);
             return;
         }
 
-        if (errors?.login?.message) {
-            setError(errors?.login?.message);
+        if (errors.password?.message) {
+            setError(errors.password.message);
             return;
         }
     }
@@ -33,8 +33,8 @@ export function useAuthHandler() {
     }
 
     return {
-        passwordRegister: register('password', passwordValidator),
         loginRegister: register('login', usernameValidator),
+        passwordRegister: register('password', passwordValidator),
         onSubmit,
     };
 }

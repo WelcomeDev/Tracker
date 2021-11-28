@@ -13,4 +13,5 @@
 @mixin menu-title {
   font-size: 36px;
   line-height: 42px;
+  user-select: none;
 }
