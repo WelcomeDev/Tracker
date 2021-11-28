@@ -1,5 +1,5 @@
-import { PomodoroTimer } from "./modules/Pomodoros/page/pomodoroTimer/pomodoroTimer";
-import { Main } from "./modules/Main/page/main";
+import { PomodoroTimer } from "./pages/pomodoro/pomodoroTimer/pomodoroTimer";
+import { Main } from "./pages/main";
 
 function App() {
     return (

@@ -1,0 +1,62 @@
+@import '../../../../../styles/colors';
+@import '../../../../../styles/interractions';
+@import '../../../../../styles/alignment';
+@import '../../../../../styles/fonts';
+
+.arrow {
+  width: 40px;
+  height: 40px;
+
+  border-color: white;
+  justify-self: center;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.timer-input {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+          "arrow-top"
+          "time"
+          "arrow-button";
+  justify-content: center;
+
+  &__arrow-top {
+    @extend .arrow;
+    grid-area: arrow-top;
+    margin-top: 10px;
+  }
+
+  &__time {
+    grid-area: time;
+    background: transparent;
+    font-size: inherit;
+    max-width: 80px;
+    text-align: center;
+    border: 3px solid transparent;
+    border-radius: 10px;
+
+    &:invalid{
+      border-color: $danger-color;
+    }
+    &:focus{
+      border-color: $accent-color;
+    }
+  }
+
+  &__arrow-bottom {
+    @extend .arrow;
+    grid-area: arrow-button;
+  }
+}
+
+

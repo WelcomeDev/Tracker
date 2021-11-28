@@ -1,4 +1,4 @@
-import { getClient } from "../../Main/actions/TokenClient";
+import { getClient } from "../../Auth/actions/TokenClient";
 import { Pomodoro } from "../model/pomodoro";
 import { PomodoroEssentialsDto } from "../model/pomodoroEssentials";
 import { globalConfig } from "../../../config/globalConfig";

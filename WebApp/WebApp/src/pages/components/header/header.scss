@@ -1,0 +1,33 @@
+@import "src/styles/colors";
+@import "src/styles/alignment";
+
+.header {
+  background: $background-primary-color;
+  user-select: none;
+
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 100%;
+  max-height: $header-height;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px rgba(255, 255, 255, 0.2);
+
+  &__outer-container {
+    .app-icon {
+      max-width: 48px;
+      fill: $foreground-primary-color;
+    }
+    .navigation-items {
+      display: flex;
+      justify-content: space-around;
+
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+}
+
+
