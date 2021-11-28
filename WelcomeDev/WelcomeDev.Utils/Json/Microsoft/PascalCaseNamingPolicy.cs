@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace WelcomeDev.Utils
+namespace WelcomeDev.Utils.Json.Microsoft
 {
     public class PascalCaseNamingPolicy : JsonNamingPolicy
     {
@@ -13,9 +13,7 @@ namespace WelcomeDev.Utils
         public override string ConvertName(string name)
         {
             if (char.IsLower(name[0]))
-            {
                 return char.ToLower(name[0]) + name.Substring(1);
-            }
 
             return name;
         }

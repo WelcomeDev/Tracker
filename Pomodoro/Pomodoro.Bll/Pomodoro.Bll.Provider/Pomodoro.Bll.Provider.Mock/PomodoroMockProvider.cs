@@ -8,7 +8,8 @@ using Pomodoro.Di;
 using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
 
-using WelcomeDev.Utils;
+using WelcomeDev.Provider.Di.Pageable;
+using WelcomeDev.Utils.Json.Microsoft;
 
 namespace Pomodoro.Bll.Provider.Mock
 {
@@ -53,6 +54,11 @@ namespace Pomodoro.Bll.Provider.Mock
         public IEnumerable<IPomodoroData> GetAll()
         {
             return _data.Where(x => x.User.Id == _user.Id);
+        }
+
+        public PageableList<IPomodoroData> GetAll(PageableParams pageable = null)
+        {
+            return new PageableList<IPomodoroData>(GetAll(), pageable);
         }
 
         public IPomodoroData Update(Guid id, IPomodoroEssentials data)

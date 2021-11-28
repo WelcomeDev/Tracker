@@ -6,6 +6,7 @@ using Pomodoro.Di.Provider;
 using Pomodoro.Service.Controllers.Actions;
 using Pomodoro.Service.Controllers.Dto;
 
+using WelcomeDev.Provider.Di.Pageable;
 using WelcomeDev.Utils.Enumerable;
 
 using static Microsoft.AspNetCore.Http.StatusCodes;
@@ -26,9 +27,10 @@ namespace Pomodoro.Service.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<IPomodoroData> GetAll()
+        public PageableList<IPomodoroData> GetAll([FromQuery] PageableParams pageable)
         {
-            return _provider.GetAll();
+            var value = _provider.GetAll(pageable);
+            return value;
         }
 
         [HttpGet]

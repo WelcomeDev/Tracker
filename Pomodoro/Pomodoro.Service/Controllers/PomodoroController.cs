@@ -42,6 +42,7 @@ namespace Pomodoro.Service.Controllers
         [Route("{id:guid}/pause")]
         public void Pause([FromRoute] Guid id)
         {
+            //todo: should return duration?
             _provider.Get(id).Pause();
         }
 
