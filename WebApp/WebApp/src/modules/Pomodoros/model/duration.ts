@@ -10,11 +10,11 @@ export interface DurationDto extends t.TypeOf<typeof DurationType> {
 }
 
 export class Duration {
-    private hours: number;
-    private minutes: number;
+    hours: number;
+    minutes: number;
 
     constructor(duration: DurationDto) {
-        this.hours = duration.hours;
+        this.hours   = duration.hours;
         this.minutes = duration.minutes;
     }
 }
