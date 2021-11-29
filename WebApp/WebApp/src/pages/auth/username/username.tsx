@@ -1,6 +1,6 @@
-import { UseFormHookInput } from '../../../components/interfaces/props/useFormHookInput';
+import { UseFormHookInputProps } from '../../../components/interfaces/props/useFormHookInputProps';
 
-export interface UsernameProps extends UseFormHookInput {
+export interface UsernameProps extends UseFormHookInputProps {
     className?: string;
 }
 

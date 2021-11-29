@@ -1,9 +1,9 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import './password.scss';
-import { UseFormHookInput } from 'components/interfaces/props/useFormHookInput';
+import { UseFormHookInputProps } from 'components/interfaces/props/useFormHookInputProps';
 
-export interface PasswordProps extends UseFormHookInput {
+export interface PasswordProps extends UseFormHookInputProps {
     className?: string;
 }
 
