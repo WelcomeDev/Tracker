@@ -1,5 +1,5 @@
 import * as t from "io-ts";
-import { UserType } from "./user";
+import { UserType } from "../../Main/model/user";
 import { PomodoroEssentialsType } from "./pomodoroEssentials";
 import { DurationDto } from "./duration";
 
