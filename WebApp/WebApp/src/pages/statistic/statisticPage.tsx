@@ -1,7 +1,9 @@
-export function StatisticPage(){
+import { Filters } from './filters/filters';
+
+export function StatisticPage() {
     return (
-        <div style={{color:"red"}}>
-            This's statistic page
+        <div>
+           <Filters/>
         </div>
-    )
+    );
 }

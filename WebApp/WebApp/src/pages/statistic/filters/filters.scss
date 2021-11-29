@@ -1,0 +1,9 @@
+.filters-outer-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .filters-inner-wrapper {
+    display: flex;
+    column-gap: 20px;
+  }
+}

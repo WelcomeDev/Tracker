@@ -1,0 +1,14 @@
+@import "src/styles/fonts";
+@import "src/styles/colors";
+
+.base-select-item {
+  @include label;
+  position: relative;
+  z-index: 10;
+  max-width: 225px;
+  user-select: none;
+
+  border-bottom: 3px solid $separator-color;
+  padding: 10px 5px;
+  margin-bottom: 5px;
+}
