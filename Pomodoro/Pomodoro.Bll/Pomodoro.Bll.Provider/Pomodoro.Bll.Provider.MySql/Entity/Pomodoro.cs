@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Auth.Di;
+
+using Pomodoro.Di;
+using Pomodoro.Di.Duration;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pomodoro.Bll.Provider.MySql.Entity
 {
-    public class Pomodoro
+    public class Pomodoro : IPomodoroData
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -28,5 +28,27 @@ namespace Pomodoro.Bll.Provider.MySql.Entity
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
+        [NotMapped]
+        IUserIdentity IPomodoroData.User => throw new NotImplementedException();
+
+        [NotMapped]
+        IDuration IPomodoroEssentials.RestDuration { get => RestDuration; set => throw new NotImplementedException(); }
+
+        [NotMapped]
+        IDuration IPomodoroEssentials.WorkDuration { get => WorkDuration; set => throw new NotImplementedException(); }
+
+        public Pomodoro()
+        {
+
+        }
+
+        public Pomodoro(IPomodoroEssentials pomodoro)
+        {
+            Title = pomodoro.Title;
+            RestDuration = new Duration(pomodoro.RestDuration);
+            WorkDuration = new Duration(pomodoro.WorkDuration);
+            //TODO: pass user here
+        }
     }
 }

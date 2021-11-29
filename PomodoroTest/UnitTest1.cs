@@ -1,5 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Pomodoro.Bll.Provider.MySql;
 using Pomodoro.Bll.Provider.MySql.Entity;
+
 using System.Linq;
 
 namespace PomodoroTest
@@ -7,25 +10,32 @@ namespace PomodoroTest
     [TestClass]
     public class UnitTestSQL
     {
+        PomodoroDbContext _context;
+        private const string DbConnection = "Server=(localdb)\\mssqllocaldb;Database=pomodorodb_test;Trusted_Connection=True;MultipleActiveResultSets=true";
+
+        [TestInitialize]
+        public void Setup()
+        {
+            _context = new PomodoroDbContext(DbConnection);
+        }
+
         [TestMethod]
         public void CheckUser()
         {
-            PomodoroContext context = new PomodoroContext();
-            var userCount = context.Users.Count();
+            var userCount = _context.Users.Count();
             Assert.AreEqual(userCount, 1);
         }
 
         [TestMethod]
         public void CheckAddPomodoro()
         {
-            using PomodoroContext context = new PomodoroContext();
-            using var transaction = context.Database.BeginTransaction();
+            using var transaction = _context.Database.BeginTransaction();
 
             try
             {
                 var testPomodoro = new Pomodoro.Bll.Provider.MySql.Entity.Pomodoro()
                 {
-                    User = context.Users.First(),
+                    User = _context.Users.First(),
                     RestDuration = new Duration()
                     {
                         Hours = 0,
@@ -39,15 +49,15 @@ namespace PomodoroTest
                     Title = "testPomodoro2"
                 };
 
-                context.Add(testPomodoro);
-                context.SaveChanges();
+                _context.Add(testPomodoro);
+                _context.SaveChanges();
 
                 var pomodoroGUID = testPomodoro.Id;
 
-                Assert.AreEqual(testPomodoro, context.Pomodoros.First(x => x.Id == pomodoroGUID));
+                Assert.AreEqual(testPomodoro, _context.Pomodoros.First(x => x.Id == pomodoroGUID));
 
-                context.Remove(testPomodoro);
-                context.SaveChanges();
+                _context.Remove(testPomodoro);
+                _context.SaveChanges();
 
                 transaction.Commit();
             }
