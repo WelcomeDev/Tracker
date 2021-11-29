@@ -1,25 +1,25 @@
-import { PomodoroTimer } from "./pomodoroTimer/pomodoroTimer";
 import './pomodoro.scss';
-import { usePomodoro } from "../../modules/Pomodoros/hooks/usePomodoro";
-import { useEffect, useState } from "react";
-import { Modal } from "../../components/modal/modal";
-import { Pomodoro } from "../../modules/Pomodoros/model/pomodoro";
+import { PomodoroStoreProvider, usePomodoroStore } from '../../modules/Pomodoros/hooks/context/pomodoroProvider';
+import { Loader } from '../components/loader/loader';
+import { PomodoroList } from './pomodoroList/pomodoroList';
+
+function LoadingResolver() {
+    const { isLoading } = usePomodoroStore();
+
+    return (
+        isLoading ?
+            <Loader/>
+            :
+            <PomodoroList/>
+    );
+}
 
 export function PomodoroPage() {
-
-    const { pomodoros } = usePomodoro();
-    
     return (
-        <section className={'pomodoro-page'}>
-            {
-                pomodoros ?
-                    pomodoros.map(p => (<PomodoroTimer
-                        key={p.id}
-                        pomodoro={p}
-                    />))
-                    :
-                    (<h2>No data</h2>)
-            }
-        </section>
-    )
+        <PomodoroStoreProvider>
+            <section className={'pomodoro-page'}>
+                <LoadingResolver/>
+            </section>
+        </PomodoroStoreProvider>
+    );
 }

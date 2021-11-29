@@ -1,4 +1,4 @@
-import { BrowserRouter, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import { AuthPage } from '../../auth/authPage';
 import { Header } from '../header/header';
 import classNames from 'classnames';
@@ -7,16 +7,18 @@ import { StatisticPage } from '../../statistic/statisticPage';
 import { appRoutes } from '../../../config/appRoutes';
 import { NotFound } from './notFound/notFound';
 import { useEffect } from 'react';
+import { useHistory } from '../../../components/hooks/useHistory';
 
 const { pomodoro, statistic, auth } = appRoutes;
 
 function AppWrapper() {
 
-    const navigate = useNavigate();
+    const { location, navigate } = useHistory();
 
     useEffect(
         () => {
-            navigate(statistic);
+            if (location.pathname === '/')
+                navigate(statistic);
         },
         []);
 

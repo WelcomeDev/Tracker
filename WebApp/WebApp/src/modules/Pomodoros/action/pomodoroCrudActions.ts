@@ -1,20 +1,20 @@
-import { getClient } from "../../Auth/actions/TokenClient";
-import { Pomodoro } from "../model/pomodoro";
-import { globalConfig } from "../../../config/globalConfig";
-import axios from "axios";
+import { getClient } from '../../Auth/actions/TokenClient';
+import { Pomodoro, PomodoroDto } from '../model/pomodoro';
+import { globalConfig } from '../../../config/globalConfig';
+import axios from 'axios';
 import { CreatePomodoroParams } from '../interfaces/createPomodoroParams';
 import { UpdatePomodoroParams } from '../interfaces/updatePomodoroParams';
+import { ApiList } from '../../../components/interfaces/api/apiList';
 
-const client = getClient();
-const SERVICE_URL = `${globalConfig.baseURL}/pomodoro`
+const client      = getClient();
+const SERVICE_URL = `${globalConfig.baseURL}/pomodoro`;
 
 export function getAll(): Promise<Pomodoro[]> {
-    return axios.get<Pomodoro[]>(SERVICE_URL, {
-    })
-        .then(x => {
-            console.log(x);
-            return x.data
-            // x.data.forEach(x => console.log(x));
+    return axios.get<ApiList<PomodoroDto>>(SERVICE_URL, {})
+        .then(resp => {
+            return resp.data.items.map(item => {
+                return new Pomodoro(item);
+            });
         });
 }
 
@@ -37,7 +37,7 @@ export function update(id: string, pomodoroData: UpdatePomodoroParams): Promise<
         .then(x => x.data);
 }
 
-//todo: check status code
+// todo: check status code
 export function remove(id: string) {
     const currentUrl = `${SERVICE_URL}/${id}/delete`;
     client.post<Pomodoro>(currentUrl)

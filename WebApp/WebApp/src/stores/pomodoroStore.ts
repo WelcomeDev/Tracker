@@ -11,7 +11,7 @@ export class PomodoroStore {
 
     @action('update pomodoro list')
     loadPomodoroList() {
-        getAll()
+        return getAll()
             .then(res => this.pomodoroList = res);
     }
 }
