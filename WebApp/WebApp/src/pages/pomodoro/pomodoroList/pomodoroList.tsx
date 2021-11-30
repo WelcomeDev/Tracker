@@ -13,14 +13,11 @@ export const PomodoroList = observer(({ pomodoroList }: PomodoroListProps) => (
         className={'pomodoro-list'}
     >
         {
-            pomodoroList.length ?
-                pomodoroList.map(item => (
-                    <PomodoroTimer
-                        key={item.id}
-                        {...item}/>
-                ))
-                :
-                <h2>Let's create new!</h2>
+            pomodoroList.map(item => (
+                <PomodoroTimer
+                    key={item.id}
+                    {...item}/>
+            ))
         }
     </div>
 ));

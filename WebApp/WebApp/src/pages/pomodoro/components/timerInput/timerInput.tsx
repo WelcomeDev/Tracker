@@ -1,9 +1,9 @@
-import { Arrow, ArrowDirection } from '../../../../../components/input/arrow';
+import { Arrow, ArrowDirection } from '../../../../components/input/arrow';
 import './timerInput.scss';
-import { useTimerInput } from '../../../../../modules/Pomodoros/hooks/useTimerInput';
+import { useTimerInput } from '../../../../modules/Pomodoros/hooks/useTimerInput';
 import { Controller, UseFormRegisterReturn } from 'react-hook-form';
 import NumberFormat from 'react-number-format';
-import { doubleDigitTime } from '../../../../../lib/time';
+import { doubleDigitTime } from '../../../../lib/time';
 import { observer } from 'mobx-react';
 
 const { TOP, BOTTOM } = ArrowDirection;
@@ -34,7 +34,7 @@ export const TimerInput = observer(({ register }: TimerInputProps) => {
                 className={'timer-input__arrow-top'}
             />
             <Controller
-                render={({ field: { onChange, onBlur, name, value } }) => (
+                render={({ field: { onChange, onBlur, name, value },  }) => (
                     <NumberFormat
                         format={(val) => doubleDigitTime(Number(val))}
                         displayType={'input'}
@@ -43,6 +43,7 @@ export const TimerInput = observer(({ register }: TimerInputProps) => {
                         value={value}
                         onChange={onChange}
                         name={name}
+                        // onReset={}
                     />
                 )}
                 name={registerName}

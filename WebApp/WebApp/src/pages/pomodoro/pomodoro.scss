@@ -1,7 +1,26 @@
 @import "../../styles/colors";
 @import "src/styles/alignment";
+@import "src/styles/components/modalBase";
 
 .pomodoro-page {
   @include stretch-to-parent;
   padding-top: 20px;
+  position: relative;
+}
+
+.create-pomodoro-button {
+  top: 25%;
+}
+
+.create-pomodoro-modal {
+  @extend %modal-base;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+
+  &__content {
+    @extend %modal-content-base;
+    position: relative;
+    align-self: center;
+  }
 }

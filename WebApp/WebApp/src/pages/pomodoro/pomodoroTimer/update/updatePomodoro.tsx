@@ -1,14 +1,15 @@
-import { IconButton } from '../../../../../components/input/iconButton';
-import './settingsDisplay.scss';
-import { TimerConfigure } from '../timerConfigure/timerConfigure';
+import { IconButton } from '../../../../components/input/buttons/iconButton/iconButton';
+import './updatePomodoro.scss';
+import { TimerConfigure } from '../../components/timerConfigure/timerConfigure';
 import {
     PomodoroTimerConfigureProps,
     usePomodoroTimerConfigure,
-} from '../../../../../modules/Pomodoros/hooks/usePomodoroTimerConfigure';
-import { pomodoroSettingsContext } from '../../../../../modules/Pomodoros/hooks/context/pomodoroSettingsContext';
+} from '../../../../modules/Pomodoros/hooks/usePomodoroTimerConfigure';
+import { pomodoroSettingsContext } from '../../../../modules/Pomodoros/hooks/context/pomodoroSettingsContext';
 import { observer } from 'mobx-react';
 
-export const SettingsDisplay = observer((props: PomodoroTimerConfigureProps) => {
+
+export const UpdatePomodoro = observer((props: PomodoroTimerConfigureProps) => {
 
     const {
               save, remove, cancel,

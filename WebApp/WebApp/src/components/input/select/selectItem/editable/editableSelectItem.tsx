@@ -2,7 +2,7 @@ import { Action } from '../../../../interfaces/actionTyped';
 import { Icon } from '@iconify/react';
 
 import './editableSelectItem.scss';
-import { IconButton } from '../../../iconButton';
+import { IconButton } from '../../../buttons/iconButton/iconButton';
 
 export interface SelectItemProps /*extends UseFormHookInputProps*/
 {

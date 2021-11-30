@@ -2,7 +2,7 @@ import { Timer } from '../timer/timer';
 import { FlexContainer } from '../../../../../components/alignment/flexConteiner';
 import { TimerMode, UsePomodoroTimerService } from '../../../../../modules/Pomodoros/hooks/usePomodoroTimer';
 import './timerDisplay.scss';
-import { IconButton } from '../../../../../components/input/iconButton';
+import { IconButton } from '../../../../../components/input/buttons/iconButton/iconButton';
 import { Icon } from '@iconify/react';
 import { observer } from 'mobx-react';
 

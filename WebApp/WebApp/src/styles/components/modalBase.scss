@@ -1,0 +1,46 @@
+@import 'src/styles/colors';
+@import 'src/styles/interractions';
+@import 'src/styles/appearance';
+@import 'src/styles/alignment';
+@import 'src/styles/fonts';
+@import './pomodoroContainer';
+
+$animation-durations: 0.35s;
+
+%modal-base {
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  position: fixed;
+  z-index: -1;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition:
+          z-index $animation-durations $animation-durations,
+          opacity $animation-durations $animation-durations;
+
+  &.on-display {
+    z-index: 100;
+    opacity: 1;
+  }
+}
+
+%modal-content-base {
+  @extend %base-interactive;
+
+  padding: 25px;
+  border-radius: $border-radius-modal;
+  width: 2*$pomodoro-width;
+  height: 2*$pomodoro-height;
+  position: absolute;
+
+  transform: scale(0.5);
+  transition:
+          transform $animation-durations $animation-durations;
+
+  transition-timing-function: ease-in-out;
+
+  &.on-display {
+    transform: scale(1);
+  }
+}

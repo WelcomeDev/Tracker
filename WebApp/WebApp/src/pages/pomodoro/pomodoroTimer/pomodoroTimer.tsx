@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 import { TimerDisplay } from './display/timerDisplay/timerDisplay';
 import { Modal } from '../../../components/modal/modal';
-import { SettingsDisplay } from './settings/settingsDisplay/settingsDisplay';
+import { UpdatePomodoro } from './update/updatePomodoro';
 import { observer } from 'mobx-react';
 import { Pomodoro } from '../../../modules/Pomodoros/model/pomodoro';
 
@@ -48,7 +48,7 @@ export const PomodoroTimer = observer((pomodoro: Pomodoro) => {
                 menuClassName={classNames('settings', isOnSettings ? 'on-display' : '')}
                 contentClassName={classNames('settings__content', isOnSettings ? 'on-display' : '')}
                 contentStyle={!isOnSettings ? { ...positionStyle } : {}}>
-                <SettingsDisplay
+                <UpdatePomodoro
                     pomodoro={pomodoro}
                     onClose={() => setOnSettings(false)}
                 />

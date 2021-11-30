@@ -25,7 +25,7 @@ function AppWrapper() {
     return (
         <>
             <Header/>
-            <div className={classNames('content-container', 'page-content')}>
+            <div className={classNames('page-content')}>
                 <Outlet/>
             </div>
         </>

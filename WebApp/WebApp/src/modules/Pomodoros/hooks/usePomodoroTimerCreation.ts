@@ -1,19 +1,25 @@
 import { Action } from '../../../components/interfaces/action';
-import { Pomodoro } from '../model/pomodoro';
-import { usePomodoroStore } from './context/pomodoroProvider';
 import { useForm } from 'react-hook-form';
-import { UpdatePomodoroParams } from '../interfaces/updatePomodoroParams';
+import { usePomodoroStore } from './context/pomodoroProvider';
+import { CreatePomodoroParams } from '../interfaces/createPomodoroParams';
 import { hoursRegisterOptions, minuteRegisterOptions, titleRegisterOptions } from '../model/validator';
+import { useMemo } from 'react';
 
-export interface PomodoroTimerConfigureProps {
-    pomodoro: Pomodoro;
-    onClose: Action;
-}
+export function usePomodoroTimerCreation({ onClose }: { onClose: Action }) {
 
-export function usePomodoroTimerConfigure({
-                                              pomodoro,
-                                              onClose,
-                                          }: PomodoroTimerConfigureProps) {
+    const creationDefaultValues = useMemo(() => ({
+            workDuration: {
+                hours: 0,
+                minutes: 25,
+            },
+            restDuration: {
+                hours: 0,
+                minutes: 5,
+            },
+            title: 'Title'
+        }),
+        []);
+
     const {
               register,
               reset,
@@ -25,50 +31,42 @@ export function usePomodoroTimerConfigure({
                   errors,
                   isValid,
               },
-          } = useForm<UpdatePomodoroParams>({
+          } = useForm<CreatePomodoroParams>({
         reValidateMode: 'onChange',
         shouldFocusError: true,
         mode: 'onBlur',
-        defaultValues: {
-            restDuration: pomodoro.restDuration,
-            workDuration: pomodoro.workDuration,
-            title: pomodoro.title,
-        },
+        defaultValues: creationDefaultValues,
         shouldUseNativeValidation: true,
     });
 
-    const { updatePomodoro, removePomodoro } = usePomodoroStore();
+    const { createPomodoro } = usePomodoroStore();
 
-    function save() {
+    function cancel() {
+        reset(creationDefaultValues);
+        onClose();
+    }
+
+    function submit() {
         // todo: handle errors
+        // todo: add message handler to write 'ok'
         handleSubmit(
-            (params: UpdatePomodoroParams) =>
-                updatePomodoro(pomodoro, params)
-                    .then(() => onClose())
+            (params: CreatePomodoroParams) =>
+                createPomodoro(params)
+                    .then(onClose)
                     .catch((error) => console.log(error)),
             (error) => console.log(error),
         )();
     }
 
-    function remove() {
-        removePomodoro(pomodoro)
-            .then(() => onClose());
-    }
-
-    function cancel() {
-        reset();
-        onClose();
-    }
-
     return {
-        save, remove, cancel,
-        isSaveEnabled: isValid,
+        cancel, submit,
+        isSubmitEnabled: isValid,
         workHoursRegister: register('workDuration.hours', hoursRegisterOptions),
         restHorsRegister: register('restDuration.hours', hoursRegisterOptions),
         workMinutesRegister: register('workDuration.minutes', minuteRegisterOptions),
         restMinutesRegister: register('restDuration.minutes', minuteRegisterOptions),
         titleRegister: register('title', titleRegisterOptions),
         getValues, setValue,
-        control
+        control,
     };
 }
