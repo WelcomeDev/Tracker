@@ -1,9 +1,9 @@
-import classNames from "classnames";
-import { ClassName } from "components/interfaces/className";
+import classNames from 'classnames';
+import { ClassName } from 'components/interfaces/className';
 import './timer.scss';
-import moment from 'moment'
-import { formatTime } from "lib/time";
-import { DurationDto } from "../../../../../modules/Pomodoros/model/duration";
+import moment from 'moment';
+import { formatTime } from 'lib/time';
+import { DurationDto } from '../../../../../modules/Pomodoros/model/duration';
 
 export interface TimerProps extends ClassName, DurationDto {
     seconds: number;
@@ -28,5 +28,5 @@ export function Timer(props: TimerProps) {
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -1,5 +1,6 @@
-import { CSSProperties, ReactNode } from "react";
-import { Action } from "../interfaces/action";
+import { CSSProperties, ReactNode } from 'react';
+import { Action } from '../interfaces/action';
+import { observer } from 'mobx-react';
 
 export interface SettingsModalProps {
     onClose: Action;
@@ -11,7 +12,7 @@ export interface SettingsModalProps {
     contentStyle?: CSSProperties;
 }
 
-export function Modal({ children, onClose, ...optionalProps }: SettingsModalProps) {
+export const Modal = observer(({ children, onClose, ...optionalProps }: SettingsModalProps) => {
     return (
         <div
             style={optionalProps.menuStyle}
@@ -26,5 +27,5 @@ export function Modal({ children, onClose, ...optionalProps }: SettingsModalProp
                 {children}
             </section>
         </div>
-    )
-}
+    );
+});

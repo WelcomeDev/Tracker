@@ -1,4 +1,5 @@
 import * as t from 'io-ts';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 export const DurationType = t.interface({
     hours: t.number,

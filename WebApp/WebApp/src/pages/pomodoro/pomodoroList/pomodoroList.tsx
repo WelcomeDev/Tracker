@@ -17,7 +17,7 @@ export const PomodoroList = observer(({ pomodoroList }: PomodoroListProps) => (
                 pomodoroList.map(item => (
                     <PomodoroTimer
                         key={item.id}
-                        pomodoro={item}/>
+                        {...item}/>
                 ))
                 :
                 <h2>Let's create new!</h2>

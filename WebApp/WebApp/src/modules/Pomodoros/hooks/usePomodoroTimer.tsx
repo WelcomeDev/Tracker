@@ -23,11 +23,7 @@ export interface UsePomodoroTimerService {
     setOnSettings: ActionT<boolean>;
 }
 
-export interface UsePomodoroTimerProps {
-    pomodoro: Pomodoro;
-}
-
-export function usePomodoroTimer({ pomodoro }: UsePomodoroTimerProps) {
+export function usePomodoroTimer(pomodoro : Pomodoro) {
 
     const workTimer = useDuration({ duration: pomodoro.workDuration, onFinishedCallback });
 

@@ -4,6 +4,7 @@ import { useTimerInput } from '../../../../../modules/Pomodoros/hooks/useTimerIn
 import { Controller, UseFormRegisterReturn } from 'react-hook-form';
 import NumberFormat from 'react-number-format';
 import { doubleDigitTime } from '../../../../../lib/time';
+import { observer } from 'mobx-react';
 
 const { TOP, BOTTOM } = ArrowDirection;
 
@@ -12,7 +13,7 @@ export interface TimerInputProps {
 
 }
 
-export function TimerInput({ register }: TimerInputProps) {
+export const TimerInput = observer(({ register }: TimerInputProps) => {
     const arrowStyle = {
         thickness: 3,
         cornerRadius: 10,
@@ -55,4 +56,4 @@ export function TimerInput({ register }: TimerInputProps) {
             />
         </section>
     );
-}
+});

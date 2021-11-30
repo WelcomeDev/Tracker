@@ -2,6 +2,7 @@ import './timerConfigure.scss';
 import classNames from 'classnames';
 import { TimerInput } from '../timerInput/timerInput';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { observer } from 'mobx-react';
 
 export interface TimerConfigureProps {
     title: string;
@@ -10,7 +11,7 @@ export interface TimerConfigureProps {
     minutesRegister: UseFormRegisterReturn;
 }
 
-export function TimerConfigure(props: TimerConfigureProps) {
+export const TimerConfigure = observer((props: TimerConfigureProps) => {
 
     const {
               hoursRegister, minutesRegister,
@@ -32,4 +33,4 @@ export function TimerConfigure(props: TimerConfigureProps) {
             </section>
         </section>
     );
-}
+});

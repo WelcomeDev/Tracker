@@ -29,9 +29,11 @@ export class PomodoroStore {
 
     @action
     updatePomodoro = async (pomodoro: Pomodoro, params: UpdatePomodoroParams) => {
-        const value           = await update(pomodoro.id, params);
-        pomodoro.title        = value.title;
-        pomodoro.restDuration = value.restDuration;
-        pomodoro.workDuration = value.workDuration;
+        this.isLoading = true;
+
+        const value = await update(pomodoro.id, params);
+        pomodoro.update(value);
+
+        this.isLoading = false;
     };
 }

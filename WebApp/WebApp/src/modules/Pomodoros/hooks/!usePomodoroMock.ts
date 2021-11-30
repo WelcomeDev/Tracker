@@ -3,7 +3,7 @@ import { getAll } from "../action/pomodoroCrudActions";
 import { Pomodoro } from "../model/pomodoro";
 import { mockData } from "./mockData";
 
-export function usePomodoro() {
+export function usePomodoroMock() {
 
     const [ pomodoros, setPomodoros ] = useState<Pomodoro[]>();
 
