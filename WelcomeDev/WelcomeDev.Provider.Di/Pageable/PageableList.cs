@@ -17,13 +17,7 @@
                 return;
             }
 
-            var (pageSize, pageNumber, sortDirection) = pageable;
-            Items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-
-            Items = sortDirection == SortDirection.ASC ?
-                Items.OrderBy(x => x)
-                :
-                Items.OrderByDescending(x => x);
+            Items = source.GetPageable(pageable);
         }
     }
 }

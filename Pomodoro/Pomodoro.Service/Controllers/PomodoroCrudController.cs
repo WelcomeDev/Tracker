@@ -17,54 +17,55 @@ namespace Pomodoro.Service.Controllers
     [Route("api/pomodoro")]
     public class PomodoroCrudController : ControllerBase
     {
-        private readonly IPomodoroProvider _provider;
+        private readonly IPomodoroAsyncProvider _provider;
         private readonly IEnumerable<IPomodoroValidation> _validations;
-
-        public PomodoroCrudController(IPomodoroProvider provider, IEnumerable<IPomodoroValidation> validations)
+        
+        public PomodoroCrudController(IPomodoroAsyncProvider provider, IEnumerable<IPomodoroValidation> validations)
         {
             _provider = provider;
             _validations = validations;
         }
 
         [HttpGet]
-        public PageableList<IPomodoroData> GetAll([FromQuery] PageableParams pageable)
+        public async Task<IActionResult> GetAll([FromQuery] PageableParams pageable)
         {
-            var value = _provider.GetAll(pageable);
-            return value;
+            var value = await _provider.GetAll(pageable);
+
+            return Ok(value);
         }
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IPomodoroData GetByID([FromRoute] Guid id)
+        public async Task<IPomodoroData> GetByID([FromRoute] Guid id)
         {
-            //todo: validation here?
-            return _provider.GetById(id);
+            return await _provider.GetById(id);
         }
 
         [HttpPost]
         [Route("{id:guid}/delete")]
         public void Delete([FromRoute] Guid id)
         {
-            //todo: validation here?
             _provider.Delete(id);
         }
 
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(Status201Created)]
-
-        public IPomodoroData Create([FromBody] PomodoroCreationDto pomodoroData)
+        public async Task<IActionResult> Create([FromBody] PomodoroCreationDto pomodoroData)
         {
             _validations.ForEach(x => x.Validate(pomodoroData));
-            return _provider.Create(pomodoroData);
+            var pomodoro = await _provider.Create(pomodoroData);
+
+            return Ok(pomodoro);
         }
 
         [HttpPost]
         [Route("{id:guid}/update")]
-        public IPomodoroData Update([FromRoute] Guid id, [FromBody] PomodoroCreationDto pomodoroData)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] PomodoroCreationDto pomodoroData)
         {
             _validations.ForEach(x => x.Validate(pomodoroData));
-            return _provider.Update(id, pomodoroData);
+            var pomodoro = await _provider.Update(id, pomodoroData);
+            return Ok(pomodoro);
         }
     }
 }
