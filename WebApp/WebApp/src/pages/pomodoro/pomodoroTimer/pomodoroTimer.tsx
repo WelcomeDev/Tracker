@@ -6,8 +6,9 @@ import { TimerDisplay } from "./display/timerDisplay/timerDisplay";
 import { Modal } from "../../../components/modal/modal";
 import { SettingsDisplay } from "./settings/settingsDisplay/settingsDisplay";
 import { PomodoroTimerProps } from "./pomodoroTimerProps";
+import { observer } from 'mobx-react';
 
-export function PomodoroTimer(props: PomodoroTimerProps) {
+export const PomodoroTimer = observer((props: PomodoroTimerProps) => {
 
     const pomodoroTimer = usePomodoroTimer({ ...props });
 
@@ -54,4 +55,4 @@ export function PomodoroTimer(props: PomodoroTimerProps) {
             </Modal>
         </>
     )
-}
+});

@@ -1,14 +1,10 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
 import { PomodoroStore } from '../../../../stores/pomodoroStore';
 
-export interface PomodoroStoreService {
-    store: PomodoroStore;
-    isLoading: boolean;
-}
+export const pomodoroContext = createContext<PomodoroStore | null>({} as PomodoroStore);
+pomodoroContext.displayName  = 'PomodoroStoreContext';
 
-const pomodoroContext = createContext<PomodoroStoreService | null>(null);
-
-export function usePomodoroStore() {
+export function usePomodoroStore(): PomodoroStore {
     const context = useContext(pomodoroContext);
     if (!context)
         throw new Error('usePomodoroStore must be inside PomodoroStoreProvider');
@@ -19,17 +15,13 @@ export function usePomodoroStore() {
 export function PomodoroStoreProvider({ children }: { children: ReactNode }) {
     const store = useMemo(() => new PomodoroStore(), []);
 
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
     useEffect(() => {
-        setIsLoading(true);
-        store.loadPomodoroList()
-            .finally(() => setIsLoading(false));
+        store.loadPomodoroList();
     }, []);
 
     return (
         <pomodoroContext.Provider
-            value={{ store, isLoading }}
+            value={store}
         >
             {children}
         </pomodoroContext.Provider>

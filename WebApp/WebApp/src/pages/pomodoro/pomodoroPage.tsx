@@ -1,25 +1,34 @@
 import './pomodoro.scss';
-import { PomodoroStoreProvider, usePomodoroStore } from '../../modules/Pomodoros/hooks/context/pomodoroProvider';
+import {
+    PomodoroStoreProvider,
+    usePomodoroStore,
+} from '../../modules/Pomodoros/hooks/context/pomodoroProvider';
 import { Loader } from '../components/loader/loader';
 import { PomodoroList } from './pomodoroList/pomodoroList';
+import { observer } from 'mobx-react';
+import { useEffect } from 'react';
 
-function LoadingResolver() {
-    const { isLoading } = usePomodoroStore();
+export const LoadingResolver = observer(() => {
+    const store = usePomodoroStore();
+    useEffect(() => {
+        store.loadPomodoroList();
+    }, []);
 
     return (
-        isLoading ?
+        store.isLoading ?
             <Loader/>
             :
-            <PomodoroList/>
+            <PomodoroList
+                pomodoroList={store.pomodoroList}/>
     );
-}
+});
 
 export function PomodoroPage() {
     return (
-        <PomodoroStoreProvider>
-            <section className={'pomodoro-page'}>
+        <section className={'pomodoro-page'}>
+            <PomodoroStoreProvider>
                 <LoadingResolver/>
-            </section>
-        </PomodoroStoreProvider>
+            </PomodoroStoreProvider>
+        </section>
     );
 }
