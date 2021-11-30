@@ -1,22 +1,23 @@
-import { Timer } from "../timer/timer";
-import { FlexContainer } from "../../../../../components/alignment/flexConteiner";
-import { TimerMode, UsePomodoroTimerService } from "../../../../../modules/Pomodoros/hooks/usePomodoroTimer";
+import { Timer } from '../timer/timer';
+import { FlexContainer } from '../../../../../components/alignment/flexConteiner';
+import { TimerMode, UsePomodoroTimerService } from '../../../../../modules/Pomodoros/hooks/usePomodoroTimer';
 import './timerDisplay.scss';
-import { IconButton } from "../../../../../components/input/iconButton";
-import { Icon } from "@iconify/react";
+import { IconButton } from '../../../../../components/input/iconButton';
+import { Icon } from '@iconify/react';
+import { observer } from 'mobx-react';
 
 export interface TimerDisplayProps extends UsePomodoroTimerService {
     title: string;
 }
 
-export function TimerDisplay(props: TimerDisplayProps) {
+export const TimerDisplay = observer((props: TimerDisplayProps) => {
 
     const {
-        duration, title,
-        mode,
-        isOnPlay, onToggle, isActive, onReset,
-        onSettings,
-    } = props;
+              duration, title,
+              mode,
+              isOnPlay, onToggle, isActive, onReset,
+              onSettings,
+          } = props;
 
     return (
         <>
@@ -47,5 +48,5 @@ export function TimerDisplay(props: TimerDisplayProps) {
                 />
             </FlexContainer>
         </>
-    )
-}
+    );
+});

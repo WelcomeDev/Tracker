@@ -1,30 +1,28 @@
-import { Arrow, ArrowDirection } from "../../../../../components/input/arrow";
+import { Arrow, ArrowDirection } from '../../../../../components/input/arrow';
 import './timerInput.scss';
-import classNames from "classnames";
-import { Action } from "../../../../../components/interfaces/actionTyped";
-import { useTimerInput } from "../../../../../modules/Pomodoros/hooks/useTimerInput";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { useTimerInput } from '../../../../../modules/Pomodoros/hooks/useTimerInput';
+import { Controller, UseFormRegisterReturn } from 'react-hook-form';
+import NumberFormat from 'react-number-format';
+import { doubleDigitTime } from '../../../../../lib/time';
 
 const { TOP, BOTTOM } = ArrowDirection;
 
 export interface TimerInputProps {
-    initialValue: number;
-    setTime: Action<number>;
-    maxValue: number;
-    name: string;
+    register: UseFormRegisterReturn;
+
 }
 
-export function TimerInput(props: TimerInputProps) {
+export function TimerInput({ register }: TimerInputProps) {
     const arrowStyle = {
         thickness: 3,
         cornerRadius: 10,
-    }
+    };
 
     const {
-        increase, decrease,
-        onSet,
-        inputRef,
-    } = useTimerInput(props)
+              increase, decrease,
+              control,
+              name: registerName,
+          } = useTimerInput(register);
 
     return (
         <section className={'timer-input'}>
@@ -34,19 +32,21 @@ export function TimerInput(props: TimerInputProps) {
                 {...arrowStyle}
                 className={'timer-input__arrow-top'}
             />
-            <input type="text"
-                   name={props.name}
-                   maxLength={2}
-                   pattern={'^[\\d]{1,2}$'}
-                   ref={inputRef}
-                   onBlur={(e) => {
-                       const value = Number(e.target.value);
-
-                       if (value) {
-                           onSet(value)
-                       }
-                   }}
-                   className={classNames('timer-input__time')}/>
+            <Controller
+                render={({ field: { onChange, onBlur, name, value } }) => (
+                    <NumberFormat
+                        format={(val) => doubleDigitTime(Number(val))}
+                        displayType={'input'}
+                        className={'timer-input__time'}
+                        onBlur={onBlur}
+                        value={value}
+                        onChange={onChange}
+                        name={name}
+                    />
+                )}
+                name={registerName}
+                control={control}
+            />
             <Arrow
                 onClick={decrease}
                 direction={BOTTOM}
@@ -54,5 +54,5 @@ export function TimerInput(props: TimerInputProps) {
                 className={'timer-input__arrow-bottom'}
             />
         </section>
-    )
+    );
 }

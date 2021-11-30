@@ -1,28 +1,22 @@
-import './timerConfigure.scss'
-import classNames from "classnames";
-import { TimerInput } from "../timerInput/timerInput";
-import { Action } from "../../../../../components/interfaces/actionTyped";
+import './timerConfigure.scss';
+import classNames from 'classnames';
+import { TimerInput } from '../timerInput/timerInput';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface TimerConfigureProps {
     title: string;
     className?: string;
-    hoursRegister: ManagedDurationInputProps;
-    minutesRegister: ManagedDurationInputProps;
-}
-
-export interface ManagedDurationInputProps {
-    maxValue: number;
-    initialValue: number;
-    setTime: Action<number>;
+    hoursRegister: UseFormRegisterReturn;
+    minutesRegister: UseFormRegisterReturn;
 }
 
 export function TimerConfigure(props: TimerConfigureProps) {
 
     const {
-        hoursRegister, minutesRegister,
-        title,
-        className,
-    } = props;
+              hoursRegister, minutesRegister,
+              title,
+              className,
+          } = props;
 
     return (
         <section className={classNames(className, 'timer-configure')}>
@@ -31,13 +25,11 @@ export function TimerConfigure(props: TimerConfigureProps) {
             </p>
             <section className={'timer-configure__input'}>
                 <TimerInput
-                    name={`${title}_hours`}
-                    {...hoursRegister}/>
+                    register={hoursRegister}/>
                 <p>:</p>
                 <TimerInput
-                    name={`${title}_minutes`}
-                    {...minutesRegister}/>
+                    register={minutesRegister}/>
             </section>
         </section>
-    )
+    );
 }

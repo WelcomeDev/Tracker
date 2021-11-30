@@ -1,48 +1,37 @@
-import { TimerInputProps } from "../../../pages/pomodoro/pomodoroTimer/settings/timerInput/timerInput";
-import { useEffect, useRef, useState } from "react";
-import { doubleDigitTime } from "../../../lib/time";
+import { useContext, useMemo } from 'react';
+import { pomodoroSettingsContext } from './context/pomodoroSettingsContext';
+import { UseFormRegisterReturn } from 'react-hook-form';
+import { TimeType } from '../../../lib/time';
 
-export function useTimerInput(props: TimerInputProps) {
+export type FormTypes =
+    | 'restDuration.hours'
+    | 'restDuration.minutes'
+    | 'workDuration.hours'
+    | 'workDuration.minutes';
 
-    const [ time, setTime ] = useState(props.initialValue);
-    const inputRef = useRef<HTMLInputElement>(null)
-    const validity = `Value must be less than ${props.maxValue}`;
+export function useTimerInput(register: UseFormRegisterReturn) {
 
-    useEffect(() => {
-        props.setTime(time);
-        const el = inputRef.current as HTMLInputElement;
-        el.value = doubleDigitTime(time);
-        el.setCustomValidity('');
-    }, [ time ])
+    const { getValues, setValue, control } = useContext(pomodoroSettingsContext);
+
+    const name     = useMemo(() => register.name as FormTypes, [register]);
+    const timeType = useMemo<TimeType>(() => name.endsWith('minutes') ? 'minute' : 'hour', [name]);
+    const maxValue = useMemo<number>(() => timeType === 'minute' ? 59 : 23, [timeType]);
 
     function increase() {
-        if (time < props.maxValue) {
-            setTime(time + 1);
-        } else {
-            setTime(0)
-        }
+        let value = getValues(name);
+        value     = value < maxValue ? value + 1 : 0;
+        setValue(name, value, { shouldValidate: true });
     }
 
     function decrease() {
-        if (time > 0 && time <= props.maxValue) {
-            setTime(time - 1);
-        } else {
-            setTime(props.maxValue);
-        }
-    }
-
-    function onSet(value: number) {
-        const el = inputRef.current as HTMLInputElement;
-        if (value > props.maxValue || value < 0) {
-            el.setCustomValidity(validity);
-        } else {
-            setTime(value);
-        }
+        let value = getValues(name);
+        value     = value > 0 ? value - 1 : maxValue;
+        setValue(name, value, { shouldValidate: true });
     }
 
     return {
         increase, decrease,
-        time, onSet,
-        inputRef,
-    }
+        control,
+        name, timeType,
+    };
 }

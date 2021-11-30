@@ -1,7 +1,7 @@
 import * as t from "io-ts";
 import { UserType } from "../../Main/model/user";
 import { PomodoroEssentialsType } from "./pomodoroEssentials";
-import { DurationDto } from "./duration";
+import { Duration } from './duration';
 
 export const PomodoroType = t.intersection([
     t.interface({
@@ -17,14 +17,14 @@ export interface PomodoroDto extends t.TypeOf<typeof PomodoroType> {
 export class Pomodoro{
     id: string;
     title: string;
-    restDuration: DurationDto;
-    workDuration: DurationDto;
+    restDuration: Duration;
+    workDuration: Duration;
 
     constructor(pomodoro: PomodoroDto) {
         this.id = pomodoro.id;
         this.title = pomodoro.title;
-        this.restDuration = pomodoro.restDuration;
-        this.workDuration = pomodoro.workDuration;
+        this.restDuration = new Duration(pomodoro.restDuration);
+        this.workDuration = new Duration(pomodoro.workDuration);
     }
 }
 

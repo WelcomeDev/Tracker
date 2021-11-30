@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
-import { Action } from "../../../components/interfaces/action";
-import { Pomodoro } from "../model/pomodoro";
+import { Action } from '../../../components/interfaces/action';
+import { Pomodoro } from '../model/pomodoro';
+import { usePomodoroStore } from './context/pomodoroProvider';
+import { useForm } from 'react-hook-form';
+import { UpdatePomodoroParams } from '../interfaces/updatePomodoroParams';
+import { hoursRegisterOptions, minuteRegisterOptions, titleRegisterOptions } from '../model/validator';
 
 export interface PomodoroTimerConfigureProps {
     pomodoro: Pomodoro;
@@ -11,36 +14,60 @@ export function usePomodoroTimerConfigure({
                                               pomodoro,
                                               onClose,
                                           }: PomodoroTimerConfigureProps) {
+    const {
+              register,
+              reset,
+              control,
+              handleSubmit,
+              getValues,
+              setValue,
+              formState: {
+                  errors,
+                  isValid,
+              },
+          } = useForm<UpdatePomodoroParams>({
+        reValidateMode: 'onChange',
+        shouldFocusError: true,
+        mode: 'onBlur',
+        defaultValues: {
+            restDuration: pomodoro.restDuration,
+            workDuration: pomodoro.workDuration,
+            title: pomodoro.title,
+        },
+        shouldUseNativeValidation: true,
+    });
 
-    const [ title, setTitle ] = useState(pomodoro.title);
-    const [isTitleValid, setTitleValid] = useState<boolean>(false);
-
-    const [isSaveEnabled, setSaveEnabled] = useState<boolean>(false);
-
-    useEffect(()=>{
-        setSaveEnabled(isTitleValid);
-    }, [isTitleValid])
+    const { updatePomodoro, removePomodoro } = usePomodoroStore();
 
     function save() {
-        //todo: call storage edit
-        onClose();
+        handleSubmit(
+            (params: UpdatePomodoroParams) =>
+                updatePomodoro(pomodoro, params)
+                    .then(() => onClose())
+                    .catch((error) => console.log(error)),
+            (error) => console.log(error),
+        )();
     }
 
     function remove() {
-        //todo: call storage and remove
-        onClose();
+        removePomodoro(pomodoro)
+            .then(() => onClose());
     }
 
     function cancel() {
-        setTitle(pomodoro.title);
-        //todo: set durations back
+        reset();
         onClose();
     }
 
     return {
-        title, setTitle,
         save, remove, cancel,
-        isTitleValid,
-        isSaveEnabled,
-    }
+        isSaveEnabled: isValid,
+        workHoursRegister: register('workDuration.hours', hoursRegisterOptions),
+        restHorsRegister: register('restDuration.hours', hoursRegisterOptions),
+        workMinutesRegister: register('workDuration.minutes', minuteRegisterOptions),
+        restMinutesRegister: register('restDuration.minutes', minuteRegisterOptions),
+        titleRegister: register('title', titleRegisterOptions),
+        getValues, setValue,
+        control
+    };
 }

@@ -6,13 +6,9 @@ import {
 import { Loader } from '../components/loader/loader';
 import { PomodoroList } from './pomodoroList/pomodoroList';
 import { observer } from 'mobx-react';
-import { useEffect } from 'react';
 
 export const LoadingResolver = observer(() => {
     const store = usePomodoroStore();
-    useEffect(() => {
-        store.loadPomodoroList();
-    }, []);
 
     return (
         store.isLoading ?
