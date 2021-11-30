@@ -8,24 +8,13 @@ using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Tittle
+    public class User
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required, MaxLength(20)]
-        public string TittleName { get; set; }
-
         [Required]
-        public Guid TagId { get; set; }
-
-        [ForeignKey("TagId")]
-        public Tag Tag { get; set; }
-
-        [Required]
-        public Guid ColorId { get; set; }
-
-        [ForeignKey("ColorId")]
-        public ColorSql Color { get; set; }
+        [MaxLength(20)]
+        public string Name { get; set; }
     }
 }

@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Tittle
+    public class Statistic
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required, MaxLength(20)]
-        public string TittleName { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
+        public double Value { get; set; }
 
         [Required]
         public Guid TagId { get; set; }
@@ -23,9 +26,9 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public Tag Tag { get; set; }
 
         [Required]
-        public Guid ColorId { get; set; }
+        public Guid TittleId { get; set; }
 
-        [ForeignKey("ColorId")]
-        public ColorSql Color { get; set; }
+        [ForeignKey("TittleId")]
+        public Tittle Tittle { get; set; }
     }
 }
