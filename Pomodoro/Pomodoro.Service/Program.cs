@@ -26,6 +26,13 @@ static void RegisterSerivces(WebApplicationBuilder builder)
 
 RegisterSerivces(builder);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
