@@ -1,16 +1,21 @@
 ﻿using Auth.Di;
 using Statistic.Di.Tag;
+using Statistic.Di.Tittle;
 
 namespace Statistic.Di
 {
-    public interface IStatisticData : IStatisticEssentialsData
+    public interface IStatisticData 
     {
+        Guid Id { get; }
+
         IUserIdentity User { get; }
 
-        ITag Tag { get; set; }
-
-        string Title { set; }
+        ITagData Tag { get; }
 
         DateTime Date { get; }
+
+        ITitleData Title { get; }
+
+        double Value { get; }
     }
 }

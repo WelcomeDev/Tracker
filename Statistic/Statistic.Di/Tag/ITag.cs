@@ -2,8 +2,10 @@
 
 namespace Statistic.Di.Tag
 {
-    public interface ITag : IGuid, IEquatable<ITag>
+    public interface ITag : IEquatable<ITag>, ITagData
     {
-        string Title { get; set; }
+
+
+
     }
 }
