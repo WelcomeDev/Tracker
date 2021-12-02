@@ -1,24 +1,25 @@
-﻿using System;
+﻿using Statistic.Di.Tag;
+using Statistic.Di.Tittle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Auth.Di;
-using Statistic.Di.Tag;
 
-namespace Statistic.Bll.Tag
+namespace Statistic.Bll
 {
-    internal class Tag : ITag
+    internal class Title : ITitle
     {
-
-        public string Name { get; set; }
         public Guid Id { get; set; }
 
-        public User User { get; set; }
+        public string Name { get; set; }
 
-        IUserIdentity ITagData.User => User;
+        public Tag.Tag Tag { get; set; }
 
-        public bool Equals(ITag? other)
+        ITagData ITitleData.Tag => Tag;
+
+
+        public bool Equals(ITitle other)
         {
             if (other is null)
                 return false;

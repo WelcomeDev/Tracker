@@ -8,24 +8,26 @@ using Auth.Di;
 
 using Statistic.Di;
 using Statistic.Di.Tag;
+using Statistic.Di.Tittle;
 
 namespace Statistic.Bll
 {
     internal class Statistic : IStatistic
     {
-        public IUserIdentity User => throw new NotImplementedException();
+        public IUserIdentity User { get; set; }
 
-        public ITag Tag { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Title { set => throw new NotImplementedException(); }
+        public ITag Tag { get; set; }
 
-        public DateTime Date => throw new NotImplementedException();
+        public ITitle Title { get; set; }
 
-        public double Value => throw new NotImplementedException();
+        public DateTime Date { get; set; }
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public double Value { get; set; }
 
-        string IStatisticEssentialsData.Title => throw new NotImplementedException();
+        public Guid Id { get; set; }
 
-        public bool Equals(IStatistic? other) => throw new NotImplementedException();
+        ITitleData IStatisticData.Title => Title;
+
+        ITagData IStatisticData.Tag => Tag;
     }
 }
