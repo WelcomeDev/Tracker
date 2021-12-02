@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Auth.Di;
+using Statistic.Di;
+using Statistic.Di.Tag;
+using Statistic.Di.Tittle;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Statistic
+    public class Statistic : IStatisticData
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -29,6 +33,18 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public Guid TittleId { get; set; }
 
         [ForeignKey("TittleId")]
-        public Tittle Tittle { get; set; }
+        public Title Title { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        ITitleData IStatisticData.Title => Title;
+
+        IUserIdentity IStatisticData.User => User;
+
+        ITagData IStatisticData.Tag => Tag;
     }
 }

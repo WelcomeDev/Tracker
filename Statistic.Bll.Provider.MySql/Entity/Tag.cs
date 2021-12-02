@@ -1,15 +1,15 @@
 ﻿using Auth.Di;
-
+using Statistic.Di.Tag;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Tag
+    public class Tag : ITagData
     {
         public Tag()
         {
-            Tittles = new HashSet<Tittle>();
+            Tittles = new HashSet<Title>();
         }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,7 +17,7 @@ namespace Statistic.Bll.Provider.MySql.Entity
 
         [Required]
         [MaxLength(20)]
-        public string Subject { get; set; }
+        public string Name { get; set; }
 
         [Required]
         public Guid UserId { get; set; }
@@ -27,6 +27,8 @@ namespace Statistic.Bll.Provider.MySql.Entity
 
         public double? MaxValue { get; set; }
 
-        public virtual ICollection<Tittle> Tittles { get; set; }
+        public virtual ICollection<Title> Tittles { get; set; }
+
+        IUserIdentity ITagData.User => User;
     }
 }

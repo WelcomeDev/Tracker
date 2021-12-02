@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Auth\Auth.Di\Auth.Di.csproj" />
+    <ProjectReference Include="..\Statistic\Statistic.Di\Statistic.Di.csproj" />
   </ItemGroup>
 
 </Project>

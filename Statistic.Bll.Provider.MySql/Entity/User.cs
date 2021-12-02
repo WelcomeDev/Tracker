@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Auth.Di;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class User
+    public class User : IUserIdentity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
