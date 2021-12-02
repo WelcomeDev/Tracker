@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
+    [ComplexType]
     public class User : IUserIdentity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
-        [MaxLength(20)]
-        public string Name { get; set; }
+        public string UserName { get; set; }
     }
 }

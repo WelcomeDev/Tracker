@@ -2,8 +2,8 @@
 
 namespace Auth.Di
 {
-    public interface IUserIdentity : IGuid
+    public interface IUserIdentity
     {
-        string Name { get; }
+        string UserName { get; }
     }
 }

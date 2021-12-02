@@ -10,6 +10,7 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public Tag()
         {
             Tittles = new HashSet<Title>();
+            Statistics = new HashSet<Statistic>();
         }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,14 +21,12 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public string Name { get; set; }
 
         [Required]
-        public Guid UserId { get; set; }
-
-        [ForeignKey("UserId")]
         public User User { get; set; }
 
         public double? MaxValue { get; set; }
 
         public virtual ICollection<Title> Tittles { get; set; }
+        public virtual ICollection<Statistic> Statistics { get; set; }
 
         IUserIdentity ITagData.User => User;
     }

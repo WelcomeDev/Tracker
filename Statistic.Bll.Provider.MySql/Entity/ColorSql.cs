@@ -14,7 +14,19 @@ namespace Statistic.Bll.Provider.MySql.Entity
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
+        public Int32 Argb
+        {
+            get
+            {
+                return Color.ToArgb();
+            }
+            set
+            {
+                Color = Color.FromArgb(value);
+            }
+        }
+
+        [NotMapped]
         public Color Color { get; set; }
     }
 }

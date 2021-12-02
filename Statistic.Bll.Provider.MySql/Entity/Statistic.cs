@@ -36,9 +36,6 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public Title Title { get; set; }
 
         [Required]
-        public Guid UserId { get; set; }
-
-        [ForeignKey("UserId")]
         public User User { get; set; }
 
         ITitleData IStatisticData.Title => Title;

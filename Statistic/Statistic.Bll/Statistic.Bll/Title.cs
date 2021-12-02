@@ -19,7 +19,7 @@ namespace Statistic.Bll
         ITagData ITitleData.Tag => Tag;
 
 
-        public bool Equals(ITitle other)
+        public bool Equals(ITitle? other)
         {
             if (other is null)
                 return false;
