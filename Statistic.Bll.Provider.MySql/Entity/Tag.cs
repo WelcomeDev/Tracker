@@ -26,6 +26,7 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public double? MaxValue { get; set; }
 
         public virtual ICollection<Title> Tittles { get; set; }
+
         public virtual ICollection<Statistic> Statistics { get; set; }
 
         IUserIdentity ITagData.User => User;
