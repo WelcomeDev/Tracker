@@ -30,7 +30,7 @@ namespace Pomodoro.Bll.Provider.MySql.Entity
         public User User { get; set; }
 
         [NotMapped]
-        IUserIdentity IPomodoroData.User => throw new NotImplementedException();
+        IUserIdentity IPomodoroData.User => User;
 
         [NotMapped]
         IDuration IPomodoroEssentials.RestDuration { get => RestDuration; set => throw new NotImplementedException(); }

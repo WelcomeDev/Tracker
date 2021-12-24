@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Auth.Di;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pomodoro.Bll.Provider.MySql.Entity
 {
-    public class User
+    public class User: IUserIdentity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
