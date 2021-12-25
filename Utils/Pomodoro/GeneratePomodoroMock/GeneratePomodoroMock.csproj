@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Pomodoro\Pomodoro.Di\Pomodoro.Di.csproj" />
+    <ProjectReference Include="..\..\User\MockUser\MockUser.csproj" />
+  </ItemGroup>
+
+</Project>

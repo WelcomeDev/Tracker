@@ -1,0 +1,25 @@
+@import './colors.scss';
+
+@mixin interractive_background($color) {
+    background: $color;
+    
+    &:hover{
+        background: highlight($color, 2);
+    }
+
+    // &:active{
+    //     background: highlight($color, 4);
+    // }
+}
+
+@mixin interractive_color($color) {
+    color: $color;
+    
+    &:hover{
+        color: highlight($color, 2);
+    }
+
+    &:active{
+        color: highlight($color, 4);
+    }
+}

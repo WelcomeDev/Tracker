@@ -1,34 +1,60 @@
-﻿using Auth.Service.Controllers.Dto;
+﻿using Auth.Di;
+using Auth.Service.Controllers.Dto;
 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
+using System.Security.Claims;
 
 namespace Auth.Service.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     public class AuthController:ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private readonly IUser currentUser;
 
         public AuthController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        [HttpGet]
+        [Route("internal/current")]
+        public async Task<IActionResult> CurrentUser()
+        {
+            return Ok(currentUser);
+        }
+
         [HttpPost]
-        [Route("auth")]
-        public async Task<IActionResult> Auth([FromBody] SecretDto secret, [FromBody] AuthDto auth)
+        [Route("login")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([FromBody] AuthDto auth)
         {
             string token = _configuration["JWT:Token"];
 
-            var token = new JwtSecurityToken(
-                
-                );
+            await Authenticate(auth.Username); // аутентификация
 
             return Ok();
+        }
+
+        private async Task Authenticate(string username)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, username),
+            };
+
+            // создаем объект ClaimsIdentity
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            // установка аутентификационных куки
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
     }
 }

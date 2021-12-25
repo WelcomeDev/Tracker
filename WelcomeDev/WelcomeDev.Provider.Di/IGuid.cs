@@ -2,6 +2,6 @@
 {
     public interface IGuid
     {
-        public Guid Id { get; set; }
+        Guid Id { get; set; }
     }
 }
