@@ -75,6 +75,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PomodoroTest", "PomodoroTes
 		{9578C508-F5D4-403A-9FD6-02BB07A466E9} = {9578C508-F5D4-403A-9FD6-02BB07A466E9}
 	EndProjectSection
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WepApp", "WebApp\WebApp\WepApp.esproj", "{9D906299-BBC1-49C7-8044-3FF3CCE17374}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +159,12 @@ Global
 		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51A61BE-59E4-4F69-AE13-937B3960AB51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D906299-BBC1-49C7-8044-3FF3CCE17374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D906299-BBC1-49C7-8044-3FF3CCE17374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D906299-BBC1-49C7-8044-3FF3CCE17374}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9D906299-BBC1-49C7-8044-3FF3CCE17374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D906299-BBC1-49C7-8044-3FF3CCE17374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D906299-BBC1-49C7-8044-3FF3CCE17374}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

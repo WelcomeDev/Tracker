@@ -1,0 +1,44 @@
+@import 'src/styles/colors';
+@import 'src/styles/alignment';
+@import 'src/styles/appearance';
+
+.wrapper {
+  @include flex-center-align;
+  border-radius: $border-radius;
+
+  &__outer-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: $accent-color;
+
+    &__inner-circle {
+      @include flex-center-align;
+      background: $background-secondary-color;
+      position: relative;
+      left: 10px;
+      top: 10px;
+      z-index: 20;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+
+      font-size: 36px;
+      line-height: 42px;
+
+      &__data-display {
+        position: relative;
+        top: 25px;
+
+        &__ending-date {
+          margin: 5px auto 0;
+          background: blackout($background-secondary-color, 2);
+          border-radius: $border-radius;
+          font-size: 18px;
+          width: 100px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

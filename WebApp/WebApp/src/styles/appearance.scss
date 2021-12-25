@@ -1,0 +1,11 @@
+@import "colors";
+
+$border-radius-modal: 40px;
+$border-radius: 10px;
+
+$select-height: 60px;
+
+%base-interactive{
+  border: 1px solid $separator-color;
+  background-color: $background-secondary-color;
+}

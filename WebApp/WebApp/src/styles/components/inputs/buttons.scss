@@ -1,0 +1,12 @@
+@import 'src/styles/colors';
+@import 'src/styles/interractions';
+
+@mixin button-base($color) {
+  @include interactive_background($color);
+  @include border(transparent);
+  @include interactive_border(highlight($color, 8));
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  font: inherit;
+}

@@ -1,0 +1,25 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/interractions';
+@import '../../../../styles/alignment';
+@import '../../../../styles/fonts';
+
+.timer-configure {
+  @include flex-center-align;
+  font-size: 55px;
+  justify-content: space-between;
+  padding: 0 80px;
+
+  height: 100%;
+  width: 100%;
+
+  p {
+    user-select: none;
+  }
+
+  &__input {
+    @include flex-center-align;
+    height: 100%;
+    text-align: center;
+    column-gap: 10px;
+  }
+}

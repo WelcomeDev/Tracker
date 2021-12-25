@@ -1,0 +1,24 @@
+@import "src/styles/appearance";
+@import "src/styles/interractions";
+
+.editable-select-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &__text {
+    font: inherit;
+  }
+
+  &__edit-button {
+    @include interactive_background($passive-color);
+    font: inherit;
+    background: transparent;
+    border-radius: $border-radius;
+    max-width: 36px;
+    max-height: 36px;
+    padding: 4px;
+  }
+}

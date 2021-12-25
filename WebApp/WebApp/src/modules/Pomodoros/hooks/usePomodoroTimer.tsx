@@ -1,21 +1,36 @@
 import { useState } from "react"
 import { Pomodoro } from "../model/pomodoro";
-import { useDuration } from "./useDuration";
+import { DurationDisplayData, useDuration } from "./duration/useDuration";
+import { Action as ActionT } from "../../../components/interfaces/actionTyped";
+import { Action } from "../../../components/interfaces/action";
 
 export enum TimerMode {
-    Work = 'Work',
-    Rest = 'Rest'
+    Work = 'work',
+    Rest = 'rest'
 }
 
 const { Work, Rest } = TimerMode;
 
-export function usePomodoroTimer(props: Pomodoro) {
+export interface UsePomodoroTimerService {
+    onReset: Action;
+    onToggle: Action;
+    onSettings: Action;
+    isOnPlay: boolean;
+    isActive: boolean;
+    duration: DurationDisplayData;
+    mode: TimerMode;
+    isOnSettings: boolean;
+    setOnSettings: ActionT<boolean>;
+}
 
-    const workTimer = useDuration({ duration: props.workDuration, onFinishedCallback });
+export function usePomodoroTimer(pomodoro : Pomodoro) {
 
-    const restTimer = useDuration({ duration: props.restDuration, onFinishedCallback });
+    const workTimer = useDuration({ duration: pomodoro.workDuration, onFinishedCallback });
+
+    const restTimer = useDuration({ duration: pomodoro.restDuration, onFinishedCallback });
 
     const [ mode, setMode ] = useState(Work);
+    const [ isOnSettings, setOnSettings ] = useState<boolean>(false)
 
     function onFinishedCallback() {
         if (mode === Work) {
@@ -31,23 +46,21 @@ export function usePomodoroTimer(props: Pomodoro) {
     }
 
     function onSettings() {
-
+        setOnSettings(true);
     }
 
     function onReset() {
-        if(mode === Work){
+        if (mode === Work) {
             workTimer.reset();
-        }
-        else{
+        } else {
             restTimer.reset();
         }
     }
 
     function onToggle() {
-        if(mode === Work){
+        if (mode === Work) {
             workTimer.toggle();
-        }
-        else{
+        } else {
             restTimer.toggle();
         }
     }
@@ -58,5 +71,6 @@ export function usePomodoroTimer(props: Pomodoro) {
         isActive: workTimer.isActive || restTimer.isActive,
         duration: mode === Work ? workTimer.duration : restTimer.duration,
         mode: mode,
+        isOnSettings, setOnSettings,
     }
 }

@@ -1,0 +1,47 @@
+@import 'src/styles/colors';
+@import 'src/styles/interractions';
+@import 'src/styles/appearance';
+@import 'src/styles/alignment';
+@import 'src/styles/fonts';
+@import 'src/styles/components/modalBase';
+@import "../../../styles/components/pomodoroContainer";
+
+.pomodoro {
+  @include background_hover($background-secondary-color);
+  @include title;
+  @extend %base-interactive;
+
+  border-radius: $border-radius;
+
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: $pomodoro-title-row 1fr 64px;
+
+  width: $pomodoro-width;
+  height: $pomodoro-height;
+  resize: none;
+
+  padding: 7px 15px;
+}
+
+.settings {
+  @extend %modal-base;
+
+  &__content {
+    @extend %modal-content-base;
+
+    transition:
+            left $animation-durations 0.05s,
+            top $animation-durations 0.05s,
+            transform $animation-durations $animation-durations;
+
+    &.on-display {
+      top: calc(50% - 350px);
+      left: calc(50% - 300px);
+
+      transform: scale(1);
+    }
+  }
+}
+
+

@@ -1,25 +1,37 @@
-@import './colors.scss';
+@import './colors';
+@import './appearance';
 
-@mixin interractive_background($color) {
-    background: $color;
-    
-    &:hover{
-        background: highlight($color, 2);
-    }
+@mixin background_hover($color) {
+  background: $color;
 
-    // &:active{
-    //     background: highlight($color, 4);
-    // }
+  &:hover {
+    background: highlight($color, 2);
+  }
 }
 
-@mixin interractive_color($color) {
-    color: $color;
-    
-    &:hover{
-        color: highlight($color, 2);
-    }
+@mixin interactive_background($color) {
+  background: $color;
 
-    &:active{
-        color: highlight($color, 4);
+  &:hover {
+    background: blackout($color, 4);
+  }
+
+  &:active {
+    background: blackout($color, 8);
+  }
+}
+
+$border-width: 3px;
+
+@mixin interactive_border($color) {
+  &:hover {
+    &:enabled {
+      border-color: $color;
     }
+  }
+}
+
+@mixin border($color) {
+  border: $border-width solid $color;
+  border-radius: $border-radius;
 }

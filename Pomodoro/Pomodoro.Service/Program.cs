@@ -26,6 +26,13 @@ static void RegisterSerivces(WebApplicationBuilder builder)
 
 RegisterSerivces(builder);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -39,6 +46,8 @@ else
 
 }
 
+
+app.UseCors();
 app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
@@ -47,4 +56,10 @@ app.UseAuthorization();
 app.UseAuthentication();
 
 app.MapControllers();
+//app.Use((context, next) =>
+//{
+//    //Access - Control - Allow - Origin
+//    context.Response.Headers.AccessControlAllowOrigin = "http://localhost";
+//    return next();
+//});
 app.Run();

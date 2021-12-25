@@ -62,6 +62,7 @@ namespace Pomodoro.Bll.Provider.MySql
         public async Task<IPomodoroData> Update(Guid id, IPomodoroEssentials data)
         {
             var pomodoro = await GetInstance(id);
+
             pomodoro.Title = data.Title;
             pomodoro.WorkDuration.Minutes = data.WorkDuration.Minutes;
             pomodoro.WorkDuration.Hours = data.WorkDuration.Hours;

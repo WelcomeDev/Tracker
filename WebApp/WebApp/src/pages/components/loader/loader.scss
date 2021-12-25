@@ -1,0 +1,10 @@
+@import "src/styles/alignment";
+@import "src/styles/colors";
+
+.loader-wrapper {
+  @include stretch-to-parent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,7 +1,8 @@
-import * as t from "io-ts";
-import { UserType } from "./user";
-import { PomodoroEssentialsType } from "./pomodoroEssentials";
-import { DurationDto } from "./duration";
+import * as t from 'io-ts';
+import { UserType } from '../../Main/model/user';
+import { PomodoroEssentialsType } from './pomodoroEssentials';
+import { Duration } from './duration';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 export const PomodoroType = t.intersection([
     t.interface({
@@ -9,39 +10,31 @@ export const PomodoroType = t.intersection([
         id: t.string,
     }),
     PomodoroEssentialsType,
-])
+]);
 
 export interface PomodoroDto extends t.TypeOf<typeof PomodoroType> {
 }
 
-export class Pomodoro{
-    private readonly _id: string;
-    private readonly _title: string;
-    private readonly _restDuration: DurationDto;
-    private readonly _workDuration: DurationDto;
+export class Pomodoro {
+    id: string;
+    @observable title: string;
+    @observable restDuration: Duration;
+    @observable workDuration: Duration;
 
     constructor(pomodoro: PomodoroDto) {
-        this._id = pomodoro.id;
-        this._title = pomodoro.title;
-        this._restDuration = pomodoro.restDuration;
-        this._workDuration = pomodoro.workDuration;
+        this.id           = pomodoro.id;
+        this.title        = pomodoro.title;
+        this.restDuration = new Duration(pomodoro.restDuration);
+        this.workDuration = new Duration(pomodoro.workDuration);
+
+        makeAutoObservable(this);
     }
 
-    get id(): string {
-        return this._id;
-    }
-
-    get title(): string {
-        return this._title;
-    }
-
-    get restDuration(): DurationDto {
-        return this._restDuration;
-    }
-
-    get workDuration(): DurationDto {
-        return this._workDuration;
-    }
-
+    @action
+    update = (updated: Pomodoro) => {
+        this.title        = updated.title;
+        this.restDuration = updated.restDuration;
+        this.workDuration = updated.workDuration;
+    };
 }
 
