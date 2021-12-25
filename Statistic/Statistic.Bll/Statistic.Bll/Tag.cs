@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Auth.Di;
+
 using Statistic.Di.Tag;
 
-namespace Statistic.Bll.Tag
+namespace Statistic.Bll
 {
     internal class Tag : ITag
     {

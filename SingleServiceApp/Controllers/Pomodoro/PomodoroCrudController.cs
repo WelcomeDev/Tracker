@@ -1,17 +1,16 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-using Pomodoro.Di;
-using Pomodoro.Di.Provider;
-using Pomodoro.Service.Controllers.Actions.Validation;
-using Pomodoro.Service.Controllers.Dto;
+using SingleServiceApp.Controllers.Pomodoro.Dto;
+using SingleServiceApp.Controllers.Pomodoro.Validation;
+using SingleServiceApp.Di.Pomodoro;
 
 using WelcomeDev.Provider.Di.Pageable;
 using WelcomeDev.Utils.Enumerable;
 
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-namespace Pomodoro.Service.Controllers
+namespace SingleServiceApp.Controllers.Pomodoro
 {
     [ApiController]
     [Route("api/pomodoro")]
@@ -19,7 +18,7 @@ namespace Pomodoro.Service.Controllers
     {
         private readonly IPomodoroAsyncProvider _provider;
         private readonly IEnumerable<IPomodoroValidation> _validations;
-        
+
         public PomodoroCrudController(IPomodoroAsyncProvider provider, IEnumerable<IPomodoroValidation> validations)
         {
             _provider = provider;

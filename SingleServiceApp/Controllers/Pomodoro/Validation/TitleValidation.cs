@@ -1,7 +1,8 @@
-﻿using Pomodoro.Service.Controllers.Dto;
-using Pomodoro.Service.Controllers.Exceptions;
+﻿using Pomodoro.Service.Controllers.Exceptions;
 
-namespace Pomodoro.Service.Controllers.Actions.Validation
+using SingleServiceApp.Controllers.Pomodoro.Dto;
+
+namespace SingleServiceApp.Controllers.Pomodoro.Validation
 {
     public class TitleValidation : IPomodoroValidation
     {

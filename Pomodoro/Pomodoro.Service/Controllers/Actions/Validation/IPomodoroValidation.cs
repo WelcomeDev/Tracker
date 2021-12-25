@@ -1,6 +1,6 @@
 ﻿using Pomodoro.Service.Controllers.Dto;
 
-namespace Pomodoro.Service.Controllers.Actions
+namespace Pomodoro.Service.Controllers.Actions.Validation
 {
     public interface IPomodoroValidation
     {

@@ -1,5 +1,6 @@
 ﻿using Statistic.Di.Tag;
 using Statistic.Di.Tittle;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,7 +16,7 @@ namespace Statistic.Bll
 
         public string Name { get; set; }
 
-        public Tag.Tag Tag { get; set; }
+        public Statistic.Bll.Tag Tag { get; set; }
 
         public Color ColorSql { get; set; }
 

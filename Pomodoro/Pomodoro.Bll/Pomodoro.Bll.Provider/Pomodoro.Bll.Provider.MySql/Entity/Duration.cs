@@ -11,7 +11,7 @@ namespace Pomodoro.Bll.Provider.MySql.Entity
     {
         [Range(0, 8)]
         public int Hours { get; set; }
-        [Range(0, 60)]
+        [Range(0, 59)]
         public int Minutes { get; set; }
 
         public Duration()
