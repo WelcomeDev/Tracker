@@ -15,8 +15,9 @@ namespace Statistic.Bll.Tag
         public Guid Id { get; set; }
 
         public User User { get; set; }
+        public double? MaxValue { get; set; }
 
-        IUserIdentity ITagData.User => User;
+        IUserIdentity ITag.User => User;
 
         public bool Equals(ITag? other)
         {

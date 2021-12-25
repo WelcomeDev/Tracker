@@ -2,6 +2,7 @@
 using Statistic.Di.Tittle;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,9 @@ namespace Statistic.Bll
 
         public Tag.Tag Tag { get; set; }
 
-        ITagData ITitleData.Tag => Tag;
+        public Color ColorSql { get; set; }
+
+        ITag ITitle.Tag => Tag;
 
 
         public bool Equals(ITitle? other)

@@ -50,6 +50,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Test", "Statistic\Statistic.Test\Statistic.Test.csproj", "{E3F6485F-4AA1-4D22-B868-7AA7759785A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Service", "Statistic\Statistic.Service\Statistic.Service.csproj", "{36EF1058-F148-40F8-BE5C-F5DA0CBD5B32}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D31F2803-C7E4-43B8-A0D0-C8AF1C9C8DFF} = {D31F2803-C7E4-43B8-A0D0-C8AF1C9C8DFF}
+		{DF3D47D1-1EF8-47B9-A1C6-2EF17F89271A} = {DF3D47D1-1EF8-47B9-A1C6-2EF17F89271A}
+		{638C60F3-D2B5-4BC8-81A6-A97B2DD3F4AA} = {638C60F3-D2B5-4BC8-81A6-A97B2DD3F4AA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistic.Bll", "Statistic\Statistic.Bll\Statistic.Bll\Statistic.Bll.csproj", "{0AC16736-9E17-4904-BEAC-4CEC7CDE495D}"
 EndProject

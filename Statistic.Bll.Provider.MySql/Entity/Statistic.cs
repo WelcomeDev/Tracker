@@ -12,8 +12,19 @@ using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Statistic : IStatisticData
+    public class Statistic : IStatistic
     {
+        public Statistic(IStatistic data)
+        {
+            Id = data.Id;
+            Date = data.Date;
+            Value = data.Value;
+            TagId = Tag.Id;
+            TitleId = Title.Id;
+            User.Id = User.Id;
+
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
@@ -30,18 +41,21 @@ namespace Statistic.Bll.Provider.MySql.Entity
         public Tag Tag { get; set; }
 
         [Required]
-        public Guid TittleId { get; set; }
+        public Guid TitleId { get; set; }
 
         [ForeignKey("TittleId")]
         public Title Title { get; set; }
 
         [Required]
+        public Guid UserId { get; set; }
+
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
-        ITitleData IStatisticData.Title => Title;
+        ITitle IStatistic.Title => Title;
 
-        IUserIdentity IStatisticData.User => User;
+        IUserIdentity IStatistic.User => User;
 
-        ITagData IStatisticData.Tag => Tag;
+        ITag IStatistic.Tag => Tag;
     }
 }

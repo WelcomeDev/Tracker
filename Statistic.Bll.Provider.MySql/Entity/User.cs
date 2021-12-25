@@ -12,6 +12,11 @@ namespace Statistic.Bll.Provider.MySql.Entity
     [ComplexType]
     public class User : IUserIdentity
     {
+        public User(IUserIdentity data)
+        {
+            UserName = data.UserName;
+        }
+
         public Guid Id { get; set; }
 
         public string UserName { get; set; }

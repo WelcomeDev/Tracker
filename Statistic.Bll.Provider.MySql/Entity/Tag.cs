@@ -5,12 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Tag : ITagData
+    public class Tag : ITag
     {
         public Tag()
         {
             Tittles = new HashSet<Title>();
             Statistics = new HashSet<Statistic>();
+        }
+
+        public Tag(ITag data)
+        {
+            Id = data.Id;
+            Name = data.Name;
+            MaxValue = data.MaxValue;
+            User = new User(data.User);
         }
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,6 +37,6 @@ namespace Statistic.Bll.Provider.MySql.Entity
 
         public virtual ICollection<Statistic> Statistics { get; set; }
 
-        IUserIdentity ITagData.User => User;
+        IUserIdentity ITag.User => User;
     }
 }
