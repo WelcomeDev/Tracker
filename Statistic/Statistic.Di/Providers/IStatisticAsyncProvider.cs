@@ -8,9 +8,9 @@ namespace Statistic.Di.Providers
 {
     public interface IStatisticAsyncProvider 
     {
-        Task<IStatistic> CreateStatistic(StatisticCreationDto data);
+        Task<IEnumerable<IStatistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data);
 
-        Task<IEnumerable<IStatistic>> GetAllStatisticByTag(SearchParamsDto paramsDto);
+        Task<IEnumerable<StatisticWebModelCollection>> GetAllStatisticByTag(SearchParamsDto paramsDto);
 
 
     }

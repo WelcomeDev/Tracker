@@ -1,5 +1,6 @@
 ﻿using Auth.Di;
 using Statistic.Di;
+using Statistic.Di.Providers;
 using Statistic.Di.Tag;
 using Statistic.Di.Tittle;
 using System;
@@ -14,14 +15,13 @@ namespace Statistic.Bll.Provider.MySql.Entity
 {
     public class Statistic : IStatistic
     {
-        public Statistic(IStatistic data)
+        public Statistic(StatisticCreationDto data)
         {
-            Id = data.Id;
             Date = data.Date;
             Value = data.Value;
-            TagId = Tag.Id;
-            TitleId = Title.Id;
-            User.Id = User.Id;
+            TagId = data.TagId;
+            TitleId = data.TitleId;
+            UserId = data.UserId;
 
         }
 

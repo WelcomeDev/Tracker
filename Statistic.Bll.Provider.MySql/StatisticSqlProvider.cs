@@ -19,22 +19,23 @@ namespace Statistic.Bll.Provider.MySql
             _context = new StatisticDbContext(connectionString);
         }
 
-        public async Task<IStatistic> CreateStatistic(IStatistic data)
+
+        public async Task<IEnumerable<IStatistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data)
         {
-            var stat = await _context.AddAsync(new Entity.Statistic(data));
-            return stat.Entity;
+            var range = data.Select(x => new Entity.Statistic(x));
+            await _context.AddRangeAsync(range);
+            return range;
         }
 
-        public async Task<IEnumerable<IStatistic>> GetAllStatisticByTag(SearchParamsDto paramsDto)
+        public async Task<IEnumerable<StatisticWebModelCollection>> GetAllStatisticByTag(SearchParamsDto paramsDto)
         {
             var AllStat = (await _context.Tags.FirstAsync(x => x.Id == paramsDto.TagId)).Statistics;
             var StatFromTo = AllStat.Where(x => x.Date >= paramsDto.From && x.Date <= paramsDto.To);
 
             if (paramsDto.TittleId is not null)
-                return StatFromTo.Where(x => x.TitleId == paramsDto.TittleId);
+                return StatisticMapper.StatisticMap(StatFromTo.Where(x => x.TitleId == paramsDto.TittleId));
 
-            return StatFromTo;
-
+            return StatisticMapper.StatisticMap(StatFromTo);
         }
     }
 }
