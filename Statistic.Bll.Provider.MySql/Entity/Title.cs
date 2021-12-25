@@ -4,14 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Statistic.Bll.Provider.MySql.Entity
 {
-    public class Title : ITitleData
+    public class Title : ITitle
     {
+        public Title(ITitle data)
+        {
+            Id = data.Id;
+            Name = data.Name;
+            Ta
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
@@ -30,7 +38,8 @@ namespace Statistic.Bll.Provider.MySql.Entity
         [ForeignKey("ColorId")]
         public ColorSql Color { get; set; }
 
+        public Color ColorSql { get; set; }
 
-        ITagData ITitleData.Tag => Tag;
+        ITag ITitle.Tag => Tag;
     }
 }

@@ -7,11 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\Statistic\Summary\" />
+    <Folder Include="Controllers\Action\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Pomodoro\Pomodoro.Service\Pomodoro.Service.csproj" />
+    <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj" />
+    <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Utils\WelcomeDev.Utils.csproj" />
+    <ProjectReference Include="..\Statistic.Di\Statistic.Di.csproj" />
   </ItemGroup>
 
 </Project>

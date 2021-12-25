@@ -12,8 +12,13 @@ using Statistic.Di.Tittle;
 
 namespace Statistic.Bll
 {
-    internal class Statistic : IStatistic
+    public class Statistic : IStatistic
     {
+        public Statistic(IStatistic data)
+        {
+            User = data.User;
+        }
+
         public IUserIdentity User { get; set; }
 
         public ITag Tag { get; set; }
@@ -26,8 +31,8 @@ namespace Statistic.Bll
 
         public Guid Id { get; set; }
 
-        ITitleData IStatisticData.Title => Title;
+        ITitle IStatistic.Title => Title;
 
-        ITagData IStatisticData.Tag => Tag;
+        ITag IStatistic.Tag => Tag;
     }
 }
