@@ -1,9 +1,9 @@
-﻿using WelcomeDev.Provider.Di;
-
-namespace Auth.Di
+﻿namespace Auth.Di
 {
-    public interface IUserIdentity
+    public interface IUserIdentity/* : IGuid*/
     {
-        string UserName { get; }
+        string Name { get; }
+
+        Guid Id { get; }
     }
 }

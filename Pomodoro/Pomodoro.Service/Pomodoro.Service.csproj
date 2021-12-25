@@ -2,12 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Auth\Auth.Di\Auth.Di.csproj" />
+    <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj" />
+    <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Utils\WelcomeDev.Utils.csproj" />
+    <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.MySql\Pomodoro.Bll.Provider.MySql.csproj" />
+    <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll\Pomodoro.Bll.csproj" />
+    <ProjectReference Include="..\Pomodoro.Di\Pomodoro.Di.csproj" />
   </ItemGroup>
 
 </Project>
