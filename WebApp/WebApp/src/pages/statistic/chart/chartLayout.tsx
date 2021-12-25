@@ -1,18 +1,21 @@
 import { createRef } from 'react';
-import { Chart, ChartData } from 'chart.js';
+import { Chart } from 'chart.js';
+import { Statistic } from '../../../modules/Statistic/model/statistic';
 
 // import Chart from 'chartjs';
-
-const chartData: ChartData = {};
 
 export function ChartLayout() {
 
     const canvas = createRef<HTMLCanvasElement>();
     const inst = canvas.current as HTMLCanvasElement;
+    const stat: Statistic[] = [];
     const ctx = new CanvasRenderingContext2D();
     const myChart = new Chart(ctx, {
         type: 'bar',
-        data: chartData,
+        data: {
+            labels: stat.map(x => x.date.format('DD.MM')),
+            datasets: stat.map(x => ({ label: x.subject.title, backgroundColor: x.subject.color, data: [x.value] })),
+        },
         options: {
             responsive: true,
             scales: {

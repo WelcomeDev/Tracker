@@ -10,10 +10,10 @@ export interface StatisticSubjectDto extends t.TypeOf<typeof StatisticSubjectTyp
 
 export class StatisticSubject {
     title: string;
-    color: string | null;
+    color: string;
 
     constructor(params: StatisticSubjectDto) {
         this.title = params.title;
-        this.color = params.title ?? null;
+        this.color = params.title ?? '#fff';
     }
 }
