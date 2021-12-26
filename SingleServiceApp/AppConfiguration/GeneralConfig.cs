@@ -9,9 +9,11 @@ using Newtonsoft.Json.Serialization;
 
 using SingleServiceApp.Bll.Auth;
 using SingleServiceApp.Bll.Pomodoros;
+using SingleServiceApp.Bll.Statistics;
 using SingleServiceApp.Controllers.Auth.Actions;
 using SingleServiceApp.Controllers.Pomodoro.Dto;
 using SingleServiceApp.Controllers.Pomodoro.Validation;
+using SingleServiceApp.Controllers.Statistics.Dto;
 using SingleServiceApp.Di.Auth;
 using SingleServiceApp.Providers.Auth;
 
@@ -73,6 +75,11 @@ namespace SingleServiceApp.AppConfiguration
             config.CreateMap<CreatePomodoroDto, ValidationParams>();
             config.CreateMap<UpdatePomodoroDto, ValidationParams>();
             config.CreateMap<Pomodoro, PomodoroDto>();
+            config.CreateMap<Tag, TagDto>();
+            config.CreateMap<Title, TitleDto>()
+                  .ForMember(dest => dest.Color, opt => opt.MapFrom(src =>
+                  $"#{src.ColorSql.Color.R:X2}{src.ColorSql.Color.G:X2}{src.ColorSql.Color.B:X2}"));
+            config.CreateMap<Statistic, StatisticDto>();
         }
 
         private static void ConfigureNewtonsoftJson(MvcNewtonsoftJsonOptions options)
