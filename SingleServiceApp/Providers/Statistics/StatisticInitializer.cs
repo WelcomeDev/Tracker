@@ -8,8 +8,9 @@ namespace SingleServiceApp.Providers.Statistics
     {
         public static void Initialize(StatisticDbContext context, AuthContext auth)
         {
-            context.AddRange(new[]
-            {
+            if (context.Colors.Count() == 0)
+                context.Colors.AddRange(new[]
+                {
                 new ColorSql
                 {
                     Color = System.Drawing.Color.FromArgb(0xFF6600)
@@ -60,7 +61,9 @@ namespace SingleServiceApp.Providers.Statistics
                 },
             });
 
-            context.AddRange(new[]
+            context.SaveChanges();
+
+            context.Tags.AddRange(new[]
             {
                 new Tag
                 {
@@ -82,101 +85,105 @@ namespace SingleServiceApp.Providers.Statistics
                 }
             });
 
-            context.AddRange(new[]
+            context.SaveChanges();
+
+            context.Title.AddRange(new[]
             {
                 new Title
                 {
                     Name = "Bus",
-                    ColorSql = context.Colors.ElementAt(0),
-                    Tag = context.Tags.ElementAt(0)
+                    ColorSql = context.Colors.ToList().ElementAt(0),
+                    Tag = context.Tags.ToList().ElementAt(0)
                 },
                 new Title
                 {
                     Name = "Food",
-                    ColorSql = context.Colors.ElementAt(5),
-                    Tag = context.Tags.ElementAt(0)
+                    ColorSql = context.Colors.ToList().ElementAt(5),
+                    Tag = context.Tags.ToList().ElementAt(0)
                 },
                 new Title
                 {
                     Name = "Other",
-                    ColorSql = context.Colors.ElementAt(7),
-                    Tag = context.Tags.ElementAt(0)
+                    ColorSql = context.Colors.ToList().ElementAt(7),
+                    Tag = context.Tags.ToList().ElementAt(0)
                 },
                 new Title
                 {
                     Name = "Work",
-                    ColorSql = context.Colors.ElementAt(4),
-                    Tag = context.Tags.ElementAt(1)
+                    ColorSql = context.Colors.ToList().ElementAt(4),
+                    Tag = context.Tags.ToList().ElementAt(1)
                 },
                 new Title
                 {
                     Name = "University",
-                    ColorSql = context.Colors.ElementAt(8),
-                    Tag = context.Tags.ElementAt(1)
+                    ColorSql = context.Colors.ToList().ElementAt(8),
+                    Tag = context.Tags.ToList().ElementAt(1)
                 },
                 new Title
                 {
                     Name = "KCal",
-                    ColorSql = context.Colors.ElementAt(10),
-                    Tag = context.Tags.ElementAt(2)
+                    ColorSql = context.Colors.ToList().ElementAt(10),
+                    Tag = context.Tags.ToList().ElementAt(2)
                 },
             });
 
+            context.SaveChanges();
             Random rnd = new Random();
 
-            for(int i = 0; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
-                context.AddRange(new[]
+                context.Statistics.AddRange(new[]
                 {
                     new Statistic
                     {
                         User = auth.GetCurrentUser(),
                         Date = new DateTime(2021,12,20+i),
-                        Tag = context.Tags.ElementAt(0),
-                        Title = context.Title.ElementAt(0),
+                        Tag = context.Tags.ToList().ElementAt(0),
+                        Title = context.Title.ToList().ElementAt(0),
                         Value = rnd.Next(0,101),
                     },
                     new Statistic
                     {
                         User = auth.GetCurrentUser(),
                         Date = new DateTime(2021,12,20+i),
-                        Tag = context.Tags.ElementAt(0),
-                        Title = context.Title.ElementAt(1),
+                        Tag = context.Tags.ToList().ElementAt(0),
+                        Title = context.Title.ToList().ElementAt(1),
                         Value = rnd.Next(0,101),
                     },
                     new Statistic
                     {
                         User = auth.GetCurrentUser(),
                         Date = new DateTime(2021,12,20+i),
-                        Tag = context.Tags.ElementAt(0),
-                        Title = context.Title.ElementAt(2),
+                        Tag = context.Tags.ToList().ElementAt(0),
+                        Title = context.Title.ToList().ElementAt(2),
                         Value = rnd.Next(0,101),
                     },
                     new Statistic
                     {
                         User = auth.GetCurrentUser(),
                         Date = new DateTime(2021,12,20+i),
-                        Tag = context.Tags.ElementAt(1),
-                        Title = context.Title.ElementAt(0),
+                        Tag = context.Tags.ToList().ElementAt(1),
+                        Title = context.Title.ToList().ElementAt(0),
                         Value = rnd.Next(0,101),
                     },
                     new Statistic
                     {
                         User = auth.GetCurrentUser(),
                         Date = new DateTime(2021,12,20+i),
-                        Tag = context.Tags.ElementAt(1),
-                        Title = context.Title.ElementAt(1),
+                        Tag = context.Tags.ToList().ElementAt(1),
+                        Title = context.Title.ToList().ElementAt(1),
                         Value = rnd.Next(0,101),
                     },
                     new Statistic
                     {
                         User = auth.GetCurrentUser(),
                         Date = new DateTime(2021,12,20+i),
-                        Tag = context.Tags.ElementAt(2),
-                        Title = context.Title.ElementAt(0),
+                        Tag = context.Tags.ToList().ElementAt(2),
+                        Title = context.Title.ToList().ElementAt(0),
                         Value = rnd.Next(0,101),
                     },
                 });
+
                 context.SaveChanges();
             }
         }
