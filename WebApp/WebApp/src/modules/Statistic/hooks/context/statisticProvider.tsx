@@ -20,6 +20,12 @@ export const StatisticsProvider = observer(({ children }: { children: ReactNode 
             store.getTags();
         }, []);
 
+    useEffect(
+        () => {
+            store.getStatistic({tagName: 'Expenses', from: '2021-12-20', to: '2021-12-27'})
+        }, [],
+    );
+
     return (
         <statisticContext.Provider
             value={store}

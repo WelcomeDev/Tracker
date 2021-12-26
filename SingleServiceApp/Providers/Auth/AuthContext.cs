@@ -7,20 +7,21 @@ namespace SingleServiceApp.Providers.Auth
     public class AuthContext
     {
         private readonly IAuthAsyncProvider _provider;
-        private readonly string _username;
+        private string _username;
+        private readonly IHttpContextAccessor _accessor;
 
         public AuthContext(IAuthAsyncProvider provider, IHttpContextAccessor accessor)
         {
-            var providerLoc = provider;
+            _provider = provider;
+            _accessor = accessor;
+            
             try
             {
-                _username = accessor.HttpContext.Request.Headers["Authorization"][0].Split(' ')[1];
-                var user = providerLoc.GetUserByGuid(_username).Result;
+                _username = GetId();
+                var user = provider.GetUserByGuid(_username).Result;
 
                 if (user is null)
                     throw new AuthorizationException();
-
-                _provider = providerLoc;
             }
             catch (Exception)
             {
@@ -28,9 +29,24 @@ namespace SingleServiceApp.Providers.Auth
             }
         }
 
+        private string GetId()
+        {
+            try
+            {
+                return _accessor.HttpContext.Request.Headers["Authorization"][0].Split(' ')[1];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public UserEntry GetCurrentUser()
         {
-            if(_username is null) throw new AuthorizationException();
+            if (_username is null)
+                _username = GetId();
+
+            if (_username is null) throw new AuthorizationException();
 
             var user = _provider.GetUserByGuid(_username).Result;
             return new UserEntry { Id = user.Id, Name = user.Login };

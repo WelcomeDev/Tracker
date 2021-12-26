@@ -10,7 +10,7 @@ namespace SingleServiceApp.Providers.Statistics
             StatisticCollectionDto statCollection = new StatisticCollectionDto();
             var dates = statistics.Select(x => x.Date).Distinct().OrderBy(x => x);
 
-            statCollection.Dates = dates;
+            statCollection.Dates = dates.Select(x => x.ToString("yyyy-MM-dd"));
             statCollection.Models = new List<StatisticDto>();
 
             var uniquTitles = statistics.Select(x => x.Title).Distinct();
