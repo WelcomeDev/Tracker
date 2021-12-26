@@ -16,6 +16,8 @@ namespace SingleServiceApp.Providers.Statistics
         {
             _context = new StatisticDbContext();
             _authContext = authContext;
+            if (_context.Tags.Count() == 0)
+                StatisticInitializer.Initialize(_context, _authContext);
         }
 
         public async Task<IEnumerable<Statistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data)

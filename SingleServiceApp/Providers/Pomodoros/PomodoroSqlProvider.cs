@@ -21,6 +21,9 @@ namespace SingleServiceApp.Providers.Pomodoros
         {
             _context = new PomodoroDbContext();
             _authContext = authContext;
+
+            if (_context.Pomodoros.Count() == 0)
+                PomodoroInitializer.Initialize(_context, _authContext);
         }
 
         private async Task<Pomodoro> GetInstance(Guid id)
