@@ -51,5 +51,15 @@ namespace SingleServiceApp.Controllers.Statistics
 
             return Ok(dto);
         }
+
+        [HttpGet]
+        [Route("titles/list")]
+        public async Task<IActionResult> ListTitles([FromQuery] string tagName)
+        {
+            var tags = await _provider.GetAllTitlesByTag(tagName);
+            var dto = tags.Select(t => _mapper.Map<TitleDto>(t));
+
+            return Ok(dto);
+        }
     }
 }

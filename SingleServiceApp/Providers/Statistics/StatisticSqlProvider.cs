@@ -45,5 +45,11 @@ namespace SingleServiceApp.Providers.Statistics
         {
             return await _context.Tags.AsNoTracking().ToListAsync();
         }
+
+        public async Task<IEnumerable<Title>> GetAllTitlesByTag(string tagName)
+        {
+            var titles = _context.Title.Where(x => x.Tag.Name.Equals(tagName));
+            return titles;
+        }
     }
 }

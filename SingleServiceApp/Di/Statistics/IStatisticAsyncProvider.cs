@@ -8,7 +8,8 @@ namespace SingleServiceApp.Di.Statistics
     {
         Task<IEnumerable<Statistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data);
 
-        Task<StatisticCollectionDto> GetAllStatisticByTag(SearchParamsDto paramsDto);
+        Task<StatisticCollectionDto> GetAllStatisticByTag(SearchParamsDto paramsDto); 
+        Task<IEnumerable<Title>> GetAllTitlesByTag(string tagName);
 
         Task<IEnumerable<Tag>> GetAllTags();
     }
