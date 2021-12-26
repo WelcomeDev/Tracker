@@ -16,6 +16,7 @@ using SingleServiceApp.Controllers.Pomodoro.Validation;
 using SingleServiceApp.Controllers.Statistics.Dto;
 using SingleServiceApp.Di.Auth;
 using SingleServiceApp.Providers.Auth;
+using SingleServiceApp.Providers.Statistics.Arguments;
 
 namespace SingleServiceApp.AppConfiguration
 {
@@ -80,6 +81,11 @@ namespace SingleServiceApp.AppConfiguration
                   .ForMember(dest => dest.Color, opt => opt.MapFrom(src =>
                   $"#{src.ColorSql.Color.R:X2}{src.ColorSql.Color.G:X2}{src.ColorSql.Color.B:X2}"));
             config.CreateMap<Statistic, StatisticDto>();
+            config.CreateMap<SearchParamsDto, StatisticSearchArguments>()
+                .ForMember(dest => dest.From,
+                opt => opt.MapFrom(src => DateTime.ParseExact(src.From, "yyyy-MM-dd", null)))
+                .ForMember(dest => dest.To,
+                opt => opt.MapFrom(src => DateTime.ParseExact(src.To, "yyyy-MM-dd", null)));
         }
 
         private static void ConfigureNewtonsoftJson(MvcNewtonsoftJsonOptions options)
@@ -89,6 +95,7 @@ namespace SingleServiceApp.AppConfiguration
             {
                 NamingStrategy = new CamelCaseNamingStrategy(),
             };
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd";
         }
     }
 }

@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import { StatisticStore } from '../../../modules/Statistic/store/statisticStore';
 import { Loader } from '../../components/loader/loader';
 import { useStatisticStore } from '../../../modules/Statistic/hooks/context/statisticProvider';
+import './chartLayout.scss';
 
 export const ChartLayout = observer(() => {
 
@@ -14,6 +15,7 @@ export const ChartLayout = observer(() => {
     useEffect(
         () => {
             if (!store.items) return;
+            console.log(store.items);
 
             const myChart = new Chart(canvas.current as HTMLCanvasElement, {
                 type: 'bar',
@@ -23,6 +25,7 @@ export const ChartLayout = observer(() => {
                     datasets: store.items.models.map(d => ({ label: d.title, backgroundColor: d.color, data: d.values })),
                 },
                 options: {
+                    maintainAspectRatio: false,
                     responsive: true,
                     scales: {
                         x: {
@@ -34,6 +37,8 @@ export const ChartLayout = observer(() => {
                     },
                 },
             });
+
+            myChart.update();
 
             return () => {
                 myChart.destroy();
@@ -47,7 +52,7 @@ export const ChartLayout = observer(() => {
     return (
         <canvas
             ref={canvas}
-            id={'statisticChart'}>
+            className={'chart-layout'}>
         </canvas>
     );
 });

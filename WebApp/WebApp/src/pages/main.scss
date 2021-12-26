@@ -8,5 +8,6 @@
 
   .page-content {
     padding-top: $header-height + 40px;
+    @include stretch-to-parent;
   }
 }

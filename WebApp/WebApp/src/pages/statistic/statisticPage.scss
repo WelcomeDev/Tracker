@@ -1,0 +1,7 @@
+@import "src/styles/alignment";
+
+.statistic-page {
+  @include stretch-to-parent;
+  display: flex;
+  flex-direction: column;
+}

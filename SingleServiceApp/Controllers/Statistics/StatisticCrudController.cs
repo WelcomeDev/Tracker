@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SingleServiceApp.Controllers.Authorization;
 using SingleServiceApp.Controllers.Statistics.Dto;
 using SingleServiceApp.Di.Statistics;
+using SingleServiceApp.Providers.Statistics.Arguments;
 
 namespace SingleServiceApp.Controllers.Statistics
 {
@@ -37,7 +38,8 @@ namespace SingleServiceApp.Controllers.Statistics
         [Route("list")]
         public async Task<IActionResult> List([FromQuery] SearchParamsDto paramsDto)
         {
-            var pomodoro = await _provider.GetAllStatisticByTag(paramsDto);
+            var arguments = _mapper.Map<StatisticSearchArguments>(paramsDto);
+            var pomodoro = await _provider.GetAllStatisticByTag(arguments);
 
             return Ok(pomodoro);
         }

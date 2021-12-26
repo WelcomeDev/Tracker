@@ -1,5 +1,6 @@
 import { Header } from '../header/header';
 import classNames from 'classnames';
+import '../../main.scss';
 
 export function AppContentPage({ page }: { page: JSX.Element }) {
 

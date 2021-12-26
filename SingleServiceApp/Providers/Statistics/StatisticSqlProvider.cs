@@ -4,6 +4,7 @@ using SingleServiceApp.Bll.Statistics;
 using SingleServiceApp.Controllers.Statistics.Dto;
 using SingleServiceApp.Di.Statistics;
 using SingleServiceApp.Providers.Auth;
+using SingleServiceApp.Providers.Statistics.Arguments;
 
 namespace SingleServiceApp.Providers.Statistics
 {
@@ -27,7 +28,7 @@ namespace SingleServiceApp.Providers.Statistics
             return range;
         }
 
-        public async Task<StatisticCollectionDto> GetAllStatisticByTag(SearchParamsDto paramsDto)
+        public async Task<StatisticCollectionDto> GetAllStatisticByTag(StatisticSearchArguments paramsDto)
         {
             var allStat = _context.Tags.Include(x => x.Tittles)
                                        .ThenInclude(x => x.ColorSql)

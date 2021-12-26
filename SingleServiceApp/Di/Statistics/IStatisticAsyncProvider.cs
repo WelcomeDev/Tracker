@@ -1,6 +1,6 @@
 ﻿using SingleServiceApp.Bll.Statistics;
 using SingleServiceApp.Controllers.Statistics.Dto;
-
+using SingleServiceApp.Providers.Statistics.Arguments;
 
 namespace SingleServiceApp.Di.Statistics
 {
@@ -8,7 +8,7 @@ namespace SingleServiceApp.Di.Statistics
     {
         Task<IEnumerable<Statistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data);
 
-        Task<StatisticCollectionDto> GetAllStatisticByTag(SearchParamsDto paramsDto); 
+        Task<StatisticCollectionDto> GetAllStatisticByTag(StatisticSearchArguments paramsDto); 
         Task<IEnumerable<Title>> GetAllTitlesByTag(string tagName);
 
         Task<IEnumerable<Tag>> GetAllTags();
