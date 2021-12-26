@@ -1,5 +1,5 @@
 import * as t from 'io-ts';
-import { StatisticSubject, StatisticSubjectType } from './statisticSubject';
+import { Title, StatisticSubjectType } from './statisticSubject';
 
 export const StatisticEssentialsType = t.interface({
     id: t.string,
@@ -11,11 +11,11 @@ export interface StatisticEssentialsDto extends t.TypeOf<typeof StatisticEssenti
 }
 
 export class StatisticEssentials {
-    subject: StatisticSubject;
+    subject: Title;
     value: number;
 
     constructor(params: StatisticEssentialsDto) {
-        this.subject = new StatisticSubject(params.subject);
+        this.subject = new Title(params.subject);
         this.value   = params.value;
     }
 }

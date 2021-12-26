@@ -1,7 +1,7 @@
 import * as t from 'io-ts';
 import { Tag, TagType } from './tag';
 import { UserType } from '../../Main/model/user';
-import { StatisticSubject, StatisticSubjectType } from './statisticSubject';
+import { Title, StatisticSubjectType } from './statisticSubject';
 import { StatisticEssentialsType } from './statisticEssentials';
 import moment, { Moment } from 'moment';
 
@@ -20,7 +20,7 @@ export interface StatisticDto extends t.TypeOf<typeof StatisticType> {
 export class Statistic {
     id: string;
     value: number;
-    subject: StatisticSubject;
+    subject: Title;
     date: Moment;
     tag: Tag;
 
@@ -29,6 +29,6 @@ export class Statistic {
         this.tag     = new Tag(params.tag);
         this.id      = params.id;
         this.value   = params.value;
-        this.subject = new StatisticSubject(params.subject);
+        this.subject = new Title(params.subject);
     }
 }

@@ -1,0 +1,13 @@
+@import "src/styles/colors";
+@import "src/styles/alignment";
+
+.not-found {
+  @include stretch-to-parent;
+  background-color: $background-primary-color;
+  position: relative;
+
+  & > p {
+    color: $background-secondary-color;
+    font-size: 100px;
+  }
+}

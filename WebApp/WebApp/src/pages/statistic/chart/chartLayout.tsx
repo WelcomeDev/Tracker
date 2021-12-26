@@ -18,7 +18,7 @@ export const ChartLayout = observer(() => {
         data: {
             labels: store.items.dates.map(x => moment(x)
                 .format('DD\nMM')),
-            datasets: store.items.values.map(d => ({ label: d.title, backgroundColor: d.color, data: d.values })),
+            datasets: store.items.models.map(d => ({ label: d.title, backgroundColor: d.color, data: d.values })),
         },
         options: {
             responsive: true,
