@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Mvc;
 using SingleServiceApp.Controllers.Auth.Dto;
+using SingleServiceApp.Di.Auth;
+using SingleServiceApp.Controllers.Auth.Actions;
 
 namespace SingleServiceApp.Controllers.Auth
 {
@@ -10,34 +9,30 @@ namespace SingleServiceApp.Controllers.Auth
     [Route("api/auth")]
     public class AuthController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
+        private readonly AuthActions _authActions;
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(AuthActions authActions)
         {
-            _configuration = configuration;
+            _authActions = authActions;
         }
 
         [HttpPost]
         [Route("login")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody] AuthDto auth)
         {
-            await Authenticate(auth.Username); // аутентификация
+            var token = await _authActions.SignIn(auth.Username, auth.Password);
 
-            return Ok();
+            return Ok(token);
         }
 
-        private async Task Authenticate(string username)
+        [HttpPost]
+        [Route("sign-up")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> SignUp([FromBody] RegisterDto register)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, username),
-            };
+            var token = await _authActions.SignUp(register.Username, register.Password);
 
-            // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-            // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            return Ok(token);
         }
     }
 }

@@ -14,12 +14,12 @@
 
 		public byte[] Key { get; set; }
 
-		public string Decryption(string input)
+		public string Encryption(string input)
 		{
 			return Crypt(input, 1);
 		}
 
-		public string Encryption(string input)
+		public string Decryption(string input)
 		{
 			var output = Crypt(input, 0);
 			return output.Replace("\0", "");
