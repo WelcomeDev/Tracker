@@ -11,6 +11,7 @@ namespace SingleServiceApp.Providers.Statistics
             var dates = statistics.Select(x => x.Date).Distinct().OrderBy(x => x);
 
             statCollection.Dates = dates;
+            statCollection.Models = new List<StatisticDto>();
 
             var uniquTitles = statistics.Select(x => x.Title).Distinct();
 
@@ -37,7 +38,7 @@ namespace SingleServiceApp.Providers.Statistics
 
                 valueItem.Value = res;
 
-                statCollection.Models.Append(valueItem);
+                statCollection.Models.Add(valueItem);
             }
 
             return statCollection;

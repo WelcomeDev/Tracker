@@ -11,6 +11,6 @@ namespace SingleServiceApp.Controllers.Statistics.Dto
     {
         public IEnumerable<DateTime> Dates { get; set; }
 
-        public IEnumerable<StatisticDto> Models { get; set; }
+        public IList<StatisticDto> Models { get; set; }
     }
 }
