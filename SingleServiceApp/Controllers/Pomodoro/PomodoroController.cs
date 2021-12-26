@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using SingleServiceApp.Bll.Pomodoros;
 using SingleServiceApp.Providers.Pomodoros;
@@ -7,6 +8,7 @@ namespace SingleServiceApp.Controllers.Pomodoro
 {
     [ApiController]
     [Route("api/pomodoro")]
+    [Authorize]
     public class PomodoroController : ControllerBase
     {
         private readonly PomodoroProvider _provider;

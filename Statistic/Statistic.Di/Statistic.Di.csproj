@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Auth\Auth.Di\Auth.Di.csproj" />
     <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj" />
   </ItemGroup>
 

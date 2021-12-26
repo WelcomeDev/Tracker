@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Auth\Auth.Di\Auth.Di.csproj" />
     <ProjectReference Include="..\Statistic\Statistic.Di\Statistic.Di.csproj" />
     <ProjectReference Include="..\Statistic\Statistic.Service\Statistic.Service.csproj" />
   </ItemGroup>

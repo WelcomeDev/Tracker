@@ -1,6 +1,5 @@
-﻿using Pomodoro.Service.Controllers.Exceptions;
-
-using SingleServiceApp.Controllers.Pomodoro.Dto;
+﻿using SingleServiceApp.Controllers.Pomodoro.Dto;
+using SingleServiceApp.Controllers.Pomodoro.Exceptions;
 
 namespace SingleServiceApp.Controllers.Pomodoro.Validation
 {
@@ -13,7 +12,7 @@ namespace SingleServiceApp.Controllers.Pomodoro.Validation
             _configuration = configuration;
         }
 
-        public void Validate(CreatePomodoroDto dto)
+        public void Validate(ValidationParams dto)
         {
             int maxHour = int.Parse(_configuration["Validation:Duration:MaxRestHour"]);
             int minHour = int.Parse(_configuration["Validation:Duration:MinHour"]);

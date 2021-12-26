@@ -24,7 +24,7 @@
             //SortDirection = sortDirection;
         }
 
-        public void Deconstruct(out int pageSize, out int pageNumber, out SortDirection sortDirection)
+        public void Deconstruct(out int pageSize, out int pageNumber)
         {
             pageSize = PageSize;
             pageNumber = PageNumber;

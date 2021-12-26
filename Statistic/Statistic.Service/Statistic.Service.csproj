@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Pomodoro\Pomodoro.Service\Pomodoro.Service.csproj" />
     <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj" />
     <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Utils\WelcomeDev.Utils.csproj" />
     <ProjectReference Include="..\Statistic.Di\Statistic.Di.csproj" />

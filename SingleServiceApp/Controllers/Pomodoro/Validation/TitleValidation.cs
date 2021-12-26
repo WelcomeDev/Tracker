@@ -1,6 +1,5 @@
-﻿using Pomodoro.Service.Controllers.Exceptions;
-
-using SingleServiceApp.Controllers.Pomodoro.Dto;
+﻿using SingleServiceApp.Controllers.Pomodoro.Dto;
+using SingleServiceApp.Controllers.Pomodoro.Exceptions;
 
 namespace SingleServiceApp.Controllers.Pomodoro.Validation
 {
@@ -15,7 +14,7 @@ namespace SingleServiceApp.Controllers.Pomodoro.Validation
             _configuration = configuration;
         }
 
-        public void Validate(CreatePomodoroDto dto)
+        public void Validate(ValidationParams dto)
         {
             string title = dto.Title;
             if (string.IsNullOrWhiteSpace(title))

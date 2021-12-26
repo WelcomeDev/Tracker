@@ -1,11 +1,9 @@
 ﻿using SingleServiceApp.Bll.Pomodoros;
 
-namespace SingleServiceApp.Controllers.Pomodoro.Dto
+namespace SingleServiceApp.Controllers.Pomodoro.Validation
 {
-    public class PomodoroDto
+    public class ValidationParams
     {
-        public Guid Id { get; set; }
-
         public string Title { get; set; }
 
         public Duration RestDuration { get; set; }

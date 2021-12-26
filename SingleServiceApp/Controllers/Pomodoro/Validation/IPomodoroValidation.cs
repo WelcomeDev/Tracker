@@ -5,6 +5,6 @@ namespace SingleServiceApp.Controllers.Pomodoro.Validation
 {
     public interface IPomodoroValidation
     {
-        void Validate(CreatePomodoroDto dto);
+        void Validate(ValidationParams dto);
     }
 }

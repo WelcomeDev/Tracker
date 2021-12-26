@@ -5,14 +5,9 @@ using SingleServiceApp.Bll.Auth;
 
 namespace SingleServiceApp.Providers.Auth
 {
-    internal class UsersDbContext : DbContext
+    public class AuthDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-
-        public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options)
-        {
-
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

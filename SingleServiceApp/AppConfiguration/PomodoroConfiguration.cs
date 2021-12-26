@@ -1,4 +1,8 @@
-﻿namespace SingleServiceApp.AppConfiguration
+﻿using SingleServiceApp.Controllers.Pomodoro.Validation;
+using SingleServiceApp.Di.Pomodoros;
+using SingleServiceApp.Providers.Pomodoros;
+
+namespace SingleServiceApp.AppConfiguration
 {
     public class PomodoroConfiguration : IWebAppConfig
     {
@@ -17,16 +21,8 @@
 
         private static void RegisterProviders(WebApplicationBuilder builder)
         {
-            IConfiguration configuration = builder.Configuration;
-
-            //builder.Services.AddDbContext<PomodoroDbContext>(
-            //    options => options.UseSqlServer(configuration.GetConnectionString("PomodoroDb"))
-            //    );
-            // TODO: resolve
-            //builder.Services.AddSingleton<IPomodoroAsyncProvider, PomodoroSqlProvider>(
-            //    options => new PomodoroSqlProvider(configuration.GetConnectionString("PomodoroDb"))
-            //    );
             builder.Services.AddSingleton<PomodoroProvider>();
+            builder.Services.AddSingleton<IPomodoroAsyncProvider, PomodoroSqlProvider>();
         }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Configuration;
-
-using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
 using System.Security.Claims;
 using SingleServiceApp.Controllers.Auth.Dto;
 
@@ -27,8 +22,6 @@ namespace SingleServiceApp.Controllers.Auth
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromBody] AuthDto auth)
         {
-            string token = _configuration["JWT:Token"];
-
             await Authenticate(auth.Username); // аутентификация
 
             return Ok();

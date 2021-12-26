@@ -1,4 +1,7 @@
 ﻿
+using AutoMapper;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using SingleServiceApp.Controllers.Pomodoro.Dto;
@@ -14,30 +17,36 @@ namespace SingleServiceApp.Controllers.Pomodoro
 {
     [ApiController]
     [Route("api/pomodoro")]
+    [Authorize]
     public class PomodoroCrudController : ControllerBase
     {
         private readonly IPomodoroAsyncProvider _provider;
         private readonly IEnumerable<IPomodoroValidation> _validations;
+        private readonly IMapper _mapper;
 
-        public PomodoroCrudController(IPomodoroAsyncProvider provider, IEnumerable<IPomodoroValidation> validations)
+        public PomodoroCrudController(IPomodoroAsyncProvider provider, IEnumerable<IPomodoroValidation> validations, IMapper mapper)
         {
             _provider = provider;
             _validations = validations;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageableParams pageable)
         {
-            var value = await _provider.GetAll(pageable);
+            var value = await _provider.GetAll();
 
-            return Ok(value);
+            return Ok(new PageableList<PomodoroDto>(
+                value.Select(x => _mapper.Map<PomodoroDto>(x)), 
+                pageable));
         }
 
         [HttpGet]
         [Route("{id:guid}")]
-        public async Task<IPomodoroData> GetByID([FromRoute] Guid id)
+        public async Task<IActionResult> GetByID([FromRoute] Guid id)
         {
-            return await _provider.GetById(id);
+            var pomodoro = await _provider.GetById(id);
+            return Ok(_mapper.Map<PomodoroDto>(pomodoro));
         }
 
         [HttpPost]
@@ -52,19 +61,23 @@ namespace SingleServiceApp.Controllers.Pomodoro
         [ProducesResponseType(Status201Created)]
         public async Task<IActionResult> Create([FromBody] CreatePomodoroDto pomodoroData)
         {
-            _validations.ForEach(x => x.Validate(pomodoroData));
+            var validationParams = _mapper.Map<ValidationParams>(pomodoroData);
+            _validations.ForEach(x => x.Validate(validationParams));
             var pomodoro = await _provider.Create(pomodoroData);
 
-            return Ok(pomodoro);
+            return Ok(_mapper.Map<PomodoroDto>(pomodoro));
         }
 
         [HttpPost]
         [Route("{id:guid}/update")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] CreatePomodoroDto pomodoroData)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdatePomodoroDto pomodoroData)
         {
-            _validations.ForEach(x => x.Validate(pomodoroData));
+            var validationParams = _mapper.Map<ValidationParams>(pomodoroData);
+            _validations.ForEach(x => x.Validate(validationParams));
+
             var pomodoro = await _provider.Update(id, pomodoroData);
-            return Ok(pomodoro);
+
+            return Ok(_mapper.Map<PomodoroDto>(pomodoro));
         }
     }
 }

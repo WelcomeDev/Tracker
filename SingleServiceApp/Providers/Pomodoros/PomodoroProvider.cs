@@ -8,7 +8,7 @@ namespace SingleServiceApp.Providers.Pomodoros
     {
         private readonly IList<Pomodoro> _pomodors = new List<Pomodoro>();
         private readonly IPomodoroAsyncProvider _provider;
-
+       
         public PomodoroProvider(IPomodoroAsyncProvider provider)
         {
             _provider = provider;

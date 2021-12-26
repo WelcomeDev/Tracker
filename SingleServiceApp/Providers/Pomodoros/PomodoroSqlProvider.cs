@@ -1,10 +1,12 @@
 ﻿
+using AutoMapper;
+
 using Microsoft.EntityFrameworkCore;
 
-using SingleServiceApp.Bll.Auth;
 using SingleServiceApp.Bll.Pomodoros;
 using SingleServiceApp.Controllers.Pomodoro.Dto;
 using SingleServiceApp.Di.Pomodoros;
+using SingleServiceApp.Providers.Auth;
 
 using WelcomeDev.Provider.Di.Pageable;
 
@@ -13,13 +15,12 @@ namespace SingleServiceApp.Providers.Pomodoros
     public class PomodoroSqlProvider : IPomodoroAsyncProvider
     {
         private readonly PomodoroDbContext _context;
-        //todo: get curent user!
-        //todo: auth!
-        private readonly UserEntry _user;
+        private readonly AuthContext _authContext;
 
-        public PomodoroSqlProvider()
+        public PomodoroSqlProvider(AuthContext authContext)
         {
             _context = new PomodoroDbContext();
+            _authContext = authContext;
         }
 
         private async Task<Pomodoro> GetInstance(Guid id)
@@ -30,7 +31,12 @@ namespace SingleServiceApp.Providers.Pomodoros
 
         public async Task<Pomodoro> Create(CreatePomodoroDto data)
         {
-            var pomodoro = await _context.AddAsync(new Pomodoro(data, _user));
+            var pomodoro = await _context.AddAsync(
+                new Pomodoro(data,
+                _authContext.GetUser()
+                ));
+
+            await _context.SaveChangesAsync();
             return pomodoro.Entity;
         }
 
@@ -44,6 +50,7 @@ namespace SingleServiceApp.Providers.Pomodoros
         public async Task<IEnumerable<Pomodoro>> GetAll()
         {
             return await _context.Pomodoros.AsNoTracking()
+                                           .Where(p => p.User.Id == _authContext.GetUser().Id)
                                            .ToListAsync();
         }
 

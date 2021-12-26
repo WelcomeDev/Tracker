@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using SingleServiceApp.Controllers.Statistics.Dto;
@@ -9,6 +10,7 @@ namespace SingleServiceApp.Controllers.Statistics
 {
     [ApiController]
     [Route("api/statistic")]
+    [Authorize]
     public class StatisticCrudController : ControllerBase
     {
         private readonly IStatisticAsyncProvider _provider;

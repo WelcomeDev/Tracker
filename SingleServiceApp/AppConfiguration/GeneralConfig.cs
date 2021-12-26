@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+
+using Microsoft.AspNetCore.Mvc;
 
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+
+using SingleServiceApp.Bll.Pomodoros;
+using SingleServiceApp.Controllers.Pomodoro.Dto;
+using SingleServiceApp.Controllers.Pomodoro.Validation;
+using SingleServiceApp.Di.Auth;
+using SingleServiceApp.Providers.Auth;
 
 namespace SingleServiceApp.AppConfiguration
 {
@@ -13,8 +21,10 @@ namespace SingleServiceApp.AppConfiguration
                .AddNewtonsoftJson(
                options => ConfigureNewtonsoftJson(options)
                );
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddAutoMapper(config => ConfigureMapper(config));
 
             builder.Services.AddCors(options =>
             {
@@ -23,6 +33,21 @@ namespace SingleServiceApp.AppConfiguration
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
+
+            ConfigureAuth(builder);
+        }
+
+        private static void ConfigureAuth(WebApplicationBuilder builder)
+        {
+            builder.Services.AddSingleton<AuthContext>();
+            builder.Services.AddSingleton<IAuthAsyncProvider, AuthSqlProvider>();
+        }
+
+        private static void ConfigureMapper(IMapperConfigurationExpression config)
+        {
+            config.CreateMap<CreatePomodoroDto, ValidationParams>();
+            config.CreateMap<UpdatePomodoroDto, ValidationParams>();
+            config.CreateMap<Pomodoro, PomodoroDto>();
         }
 
         private static void ConfigureNewtonsoftJson(MvcNewtonsoftJsonOptions options)
@@ -32,8 +57,6 @@ namespace SingleServiceApp.AppConfiguration
             {
                 NamingStrategy = new CamelCaseNamingStrategy(),
             };
-            // TODO: resolve
-            //options.SerializerSettings.Converters.Add(new JsonTypeMapper<IDuration, DurationDto>());
         }
     }
 }
