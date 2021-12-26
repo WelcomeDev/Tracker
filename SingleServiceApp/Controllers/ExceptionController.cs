@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 using SingleServiceApp.Controllers.Auth.Exceptions;
+using SingleServiceApp.Controllers.Authorization;
 using SingleServiceApp.Controllers.Pomodoro.Exceptions;
 
 namespace SingleServiceApp.Controllers
@@ -18,6 +19,7 @@ namespace SingleServiceApp.Controllers
         {
             var exception = HttpContext.Features.Get<IExceptionHandlerFeature>().Error;
             int statusCode = (int)GetStatusCode(exception);
+            HttpContext.Response.StatusCode = statusCode;
 
             return new ErrorDto(statusCode, exception.Message);
         }
@@ -28,7 +30,8 @@ namespace SingleServiceApp.Controllers
                 PomodoroNotFoundException => HttpStatusCode.BadRequest,
                 PomodoroValidationException => HttpStatusCode.BadRequest,
                 InvalidLoginOrPasswordException => HttpStatusCode.BadRequest,
-                _ => HttpStatusCode.BadRequest,
+                AuthorizationException => HttpStatusCode.Unauthorized,
+                _ => HttpStatusCode.InternalServerError,
             };
     }
 }

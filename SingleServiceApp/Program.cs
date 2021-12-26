@@ -15,9 +15,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors();
-app.UseRouting();
 
 app.UseExceptionHandler("/error");
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -7,20 +7,21 @@ export class TokenClient {
 
     constructor() {
         this.client = axios.create(({ baseURL: globalConfig.baseURL }));
-        this.client.interceptors.request.use((config) => {
-            const token = TokenStorage.getToken();
-            config.headers = {
-                'Authorization': `Bearer ${JSON.stringify(token)}`,
-                'ContentType': 'application/json',
-            };
-
-            return config;
-        });
     }
 
     private static tokenClient: TokenClient = new TokenClient();
 
     public static getInstance() {
+        this.tokenClient.client.interceptors.request.use((config) => {
+            const token = TokenStorage.getToken();
+            config.headers = {
+                'Authorization': `Bearer ${token?.accessToken ?? ''}`,
+                'ContentType': 'application/json',
+            };
+
+            return config;
+        });
+
         return this.tokenClient.client;
     }
 }

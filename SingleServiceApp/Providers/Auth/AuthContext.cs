@@ -24,12 +24,14 @@ namespace SingleServiceApp.Providers.Auth
             }
             catch (Exception)
             {
-                throw new AuthorizationException();
+                accessor.HttpContext.Response.Redirect("/auth");
             }
         }
 
         public UserEntry GetCurrentUser()
         {
+            if(_username is null) throw new AuthorizationException();
+
             var user = _provider.GetUserByGuid(_username).Result;
             return new UserEntry { Id = user.Id, Name = user.Login };
         }
