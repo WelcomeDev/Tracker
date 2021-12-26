@@ -33,7 +33,7 @@ namespace SingleServiceApp.Providers.Pomodoros
         {
             var pomodoro = await _context.AddAsync(
                 new Pomodoro(data,
-                _authContext.GetUser()
+                _authContext.GetCurrentUser()
                 ));
 
             await _context.SaveChangesAsync();
@@ -50,7 +50,7 @@ namespace SingleServiceApp.Providers.Pomodoros
         public async Task<IEnumerable<Pomodoro>> GetAll()
         {
             return await _context.Pomodoros.AsNoTracking()
-                                           .Where(p => p.User.Id == _authContext.GetUser().Id)
+                                           .Where(p => p.User.Id == _authContext.GetCurrentUser().Id)
                                            .ToListAsync();
         }
 

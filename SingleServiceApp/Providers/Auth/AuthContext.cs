@@ -9,28 +9,17 @@ namespace SingleServiceApp.Providers.Auth
     {
         private readonly IAuthAsyncProvider _provider;
         private readonly string _username;
-        private User _user;
 
-        public AuthContext(IHttpContextAccessor httpContextAccessor, IAuthAsyncProvider provider)
+        public AuthContext(IAuthAsyncProvider provider, ClaimsPrincipal claimsPrincipal)
         {
-            _username = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             _provider = provider;
+            _username = claimsPrincipal.Identity.Name;
         }
 
-        public UserEntry GetUser()
+        public UserEntry GetCurrentUser()
         {
-            if (_user is null)
-            {
-                var user = _provider.GetUser(_username).Result;
-                _user = user;
-            }
-
-            return new UserEntry
-            {
-                Id = _user.Id,
-                Name = _user.Name,
-            };
+            var user = _provider.GetUser(_username).Result;
+            return new UserEntry { Id = user.Id, Name = user.Name };
         }
     }
 }
