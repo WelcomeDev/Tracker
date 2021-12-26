@@ -1,6 +1,6 @@
 import { TokenClient } from '../../Auth/actions/TokenClient';
 import { globalConfig } from '../../../config/globalConfig';
-import { StatisticCollectionDto } from '../interfaces/statisticCollectionDto';
+import { StatisticCollectionDto } from '../model/statisticCollectionDto';
 import { CreateStatisticsParams } from '../interfaces/createStatisticsParams';
 import { StatisticParams } from '../interfaces/statisticParams';
 

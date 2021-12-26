@@ -18,7 +18,7 @@ export class TokenClient {
                 'Authorization': `Bearer ${token?.accessToken ?? ''}`,
                 'ContentType': 'application/json',
             };
-
+            console.log(config);
             return config;
         });
 

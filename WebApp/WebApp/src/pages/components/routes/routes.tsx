@@ -4,6 +4,7 @@ import { AuthPage } from '../../auth/authPage';
 import { PomodoroPage } from '../../pomodoro/pomodoroPage';
 import { StatisticPage } from '../../statistic/statisticPage';
 import { NotFound } from './notFound/notFound';
+import { AppContentPage } from '../appContentPage/appContentPage';
 
 const { pomodoro, statistic, auth } = appRoutes;
 
@@ -15,13 +16,13 @@ export const routes = (isLoggedIn: boolean): RouteObject[] => [
     {
         path: pomodoro,
         element: isLoggedIn
-            ? <PomodoroPage/>
+            ? <AppContentPage page={<PomodoroPage/>}/>
             : <Navigate to={auth}/>,
     },
     {
         path: statistic,
         element: isLoggedIn
-            ? <StatisticPage/>
+            ? <AppContentPage page={<StatisticPage/>}/>
             : <Navigate to={auth}/>,
     },
     {

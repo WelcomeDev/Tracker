@@ -1,21 +1,19 @@
 import './main.scss';
-import { useAuth } from '../modules/Auth/hooks/useAuth';
+import { AuthProvider, useAuth } from '../modules/Auth/hooks/useAuth';
 import { Loader } from './components/loader/loader';
-// import { AppRoutes } from './components/routes/appRoutes';
 import { ErrorProvider } from '../modules/Main/hooks/context/errorContext';
 import { Error } from './components/error/error';
-import { Outlet, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { routes } from './components/routes/routes';
 import { useHistory } from '../components/hooks/useHistory';
 import { useEffect } from 'react';
-import { Header } from './components/header/header';
-import classNames from 'classnames';
 import { appRoutes } from '../config/appRoutes';
 
 const { statistic } = appRoutes;
 
 function AppRoutes() {
-    const { isLoading } = useAuth();
+    const { isLoading, user } = useAuth();
+
     const { location, navigate } = useHistory();
 
     useEffect(
@@ -25,33 +23,30 @@ function AppRoutes() {
         },
         []);
 
-    const applicationRoutes = useRoutes(routes(isLoading));
+    const applicationRoutes = useRoutes(routes(!!user));
 
     return (
         <>
-            <Header/>
-            <div className={classNames('page-content')}>
-                {/*<Outlet/>*/}
-                {applicationRoutes}
-            </div>
+            {
+                isLoading ?
+                    <Loader/>
+                    :
+                    applicationRoutes
+            }
         </>
     );
 }
 
 export function Main() {
-    const { isLoading } = useAuth();
-    useRoutes(routes(isLoading));
-
     return (
         <div className={'app-wrapper'}>
             <ErrorProvider>
-                {
-                    isLoading ?
-                        <Loader/>
-                        :
+                <AuthProvider>
+                    <BrowserRouter>
                         <AppRoutes/>
-                }
-                <Error/>
+                    </BrowserRouter>
+                    <Error/>
+                </AuthProvider>
             </ErrorProvider>
         </div>
     );

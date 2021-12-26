@@ -20,7 +20,7 @@ export function AuthPage() {
                 <p
                     className={'auth-form__title'}
                 >
-                    Войти в жопу
+                    Войти
                 </p>
                 <Username
                     placeholder={'Login'}

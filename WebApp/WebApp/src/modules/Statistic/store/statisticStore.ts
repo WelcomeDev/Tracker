@@ -1,5 +1,5 @@
 import { action, makeAutoObservable } from 'mobx';
-import { StatisticCollectionDto } from '../interfaces/statisticCollectionDto';
+import { StatisticCollectionDto } from '../model/statisticCollectionDto';
 import { getStatistic } from '../action/statisticsActions';
 import { StatisticParams } from '../interfaces/statisticParams';
 import { Tag } from '../model/tag';
