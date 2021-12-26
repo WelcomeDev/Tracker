@@ -1,18 +1,22 @@
 import './filters.scss';
 import { Select } from '../../../components/input/select/select';
-import { tagsMockData } from '../MOCK/statisticTagsMock';
 import { BaseSelectItem } from '../../../components/input/select/selectItem/baseSelectItem';
 import { EditableSelectItem } from '../../../components/input/select/selectItem/editable/editableSelectItem';
 import { MultipleSelectItem } from '../../../components/input/select/selectItem/multy/multipleSelectItem';
-import { statisticSubjectsMock } from '../MOCK/statisticSubjectsMock';
+import { observer } from 'mobx-react';
+import { useStatisticStore } from '../../../modules/Statistic/hooks/context/statisticProvider';
+import { Loader } from '../../components/loader/loader';
 
-export function Filters() {
+export const Filters = observer(() => {
+
+    const { tags, tagTitles } = useStatisticStore();
+
     return (
         <div className={'filters-outer-wrapper'}>
             <div className={'filters-inner-wrapper'}>
                 <Select>
                     {
-                        tagsMockData.map(tag => (
+                        tags.map(tag => (
                             <BaseSelectItem
                                 SelectItem={EditableSelectItem}
                                 props={{ ...tag }}/>
@@ -21,11 +25,13 @@ export function Filters() {
                 </Select>
                 <Select>
                     {
-                        statisticSubjectsMock.map(subject => (
-                            <BaseSelectItem
-                                SelectItem={MultipleSelectItem}
-                                props={{ ...subject, id: subject.title }}/>
-                        ))
+                        tagTitles
+                            ? tagTitles.map(subject => (
+                                <BaseSelectItem
+                                    SelectItem={MultipleSelectItem}
+                                    props={{ ...subject }}/>
+                            ))
+                            : <Loader/>
                     }
                 </Select>
             </div>
@@ -34,4 +40,4 @@ export function Filters() {
             </div>
         </div>
     );
-}
+});

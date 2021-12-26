@@ -10,7 +10,7 @@ export interface SelectItemProps /*extends UseFormHookInputProps*/
      * Calls on edit by id
      */
     onEditCallback?: Action<string>;
-    title: string;
+    name: string;
     id: string;
     className?: string;
 }
@@ -26,7 +26,7 @@ export function EditableSelectItem(props: SelectItemProps) {
             <p
                 className={'editable-select-item__text'}
             >
-                {props.title}
+                {props.name}
             </p>
             {
                 // props.onEditCallback &&

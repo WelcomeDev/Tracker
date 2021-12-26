@@ -4,6 +4,8 @@ import { getStatistic } from '../action/statisticsActions';
 import { StatisticParams } from '../interfaces/statisticParams';
 import { Tag } from '../model/tag';
 import { Title } from '../model/title';
+import { getTags } from '../action/tagsActions';
+import * as titleActions from '../action/titleActions';
 
 export class StatisticStore {
 
@@ -25,11 +27,11 @@ export class StatisticStore {
 
     @action
     getTitles = async (tagName: string) => {
-
+        this.tagTitles = await titleActions.getTitles(tagName);
     };
 
     @action
     getTags = async () => {
-
+        this.tags = await getTags();
     };
 }

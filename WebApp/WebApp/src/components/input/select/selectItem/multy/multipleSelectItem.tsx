@@ -3,7 +3,7 @@ import './multipleSelectItem.scss';
 
 export interface MultipleSelectProps /*extends UseFormHookInputProps*/
 {
-    title: string;
+    name: string;
     id: string;
     className?: string;
 }
@@ -24,7 +24,7 @@ export function MultipleSelectItem(props: MultipleSelectProps) {
                 htmlFor={id}
                 className={'multiple-select-item__label'}
             >
-                {props.title}
+                {props.name}
             </label>
         </div>
     );
