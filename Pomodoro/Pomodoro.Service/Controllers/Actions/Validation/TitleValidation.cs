@@ -1,7 +1,7 @@
 ﻿using Pomodoro.Service.Controllers.Dto;
 using Pomodoro.Service.Controllers.Exceptions;
 
-namespace Pomodoro.Service.Controllers.Actions
+namespace Pomodoro.Service.Controllers.Actions.Validation
 {
     public class TitleValidation : IPomodoroValidation
     {
@@ -16,7 +16,7 @@ namespace Pomodoro.Service.Controllers.Actions
 
         public void Validate(PomodoroCreationDto dto)
         {
-            string title = dto.Title; 
+            string title = dto.Title;
             if (string.IsNullOrWhiteSpace(title))
                 throw new PomodoroValidationException(EmptiTitleValidationMessage);
 

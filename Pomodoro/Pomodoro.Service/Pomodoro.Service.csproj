@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Auth\Auth.Di\Auth.Di.csproj" />
     <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Provider.Di\WelcomeDev.Provider.Di.csproj" />
     <ProjectReference Include="..\..\WelcomeDev\WelcomeDev.Utils\WelcomeDev.Utils.csproj" />
     <ProjectReference Include="..\Pomodoro.Bll\Pomodoro.Bll.Provider\Pomodoro.Bll.Provider.MySql\Pomodoro.Bll.Provider.MySql.csproj" />

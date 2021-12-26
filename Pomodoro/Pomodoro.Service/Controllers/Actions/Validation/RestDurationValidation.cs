@@ -1,7 +1,7 @@
 ﻿using Pomodoro.Service.Controllers.Dto;
 using Pomodoro.Service.Controllers.Exceptions;
 
-namespace Pomodoro.Service.Controllers.Actions
+namespace Pomodoro.Service.Controllers.Actions.Validation
 {
     public class RestDurationValidation : IPomodoroValidation
     {

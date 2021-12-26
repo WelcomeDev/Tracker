@@ -7,11 +7,11 @@ using Newtonsoft.Json.Converters;
 using Pomodoro.Bll.Provider.MySql;
 using Pomodoro.Di.Duration;
 using Pomodoro.Di.Provider;
-using Pomodoro.Service.Controllers.Actions;
 using Pomodoro.Service.Controllers.Dto;
 using Pomodoro.Service.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Pomodoro.Service.Controllers.Actions.Validation;
 
 namespace Pomodoro.Service
 {

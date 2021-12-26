@@ -1,7 +1,7 @@
 ﻿namespace WelcomeDev.Provider.Di.Pageable
 {
     public class PageableList<T>
-        where T : class, IComparable<T>
+        where T : class
     {
         public int TotalCount { get; }
 

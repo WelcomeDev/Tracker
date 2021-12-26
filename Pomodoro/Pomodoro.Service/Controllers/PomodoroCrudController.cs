@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Pomodoro.Di;
 using Pomodoro.Di.Provider;
-using Pomodoro.Service.Controllers.Actions;
+using Pomodoro.Service.Controllers.Actions.Validation;
 using Pomodoro.Service.Controllers.Dto;
 
 using WelcomeDev.Provider.Di.Pageable;
