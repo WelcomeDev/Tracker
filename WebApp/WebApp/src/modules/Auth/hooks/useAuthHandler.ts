@@ -3,10 +3,11 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { AuthParams } from '../interfaces/authParams';
 import { login } from '../actions/authActions';
 import { passwordValidator, usernameValidator } from '../model/validators';
+import { useAuth } from './useAuth';
 
 export function useAuthHandler() {
     const { setError } = useError();
-
+    const {} = useAuth();
     const { handleSubmit, register } = useForm<AuthParams>({
         mode: 'onSubmit',
         reValidateMode: 'onChange',
@@ -14,8 +15,8 @@ export function useAuthHandler() {
     });
 
     function displayError(errors: FieldErrors<AuthParams>) {
-        if (errors?.login?.message) {
-            setError(errors?.login?.message);
+        if (errors?.username?.message) {
+            setError(errors?.username?.message);
             return;
         }
 
@@ -40,7 +41,7 @@ export function useAuthHandler() {
     }
 
     return {
-        loginRegister: register('login', usernameValidator),
+        loginRegister: register('username', usernameValidator),
         passwordRegister: register('password', passwordValidator),
         onSubmit,
     };
