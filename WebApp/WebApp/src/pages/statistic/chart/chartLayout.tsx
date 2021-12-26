@@ -1,20 +1,24 @@
-import { createRef } from 'react';
+import { createRef, useMemo } from 'react';
 import { Chart } from 'chart.js';
-import { Statistic } from '../../../modules/Statistic/model/statistic';
+import moment from 'moment';
+import { observer } from 'mobx-react';
+import { StatisticStore } from '../../../modules/Statistic/store/statisticStore';
+import { Loader } from '../../components/loader/loader';
 
-// import Chart from 'chartjs';
+export const ChartLayout = observer(() => {
 
-export function ChartLayout() {
-
+    const store = useMemo(() => new StatisticStore(), []);
     const canvas = createRef<HTMLCanvasElement>();
-    const inst = canvas.current as HTMLCanvasElement;
-    const stat: Statistic[] = [];
-    const ctx = new CanvasRenderingContext2D();
-    const myChart = new Chart(ctx, {
+
+    if (!store.items)
+        return <Loader/>;
+
+    const myChart = new Chart(canvas.current as HTMLCanvasElement, {
         type: 'bar',
         data: {
-            labels: stat.map(x => x.date.format('DD.MM')),
-            datasets: stat.map(x => ({ label: x.subject.title, backgroundColor: x.subject.color, data: [x.value] })),
+            labels: store.items.dates.map(x => moment(x)
+                .format('DD\nMM')),
+            datasets: store.items.values.map(d => ({ label: d.title, backgroundColor: d.color, data: d.values })),
         },
         options: {
             responsive: true,
@@ -35,4 +39,4 @@ export function ChartLayout() {
             id={'statisticChart'}>
         </canvas>
     );
-}
+});

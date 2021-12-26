@@ -1,26 +1,27 @@
-import axios, { AxiosInstance } from 'axios'
-import { globalConfig } from "../../../config/globalConfig";
+import axios, { AxiosInstance } from 'axios';
+import { globalConfig } from '../../../config/globalConfig';
+import { TokenStorage } from './TokenStorage';
 
-const client = axios.create(({ baseURL: globalConfig.baseURL }));
+export class TokenClient {
+    private client: AxiosInstance;
 
-client.interceptors.request.use(config => {
-    //todo: complete auth actions
-});
+    constructor() {
+        this.client = axios.create(({ baseURL: globalConfig.baseURL }));
+        this.client.interceptors.request.use((config) => {
+            const token = TokenStorage.getToken();
+            config.headers = {
+                'Authorization': `Bearer ${JSON.stringify(token)}`,
+                'ContentType': 'application/json',
+            };
 
-// client.interceptors.response.use(
-//     response => Promise.resolve(response),
-//     error => onTryRefresh(error));
+            return config;
+        });
+    }
 
-function onTryRefresh(error: any): Promise<any> {
-    if (!error.response)
-        return Promise.reject(error);
+    private static tokenClient: TokenClient = new TokenClient();
 
-    const errorObj = error.response.data;
-    //todo: complete refresh actions
-    return Promise.reject(errorObj);
-}
-
-export function getClient(): AxiosInstance {
-    return client;
+    public static getInstance() {
+        return this.tokenClient.client;
+    }
 }
 
