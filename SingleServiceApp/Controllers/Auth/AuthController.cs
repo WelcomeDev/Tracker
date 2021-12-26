@@ -20,6 +20,9 @@ namespace SingleServiceApp.Controllers.Auth
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] AuthDto auth)
         {
+            if (auth == null)
+                return BadRequest();
+
             var token = await _authActions.SignIn(auth.Username, auth.Password);
 
             return Ok(token);
@@ -31,7 +34,7 @@ namespace SingleServiceApp.Controllers.Auth
         public async Task<IActionResult> SignUp([FromBody] RegisterDto register)
         {
             var token = await _authActions.SignUp(register.Username, register.Password);
-
+            
             return Ok(token);
         }
     }

@@ -7,5 +7,7 @@ namespace SingleServiceApp.Di.Auth
         Task<User> GetUser(string username);
 
         Task<User> CreateUser(string username, string password);
+
+        Task<User> GetUserByGuid(string guid);
     }
 }

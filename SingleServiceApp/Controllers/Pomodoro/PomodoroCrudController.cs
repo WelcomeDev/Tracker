@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using SingleServiceApp.Controllers.Authorization;
 using SingleServiceApp.Controllers.Pomodoro.Dto;
 using SingleServiceApp.Controllers.Pomodoro.Validation;
 using SingleServiceApp.Di.Pomodoros;
@@ -17,7 +18,7 @@ namespace SingleServiceApp.Controllers.Pomodoro
 {
     [ApiController]
     [Route("api/pomodoro")]
-    [Authorize]
+    [Authorized]
     public class PomodoroCrudController : ControllerBase
     {
         private readonly IPomodoroAsyncProvider _provider;

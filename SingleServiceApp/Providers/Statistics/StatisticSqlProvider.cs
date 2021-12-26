@@ -10,9 +10,9 @@ namespace SingleServiceApp.Providers.Statistics
     internal class StatisticSqlProvider : IStatisticAsyncProvider
     {
         private readonly StatisticDbContext _context;
-        private readonly AuthProvider _authContext;
+        private readonly AuthContext _authContext;
 
-        public StatisticSqlProvider(AuthProvider authContext)
+        public StatisticSqlProvider(AuthContext authContext)
         {
             _context = new StatisticDbContext();
             _authContext = authContext;

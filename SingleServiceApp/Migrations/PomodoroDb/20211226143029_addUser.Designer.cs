@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SingleServiceApp.Providers.Pomodoros;
 
@@ -11,9 +12,10 @@ using SingleServiceApp.Providers.Pomodoros;
 namespace SingleServiceApp.Migrations.PomodoroDb
 {
     [DbContext(typeof(PomodoroDbContext))]
-    partial class PomodoroDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211226143029_addUser")]
+    partial class addUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

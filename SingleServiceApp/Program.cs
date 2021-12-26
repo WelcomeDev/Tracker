@@ -13,10 +13,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
-app.UseCors();
 app.UseHttpsRedirection();
+app.UseCors();
+app.UseRouting();
 
+app.UseExceptionHandler("/error");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

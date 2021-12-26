@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using SingleServiceApp.Controllers.Authorization;
 using SingleServiceApp.Controllers.Statistics.Dto;
 using SingleServiceApp.Di.Statistics;
 
@@ -10,7 +11,7 @@ namespace SingleServiceApp.Controllers.Statistics
 {
     [ApiController]
     [Route("api/statistic")]
-    [Authorize]
+    [Authorized]
     public class StatisticCrudController : ControllerBase
     {
         private readonly IStatisticAsyncProvider _provider;

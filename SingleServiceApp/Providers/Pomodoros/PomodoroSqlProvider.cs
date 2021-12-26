@@ -15,9 +15,9 @@ namespace SingleServiceApp.Providers.Pomodoros
     public class PomodoroSqlProvider : IPomodoroAsyncProvider
     {
         private readonly PomodoroDbContext _context;
-        private readonly AuthProvider _authContext;
+        private readonly AuthContext _authContext;
 
-        public PomodoroSqlProvider(AuthProvider authContext)
+        public PomodoroSqlProvider(AuthContext authContext)
         {
             _context = new PomodoroDbContext();
             _authContext = authContext;

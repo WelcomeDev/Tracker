@@ -27,6 +27,8 @@ namespace SingleServiceApp.Providers.Pomodoros
                 workDuration.Property(x => x.Minutes).HasColumnName("WorkMinutes");
             });
 
+            modelBuilder.Entity<Pomodoro>().OwnsOne(x => x.User);
+
             base.OnModelCreating(modelBuilder);
         }
     }
