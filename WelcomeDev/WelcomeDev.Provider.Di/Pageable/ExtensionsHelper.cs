@@ -9,11 +9,6 @@
             items = items.Skip((pageNumber - 1) * pageSize)
                          .Take(pageSize);
 
-            items = sortDirection == SortDirection.ASC ?
-                items.OrderBy(x => x)
-                :
-                items.OrderByDescending(x => x);
-
             return items;
         }
     }

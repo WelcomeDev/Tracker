@@ -6,13 +6,13 @@
 
         public const int DefaultPageNumber = 1;
 
-        public const SortDirection DefaultSortDirection = SortDirection.ASC;
+        //public const SortDirection DefaultSortDirection = SortDirection.ASC;
 
         public int PageSize { get; set; } = DefaultPageSize;
 
         public int PageNumber { get; set; } = DefaultPageNumber;
 
-        public SortDirection SortDirection { get; set; } = DefaultSortDirection;
+        //public SortDirection SortDirection { get; set; } = DefaultSortDirection;
 
         public PageableParams()
         { }
@@ -21,14 +21,14 @@
         {
             PageSize = pageSize;
             PageNumber = pageNumber;
-            SortDirection = sortDirection;
+            //SortDirection = sortDirection;
         }
 
         public void Deconstruct(out int pageSize, out int pageNumber, out SortDirection sortDirection)
         {
             pageSize = PageSize;
             pageNumber = PageNumber;
-            sortDirection = SortDirection;
+            //sortDirection = SortDirection;
         }
     }
 }

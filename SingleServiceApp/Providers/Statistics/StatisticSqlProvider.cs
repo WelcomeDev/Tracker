@@ -35,5 +35,10 @@ namespace SingleServiceApp.Providers.Statistics
 
             return StatisticMapper.StatisticMap(statFromTo);
         }
+
+        public async Task<IEnumerable<Tag>> GetAllTags()
+        {
+            return await _context.Tags.AsNoTracking().ToListAsync();
+        }
     }
 }

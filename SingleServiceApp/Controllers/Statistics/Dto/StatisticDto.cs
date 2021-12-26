@@ -6,12 +6,14 @@ namespace SingleServiceApp.Controllers.Statistics.Dto
     {
         public StatisticDto(Statistic statistic)
         {
-            Title = statistic.Title;
+            var title = statistic.Title;
+
+            TitleId = title.Id;
             Value = statistic.Value;
-            Color = $"#{Title.ColorSql.Color.R:X2}{Title.ColorSql.Color.G:X2}{Title.ColorSql.B:X2}";
+            Color = $"#{title.ColorSql.Color.R:X2}{title.ColorSql.Color.G:X2}{title.ColorSql.Color.B:X2}";
         }
 
-        public Title Title { get; set; }
+        public Guid TitleId { get; set; }
         public double Value { get; set; }
         public string Color { get; set; }
     }

@@ -13,7 +13,7 @@ namespace SingleServiceApp.Controllers.Pomodoro.Validation
             _configuration = configuration;
         }
 
-        public void Validate(PomodoroCreationDto dto)
+        public void Validate(CreatePomodoroDto dto)
         {
             int maxHour = int.Parse(_configuration["Validation:Duration:MaxWorkHour"]);
             int minHour = int.Parse(_configuration["Validation:Duration:MinHour"]);

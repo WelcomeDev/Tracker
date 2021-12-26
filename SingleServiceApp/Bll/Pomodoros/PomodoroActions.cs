@@ -1,9 +1,13 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace SingleServiceApp.Bll.Pomodoros
 {
     public partial class Pomodoro
     {
+        [NotMapped]
+        public bool IsRunning { get; private set; }
+
         private DateTime? _start;
 
         public void Cancel()

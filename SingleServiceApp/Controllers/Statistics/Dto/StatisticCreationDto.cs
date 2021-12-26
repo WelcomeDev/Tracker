@@ -1,7 +1,4 @@
-﻿using Statistic.Di.Tag;
-using Statistic.Di.Tittle;
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SingleServiceApp.Controllers.Statistics.Dto
 {

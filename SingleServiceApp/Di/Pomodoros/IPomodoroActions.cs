@@ -1,7 +1,6 @@
-﻿
-using SingleServiceApp.Di.Pomodoro.Duration;
+﻿using SingleServiceApp.Di.Pomodoros.Duration;
 
-namespace SingleServiceApp.Di.Pomodoro
+namespace SingleServiceApp.Di.Pomodoros
 {
     public interface IPomodoroActions
     {

@@ -1,4 +1,4 @@
-﻿namespace SingleServiceApp.Controllers.Statistics.Dto
+﻿namespace SingleServiceApp.Controllers
 {
     public class ExceptionDto
     {

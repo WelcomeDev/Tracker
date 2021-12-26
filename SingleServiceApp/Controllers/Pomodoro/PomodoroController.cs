@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using SingleServiceApp.Di.Pomodoro.Duration;
+using SingleServiceApp.Bll.Pomodoros;
 using SingleServiceApp.Providers.Pomodoros;
 
 namespace SingleServiceApp.Controllers.Pomodoro
@@ -18,7 +18,7 @@ namespace SingleServiceApp.Controllers.Pomodoro
 
         [HttpGet]
         [Route("{id:guid}/status")]
-        public async Task<IDuration> Status([FromRoute] Guid id)
+        public async Task<Duration> Status([FromRoute] Guid id)
         {
             var pomodoro = await _provider.Get(id);
 
@@ -46,8 +46,6 @@ namespace SingleServiceApp.Controllers.Pomodoro
         [Route("{id:guid}/pause")]
         public async void Pause([FromRoute] Guid id)
         {
-            //TODO: return IDuration
-
             //todo: should return duration?
             var pomodoro = await _provider.Get(id);
             pomodoro.Pause();

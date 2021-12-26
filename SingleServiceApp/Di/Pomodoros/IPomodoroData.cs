@@ -2,7 +2,7 @@
 
 using WelcomeDev.Provider.Di;
 
-namespace SingleServiceApp.Di.Pomodoro
+namespace SingleServiceApp.Di.Pomodoros
 {
     public interface IPomodoroData : IGuid, IPomodoroEssentials, IComparable<IPomodoroData>
     {

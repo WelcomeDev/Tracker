@@ -1,4 +1,4 @@
-﻿namespace SingleServiceApp.Di.Pomodoro.Duration
+﻿namespace SingleServiceApp.Di.Pomodoros.Duration
 {
     //TODO: extend actions
     public interface IDuration

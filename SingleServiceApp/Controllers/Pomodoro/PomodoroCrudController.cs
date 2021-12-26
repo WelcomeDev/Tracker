@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using SingleServiceApp.Controllers.Pomodoro.Dto;
 using SingleServiceApp.Controllers.Pomodoro.Validation;
-using SingleServiceApp.Di.Pomodoro;
+using SingleServiceApp.Di.Pomodoros;
 
 using WelcomeDev.Provider.Di.Pageable;
 using WelcomeDev.Utils.Enumerable;
@@ -50,7 +50,7 @@ namespace SingleServiceApp.Controllers.Pomodoro
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(Status201Created)]
-        public async Task<IActionResult> Create([FromBody] PomodoroCreationDto pomodoroData)
+        public async Task<IActionResult> Create([FromBody] CreatePomodoroDto pomodoroData)
         {
             _validations.ForEach(x => x.Validate(pomodoroData));
             var pomodoro = await _provider.Create(pomodoroData);
@@ -60,7 +60,7 @@ namespace SingleServiceApp.Controllers.Pomodoro
 
         [HttpPost]
         [Route("{id:guid}/update")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] PomodoroCreationDto pomodoroData)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] CreatePomodoroDto pomodoroData)
         {
             _validations.ForEach(x => x.Validate(pomodoroData));
             var pomodoro = await _provider.Update(id, pomodoroData);

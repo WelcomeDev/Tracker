@@ -1,32 +1,29 @@
-﻿using Pomodoro.Service.Controllers.Exceptions;
-
-using SingleServiceApp.Di.Pomodoro;
+﻿using SingleServiceApp.Bll.Pomodoros;
+using SingleServiceApp.Controllers.Pomodoro.Exceptions;
+using SingleServiceApp.Di.Pomodoros;
 
 namespace SingleServiceApp.Providers.Pomodoros
 {
     public class PomodoroProvider
     {
-        private readonly IList<IPomodoro> _pomodors = new List<IPomodoro>();
+        private readonly IList<Pomodoro> _pomodors = new List<Pomodoro>();
         private readonly IPomodoroAsyncProvider _provider;
-        private readonly IPomodoroMapper _mapper;
 
-        public PomodoroProvider(IPomodoroAsyncProvider provider, IPomodoroMapper mapper)
+        public PomodoroProvider(IPomodoroAsyncProvider provider)
         {
             _provider = provider;
-            _mapper = mapper;
         }
 
-        public async Task<IPomodoro> Get(Guid id)
+        public async Task<Pomodoro> Get(Guid id)
         {
             var cache = _pomodors.SingleOrDefault(p => p.Id == id);
             if (cache is not null)
                 return cache;
 
-            var pomodoroData = await _provider.GetById(id);
-            if (pomodoroData is null)
+            var pomodoro = await _provider.GetById(id);
+            if (pomodoro is null)
                 throw new PomodoroNotFoundException();
 
-            var pomodoro = _mapper.ToPomodoro(pomodoroData);
             _pomodors.Add(pomodoro);
             return pomodoro;
         }

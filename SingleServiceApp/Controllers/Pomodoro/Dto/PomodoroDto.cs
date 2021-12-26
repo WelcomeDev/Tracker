@@ -1,7 +1,7 @@
 ﻿using Auth.Di;
 
-using SingleServiceApp.Di.Pomodoro;
-using SingleServiceApp.Di.Pomodoro.Duration;
+using SingleServiceApp.Di.Pomodoros;
+using SingleServiceApp.Di.Pomodoros.Duration;
 
 namespace SingleServiceApp.Controllers.Pomodoro.Dto
 {

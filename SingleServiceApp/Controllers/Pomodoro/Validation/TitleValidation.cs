@@ -15,7 +15,7 @@ namespace SingleServiceApp.Controllers.Pomodoro.Validation
             _configuration = configuration;
         }
 
-        public void Validate(PomodoroCreationDto dto)
+        public void Validate(CreatePomodoroDto dto)
         {
             string title = dto.Title;
             if (string.IsNullOrWhiteSpace(title))

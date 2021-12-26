@@ -16,7 +16,7 @@ namespace SingleServiceApp.Providers.Auth
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=tracker_users;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
     }
 }

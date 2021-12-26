@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using SingleServiceApp.Bll.Auth;
+using SingleServiceApp.Controllers.Pomodoro.Dto;
 
 namespace SingleServiceApp.Bll.Pomodoros
 {
@@ -14,8 +15,6 @@ namespace SingleServiceApp.Bll.Pomodoros
 
         public string Title { get; set; }
 
-        public bool IsRunning { get; private set; }
-
         public Duration RestDuration { get; set; }
 
         public Duration WorkDuration { get; set; }
@@ -23,6 +22,14 @@ namespace SingleServiceApp.Bll.Pomodoros
         public Pomodoro()
         {
 
+        }
+
+        public Pomodoro(CreatePomodoroDto createPomodoro, UserEntry user)
+        {
+            Title = createPomodoro.Title;
+            RestDuration = createPomodoro.RestDuration;
+            WorkDuration = createPomodoro.WorkDuration;
+            User = user;
         }
 
         public bool Equals(Pomodoro other)

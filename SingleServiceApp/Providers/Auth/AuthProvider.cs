@@ -2,5 +2,10 @@
 {
     public class AuthProvider
     {
+
+        public AuthProvider(IHttpContextAccessor httpContextAccessor)
+        {
+
+        }
     }
 }

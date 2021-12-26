@@ -1,7 +1,10 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 
-using SingleServiceApp.Di.Pomodoro;
+using SingleServiceApp.Bll.Auth;
+using SingleServiceApp.Bll.Pomodoros;
+using SingleServiceApp.Controllers.Pomodoro.Dto;
+using SingleServiceApp.Di.Pomodoros;
 
 using WelcomeDev.Provider.Di.Pageable;
 
@@ -10,15 +13,13 @@ namespace SingleServiceApp.Providers.Pomodoros
     public class PomodoroSqlProvider : IPomodoroAsyncProvider
     {
         private readonly PomodoroDbContext _context;
+        //todo: get curent user!
+        //todo: auth!
+        private readonly UserEntry _user;
 
-        //public PomodoroSqlProvider(PomodoroDbContext context)
-        //{
-        //    _context = context;
-        //}
-
-        public PomodoroSqlProvider(string connectionString)
+        public PomodoroSqlProvider()
         {
-            _context = new PomodoroDbContext(connectionString);
+            _context = new PomodoroDbContext();
         }
 
         private async Task<Pomodoro> GetInstance(Guid id)
@@ -27,9 +28,9 @@ namespace SingleServiceApp.Providers.Pomodoros
                                            .SingleOrDefaultAsync();
         }
 
-        public async Task<IPomodoroData> Create(IPomodoroEssentials data)
+        public async Task<Pomodoro> Create(CreatePomodoroDto data)
         {
-            var pomodoro = await _context.AddAsync(new Pomodoro(data));
+            var pomodoro = await _context.AddAsync(new Pomodoro(data, _user));
             return pomodoro.Entity;
         }
 
@@ -40,25 +41,25 @@ namespace SingleServiceApp.Providers.Pomodoros
                 _context.Pomodoros.Remove(entity);
         }
 
-        public async Task<IEnumerable<IPomodoroData>> GetAll()
+        public async Task<IEnumerable<Pomodoro>> GetAll()
         {
             return await _context.Pomodoros.AsNoTracking()
                                            .ToListAsync();
         }
 
-        public async Task<PageableList<IPomodoroData>> GetAll(PageableParams pageable = null)
+        public async Task<PageableList<Pomodoro>> GetAll(PageableParams pageable = null)
         {
             var all = await GetAll();
-            return new PageableList<IPomodoroData>(all, pageable);
+            return new PageableList<Pomodoro>(all, pageable);
         }
 
-        public async Task<IPomodoroData> GetById(Guid id)
+        public async Task<Pomodoro> GetById(Guid id)
         {
             var pomodoroItem = await GetInstance(id);
             return pomodoroItem;
         }
 
-        public async Task<IPomodoroData> Update(Guid id, IPomodoroEssentials data)
+        public async Task<Pomodoro> Update(Guid id, UpdatePomodoroDto data)
         {
             var pomodoro = await GetInstance(id);
 

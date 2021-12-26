@@ -1,6 +1,4 @@
-﻿using Auth.Di;
-
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -18,18 +16,10 @@ namespace SingleServiceApp.Controllers.Auth
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly IUser currentUser;
 
         public AuthController(IConfiguration configuration)
         {
             _configuration = configuration;
-        }
-
-        [HttpGet]
-        [Route("internal/current")]
-        public async Task<IActionResult> CurrentUser()
-        {
-            return Ok(currentUser);
         }
 
         [HttpPost]
