@@ -27,19 +27,16 @@ namespace SingleServiceApp.Providers.Statistics
             return range;
         }
 
-        public async Task<IEnumerable<StatisticCollectionDto>> GetAllStatisticByTag(SearchParamsDto paramsDto)
+        public async Task<StatisticCollectionDto> GetAllStatisticByTag(SearchParamsDto paramsDto)
         {
-            var allStat = _context.Tags
-                .Include(x => x.Statistics)
-                .Include(x => x.Tittles)
-                .ThenInclude(x => x.ColorSql)
-                                       .First(x => x.Name.Equals(paramsDto.TagName) && x.User.Id == _authContext.GetCurrentUser().Id)
+            var allStat = _context.Tags.Include(x => x.Tittles)
+                                       .ThenInclude(x => x.ColorSql)
+                                       .Include(x => x.Statistics)
+                                       .First(x => x.Name.Equals(paramsDto.TagName)
+                                       && x.User.Id == _authContext.GetCurrentUser().Id)
                                        .Statistics;
 
             var statFromTo = allStat.Where(x => x.Date >= paramsDto.From && x.Date <= paramsDto.To);
-
-            //if (paramsDto.TittleId is not null)
-            //    statFromTo = statFromTo.Where(x => x.TitleId == paramsDto.TittleId);
 
             return StatisticMapper.StatisticMap(statFromTo);
         }
