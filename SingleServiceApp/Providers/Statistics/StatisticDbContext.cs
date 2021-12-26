@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SingleServiceApp.Providers.Statistics
 {
-    internal class StatisticDbContext : DbContext
+    public class StatisticDbContext : DbContext
     {
         public DbSet<Tag> Tags { get; set; }
 

@@ -35,7 +35,7 @@ namespace SingleServiceApp.Controllers.Statistics
 
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> List([FromRoute] SearchParamsDto paramsDto)
+        public async Task<IActionResult> List([FromQuery] SearchParamsDto paramsDto)
         {
             var pomodoro = await _provider.GetAllStatisticByTag(paramsDto);
 

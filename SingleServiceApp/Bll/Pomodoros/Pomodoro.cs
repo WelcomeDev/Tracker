@@ -11,7 +11,7 @@ namespace SingleServiceApp.Bll.Pomodoros
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public UserEntry User { get; }
+        public UserEntry User { get; set; }
 
         public string Title { get; set; }
 

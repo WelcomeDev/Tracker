@@ -12,6 +12,5 @@ namespace SingleServiceApp.Controllers.Statistics.Dto
 
         [Required(ErrorMessage = "Date to is required")]
         public DateTime To { get; set; }
-        public Guid? TittleId { get; set; } = null;
     }
 }

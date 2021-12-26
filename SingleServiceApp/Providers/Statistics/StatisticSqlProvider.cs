@@ -16,6 +16,8 @@ namespace SingleServiceApp.Providers.Statistics
         {
             _context = new StatisticDbContext();
             _authContext = authContext;
+            if (_context.Tags.Count() == 0)
+                StatisticInitializer.Initialize(_context, _authContext);
         }
 
         public async Task<IEnumerable<Statistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data)
@@ -27,14 +29,17 @@ namespace SingleServiceApp.Providers.Statistics
 
         public async Task<IEnumerable<StatisticCollectionDto>> GetAllStatisticByTag(SearchParamsDto paramsDto)
         {
-            var allStat = (await _context.Tags.FirstAsync(x =>
-            x.Name.Equals(paramsDto.TagName)
-            && x.User.Id == _authContext.GetCurrentUser().Id))
-            .Statistics;
+            var allStat = _context.Tags
+                .Include(x => x.Statistics)
+                .Include(x => x.Tittles)
+                .ThenInclude(x => x.ColorSql)
+                                       .First(x => x.Name.Equals(paramsDto.TagName) && x.User.Id == _authContext.GetCurrentUser().Id)
+                                       .Statistics;
+
             var statFromTo = allStat.Where(x => x.Date >= paramsDto.From && x.Date <= paramsDto.To);
 
-            if (paramsDto.TittleId is not null)
-                statFromTo = statFromTo.Where(x => x.TitleId == paramsDto.TittleId);
+            //if (paramsDto.TittleId is not null)
+            //    statFromTo = statFromTo.Where(x => x.TitleId == paramsDto.TittleId);
 
             return StatisticMapper.StatisticMap(statFromTo);
         }
