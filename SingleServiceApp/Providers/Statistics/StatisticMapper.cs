@@ -5,19 +5,42 @@ namespace SingleServiceApp.Providers.Statistics
 {
     public static class StatisticMapper
     {
-        public static IEnumerable<StatisticCollectionDto> StatisticMap(IEnumerable<Statistic> statistics)
+        public static StatisticCollectionDto StatisticMap(IEnumerable<Statistic> statistics)
         {
-            List<StatisticCollectionDto> res = new List<StatisticCollectionDto>();
-            var dates = statistics.Select(x => x.Date).Distinct();
+            StatisticCollectionDto statCollection = new StatisticCollectionDto();
+            var dates = statistics.Select(x => x.Date).Distinct().OrderBy(x => x);
 
-            foreach (var date in dates)
-                res.Add(new StatisticCollectionDto
+            statCollection.Dates = dates;
+
+            var uniquTitles = statistics.Select(x => x.Title).Distinct();
+
+            foreach (var title in uniquTitles)
+            {
+                var valueItem = new StatisticDto
                 {
-                    Date = date,
-                    Models = statistics.Where(x => x.Date == date).Select(x => new StatisticDto(x))
-                });
+                    Title = title.Name,
+                    Color = title.ColorSql.ToString(),
+                };
 
-            return res;
+                // для каждого тайтла я достаю его статистики и упорядочиваю по дате
+                var titlesStats = statistics.Where(x => x.TitleId == title.Id)
+                                            .OrderBy(x => x.Date);
+                var res = new List<double?>();
+
+                foreach (var date in dates)
+                {
+                    if (titlesStats.Select(x => x.Date).Contains(date))
+                        res.Add(titlesStats.First(x => x.Date == date).Value);
+                    else
+                        res.Add(null);
+                }
+
+                valueItem.Value = res;
+
+                statCollection.Models.Append(valueItem);
+            }
+
+            return statCollection;
         }
     }
 }

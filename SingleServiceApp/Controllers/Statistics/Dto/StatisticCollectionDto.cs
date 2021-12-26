@@ -9,7 +9,7 @@ namespace SingleServiceApp.Controllers.Statistics.Dto
 {
     public class StatisticCollectionDto
     {
-        public DateTime Date { get; set; }
+        public IEnumerable<DateTime> Dates { get; set; }
 
         public IEnumerable<StatisticDto> Models { get; set; }
     }
