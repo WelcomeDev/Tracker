@@ -12,11 +12,20 @@ namespace SingleServiceApp.Bll.Statistics
 
         public double? MaxValue { get; set; }
 
+        public virtual ICollection<Title> Tittles { get; set; }
+
+        public virtual ICollection<Statistic> Statistics { get; set; }
+
         public bool Equals(Tag other)
         {
             if (other is null) return false;
 
             return Name.Equals(other.Name);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Tag);
         }
     }
 }

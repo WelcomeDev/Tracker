@@ -2,7 +2,7 @@
 
 using SingleServiceApp.Di.Pomodoro;
 
-namespace SingleServiceApp.Providers.Pomodoro
+namespace SingleServiceApp.Providers.Pomodoros
 {
     public class PomodoroProvider
     {

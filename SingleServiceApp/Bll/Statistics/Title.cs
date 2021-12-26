@@ -1,20 +1,27 @@
 ﻿
+using SingleServiceApp.Providers.Statistics.Entity;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
 
 namespace SingleServiceApp.Bll.Statistics
 {
-    public class Title : IEquatable<Title>
+    public sealed class Title : IEquatable<Title>
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         public string Name { get; set; }
 
+        public Guid TagId { get; set; }
+
         public Tag Tag { get; set; }
 
-        public Color Color { get; set; }
+        public Guid ColorId { get; set; }
+
+        [ForeignKey("ColorId")]
+        [Column("Color")]
+        public ColorSql ColorSql { get; set; }
 
         public bool Equals(Title other)
         {
@@ -22,6 +29,11 @@ namespace SingleServiceApp.Bll.Statistics
                 return false;
 
             return Name.Equals(other.Name);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Title);
         }
     }
 }

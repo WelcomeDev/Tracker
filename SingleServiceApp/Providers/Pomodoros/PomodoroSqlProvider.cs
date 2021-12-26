@@ -5,7 +5,7 @@ using SingleServiceApp.Di.Pomodoro;
 
 using WelcomeDev.Provider.Di.Pageable;
 
-namespace SingleServiceApp.Providers.Pomodoro
+namespace SingleServiceApp.Providers.Pomodoros
 {
     public class PomodoroSqlProvider : IPomodoroAsyncProvider
     {

@@ -20,7 +20,7 @@ namespace SingleServiceApp.Controllers.Statistics
 
         [HttpGet]
         [Route("list")]
-        public async Task<IEnumerable<StatisticWebModelCollection>> GetAllByTag([FromRoute] SearchParamsDto paramsDto)
+        public async Task<IEnumerable<StatisticCollectionDto>> GetAllByTag([FromRoute] SearchParamsDto paramsDto)
         {
             var pomodoro = await _provider.GetAllStatisticByTag(paramsDto);
 

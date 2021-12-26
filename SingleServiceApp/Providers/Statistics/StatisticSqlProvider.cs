@@ -1,45 +1,39 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using SingleServiceApp.Bll.Auth;
+using SingleServiceApp.Bll.Statistics;
 using SingleServiceApp.Controllers.Statistics.Dto;
 using SingleServiceApp.Di.Statistics;
-
-using Statistic.Di;
-using Statistic.Service.Controllers.Dto;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SingleServiceApp.Providers.Statistics
 {
     internal class StatisticSqlProvider : IStatisticAsyncProvider
     {
         private readonly StatisticDbContext _context;
+        private readonly UserEntry _currentUser;
 
-        public StatisticSqlProvider(string connectionString)
+        public StatisticSqlProvider()
         {
-            _context = new StatisticDbContext(connectionString);
+            _context = new StatisticDbContext();
         }
 
 
-        public async Task<IEnumerable<IStatistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data)
+        public async Task<IEnumerable<Statistic>> CreateStatistic(IEnumerable<StatisticCreationDto> data)
         {
-            var range = data.Select(x => new Entity.Statistic(x));
+            var range = data.Select(x => new Statistic(x, _currentUser));
             await _context.AddRangeAsync(range);
             return range;
         }
 
-        public async Task<IEnumerable<StatisticWebModelCollection>> GetAllStatisticByTag(SearchParamsDto paramsDto)
+        public async Task<IEnumerable<StatisticCollectionDto>> GetAllStatisticByTag(SearchParamsDto paramsDto)
         {
-            var AllStat = (await _context.Tags.FirstAsync(x => x.Id == paramsDto.TagId)).Statistics;
-            var StatFromTo = AllStat.Where(x => x.Date >= paramsDto.From && x.Date <= paramsDto.To);
+            var allStat = (await _context.Tags.FirstAsync(x => x.Name.Equals(paramsDto.TagName))).Statistics;
+            var statFromTo = allStat.Where(x => x.Date >= paramsDto.From && x.Date <= paramsDto.To);
 
             if (paramsDto.TittleId is not null)
-                return StatisticMapper.StatisticMap(StatFromTo.Where(x => x.TitleId == paramsDto.TittleId));
+                statFromTo = statFromTo.Where(x => x.TitleId == paramsDto.TittleId);
 
-            return StatisticMapper.StatisticMap(StatFromTo);
+            return StatisticMapper.StatisticMap(statFromTo);
         }
     }
 }

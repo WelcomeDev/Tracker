@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using SingleServiceApp.Bll.Statistics;
 using SingleServiceApp.Providers.Statistics.Entity;
 
 using System;
@@ -12,29 +13,17 @@ namespace SingleServiceApp.Providers.Statistics
 {
     internal class StatisticDbContext : DbContext
     {
-        private readonly string _connectionString;
+        public DbSet<Tag> Tags { get; set; }
 
-        public DbSet<Entity.Tag> Tags { get; set; }
-
-        public DbSet<Entity.Title> Title { get; set; }
+        public DbSet<Title> Title { get; set; }
 
         public DbSet<ColorSql> Colors { get; set; }
 
-        public DbSet<Entity.Statistic> Statistics { get; set; }
-
-        public StatisticDbContext()
-        {
-            _connectionString = "Server=(localdb)\\mssqllocaldb;Database=statisticdb;Trusted_Connection=True;MultipleActiveResultSets=true";
-        }
-
-        public StatisticDbContext(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public DbSet<Statistic> Statistics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=statisticdb;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,17 +31,17 @@ namespace SingleServiceApp.Providers.Statistics
             base.OnModelCreating(modelBuilder);
 
 
-            modelBuilder.Entity<Entity.Statistic>()
+            modelBuilder.Entity<Statistic>()
                        .Property(x => x.Date)
                        .HasDefaultValueSql("GETDATE()");
 
-            modelBuilder.Entity<Entity.Statistic>()
+            modelBuilder.Entity<Statistic>()
                 .HasOne(x => x.Tag)
                 .WithMany(x => x.Statistics)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Entity.Tag>().OwnsOne(x => x.User);
-            modelBuilder.Entity<Entity.Statistic>().OwnsOne(x => x.User);
+            modelBuilder.Entity<Tag>().OwnsOne(x => x.User);
+            modelBuilder.Entity<Statistic>().OwnsOne(x => x.User);
         }
     }
 }

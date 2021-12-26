@@ -1,23 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-
-using Auth.Di;
-
-using Pomodoro.Bll;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 using SingleServiceApp.Bll.Auth;
-using SingleServiceApp.Bll.Pomodoro;
-
-using SingleServiceApp.Di.Pomodoro;
-using SingleServiceApp.Di.Pomodoro.Duration;
 
 namespace SingleServiceApp.Bll.Pomodoros
 {
-    public partial class Pomodoro : IPomodoro
+    public partial class Pomodoro
     {
-        public UserEntry User { get; }
-
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+
+        public UserEntry User { get; }
 
         public string Title { get; set; }
 
@@ -30,16 +23,6 @@ namespace SingleServiceApp.Bll.Pomodoros
         public Pomodoro()
         {
 
-        }
-
-        public Pomodoro(IPomodoroData data)
-        {
-            User = data.User;
-            Id = data.Id;
-            Title = data.Title;
-            RestDuration = data.RestDuration;
-            WorkDuration = data.WorkDuration;
-            _start = null;
         }
 
         public bool Equals(Pomodoro other)

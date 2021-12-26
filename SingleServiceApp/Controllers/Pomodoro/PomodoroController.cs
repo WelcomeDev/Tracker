@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using SingleServiceApp.Di.Pomodoro.Duration;
-using SingleServiceApp.Providers.Pomodoro;
+using SingleServiceApp.Providers.Pomodoros;
 
 namespace SingleServiceApp.Controllers.Pomodoro
 {

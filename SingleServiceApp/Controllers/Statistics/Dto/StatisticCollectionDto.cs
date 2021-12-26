@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SingleServiceApp.Controllers.Statistics.Dto
 {
-    public class StatisticWebModelCollection
+    public class StatisticCollectionDto
     {
         public DateTime Date { get; set; }
 
-        public IEnumerable<StatisticWebModel> Models { get; set; }
+        public IEnumerable<StatisticDto> Models { get; set; }
     }
 }

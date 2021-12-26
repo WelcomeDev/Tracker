@@ -1,45 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Auth.Di;
-
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using SingleServiceApp.Bll.Auth;
-
-using Statistic.Di;
-using Statistic.Di.Tag;
-using Statistic.Di.Tittle;
+using SingleServiceApp.Controllers.Statistics.Dto;
 
 namespace SingleServiceApp.Bll.Statistics
 {
-    public class Statistic : IStatistic
+    public class Statistic
     {
-        public Statistic(IStatistic data)
-        {
-            User = data.User;
-        }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public UserEntry User { get; set; }
+
+        public Guid TagId { get; set; }
+        public virtual Tag Tag { get; set; }
+
+        public Guid TitleId { get; set; }
+        public virtual Title Title { get; set; }
+
+        public DateTime Date { get; set; }
+        public double Value { get; set; }
 
         public Statistic()
         {
 
         }
 
-        public UserEntry User { get; set; }
-
-        public Tag Tag { get; set; }
-
-        public Title Title { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public double Value { get; set; }
-
-        public Guid Id { get; set; }
-
-        ITitle IStatistic.Title => Title;
-
-        ITag IStatistic.Tag => Tag;
+        public Statistic(StatisticCreationDto statisticCreation, UserEntry user)
+        {
+            TagId = statisticCreation.TagId;
+            TitleId = statisticCreation.TitleId;
+            Value = statisticCreation.Value;
+            User = user;
+        }
     }
 }

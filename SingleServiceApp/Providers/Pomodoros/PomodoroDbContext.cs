@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SingleServiceApp.Providers.Pomodoro
+using SingleServiceApp.Bll.Pomodoros;
+
+namespace SingleServiceApp.Providers.Pomodoros
 {
     public class PomodoroDbContext : DbContext
     {
-        public DbSet<Entity.Pomodoro> Pomodoros { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Pomodoro> Pomodoros { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -14,13 +15,13 @@ namespace SingleServiceApp.Providers.Pomodoro
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Entity.Pomodoro>().OwnsOne(x => x.RestDuration, restDuration =>
+            modelBuilder.Entity<Pomodoro>().OwnsOne(x => x.RestDuration, restDuration =>
             {
                 restDuration.Property(x => x.Hours).HasColumnName("RestHours");
                 restDuration.Property(x => x.Minutes).HasColumnName("RestMinutes");
             });
 
-            modelBuilder.Entity<Entity.Pomodoro>().OwnsOne(x => x.WorkDuration, workDuration =>
+            modelBuilder.Entity<Pomodoro>().OwnsOne(x => x.WorkDuration, workDuration =>
             {
                 workDuration.Property(x => x.Hours).HasColumnName("WorkHours");
                 workDuration.Property(x => x.Minutes).HasColumnName("WorkMinutes");
