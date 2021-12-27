@@ -8,32 +8,26 @@
   max-width: 1440px;
 }
 
-@mixin for-phone-only {
-  @media (max-width: 599px) {
-    @content;
+@media (max-width: 1800px) {
+  .content-container{
+    max-width: 1200px;
   }
 }
 
-@mixin for-tablet-portrait-up {
-  @media (min-width: 600px) {
-    @content;
+@media (max-width: 1200px) {
+  .content-container{
+    max-width: 900px;
   }
 }
 
-@mixin for-tablet-landscape-up {
-  @media (min-width: 960px) {
-    @content;
+@media (max-width: 970px) {
+  .content-container{
+    max-width: 700px;
   }
 }
 
-@mixin for-desktop-up {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
-
-@mixin big-desktop {
-  @media (min-width: 1800px) {
-    @content;
+@media (max-width: 600px) {
+  .container {
+    max-width: none;
   }
 }

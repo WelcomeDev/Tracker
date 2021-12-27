@@ -1,5 +1,5 @@
 import { createRef, useEffect } from 'react';
-import Chart from 'chart.js/auto'
+import Chart from 'chart.js/auto';
 import moment from 'moment';
 import { observer } from 'mobx-react';
 import { StatisticStore } from '../../../modules/Statistic/store/statisticStore';
@@ -15,14 +15,25 @@ export const ChartLayout = observer(() => {
     useEffect(
         () => {
             if (!store.items) return;
-            console.log(store.items);
 
             const myChart = new Chart(canvas.current as HTMLCanvasElement, {
                 type: 'bar',
                 data: {
                     labels: store.items.dates.map(x => moment(x)
                         .format('DD-MM')),
-                    datasets: store.items.models.map(d => ({ label: d.title, backgroundColor: d.color, data: d.values })),
+                    datasets: store.items.models.map(d => (
+                        {
+                            label: d.title,
+                            backgroundColor: d.color,
+                            data: d.value,
+                            fillColor: 'rgba(220,220,220,0.2)',
+                            strokeColor: 'rgba(220,220,220,1)',
+                            pointColor: 'rgba(220,220,220,1)',
+                            pointStrokeColor: '#fff',
+                            pointHighlightFill: '#fff',
+                            pointHighlightStroke: 'rgba(220,220,220,1)',
+                        }
+                    )),
                 },
                 options: {
                     maintainAspectRatio: false,

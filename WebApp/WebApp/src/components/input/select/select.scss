@@ -9,7 +9,7 @@ $add-button-height: 50px;
   position: relative;
   user-select: none;
 
-  max-width: 225px;
+  width: 225px;
 
   .select {
     @include title;

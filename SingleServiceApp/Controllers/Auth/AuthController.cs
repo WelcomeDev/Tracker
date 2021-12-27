@@ -47,7 +47,7 @@ namespace SingleServiceApp.Controllers.Auth
             if(_authContext.GetCurrentUser() is null)
                 return Unauthorized();
 
-            return Ok(_authContext.GetCurrentUser());
+            return Ok(await _authActions.WhoAmI(_authContext.GetCurrentUser().Id));
         }
     }
 }

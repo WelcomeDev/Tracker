@@ -50,6 +50,12 @@ namespace SingleServiceApp.Controllers.Auth.Actions
             return user;
         }
 
+        public async Task<UserDto> WhoAmI(Guid id)
+        {
+            var user = await _provider.GetUserByGuid(id.ToString());
+            return new UserDto() { Id = user.Id, Name = user.Login, Authority = user.Role };
+        }
+
         public async Task<Token> SignUp(string username, string password)
         {
             IEncryptionAlgorithm enc = new DesEncryption(username);

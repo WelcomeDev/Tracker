@@ -6,6 +6,7 @@ import './select.scss';
 export interface SelectProps {
     className?: string;
     children?: ReactNode;
+    selection: string;
 }
 
 export function Select(props: SelectProps) {
@@ -18,16 +19,16 @@ export function Select(props: SelectProps) {
                 className={classNames('select-wrapper', props.className)}
             >
                 <section
-                    onClick={(e)=>{
+                    onClick={(e) => {
                         setIsCollapsed(!isCollapsed);
                         e.stopPropagation();
                     }}
                     className={'select'}
                 >
-                    <p>Pomodoro</p>
+                    <p>{props.selection}</p>
                     <Icon
                         className={'select__toggle-collapse'}
-                        icon={isCollapsed ? 'mdi:chevron-up' : 'mdi:chevron-down'}
+                        icon={isCollapsed ? 'mdi:chevron-down' : 'mdi:chevron-up'}
                     />
                 </section>
                 <div

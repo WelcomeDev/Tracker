@@ -1,0 +1,14 @@
+.account-header-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+  }
+  p{
+    font: inherit;
+  }
+}

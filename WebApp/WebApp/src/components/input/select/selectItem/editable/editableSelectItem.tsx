@@ -13,20 +13,22 @@ export interface SelectItemProps /*extends UseFormHookInputProps*/
     name: string;
     id: string;
     className?: string;
+    onSelectCallback?: Action<{name:string, id:string}>;
 }
 
 export function EditableSelectItem(props: SelectItemProps) {
 
-    const { id } = props;
+    const { id, name } = props;
 
     return (
         <div
             className={'editable-select-item'}
+            onClick={()=>props.onSelectCallback && props.onSelectCallback({name, id})}
         >
             <p
                 className={'editable-select-item__text'}
             >
-                {props.name}
+                {name}
             </p>
             {
                 // props.onEditCallback &&
